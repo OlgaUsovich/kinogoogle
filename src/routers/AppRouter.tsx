@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { routes } from "./roures";
+import { routes } from "./routes";
 import { MainTemplate } from "../components";
 import { Favourits, Home, Movie, NotFound, Settings, SignIn, SignUp, Trends } from "../pages";
 
