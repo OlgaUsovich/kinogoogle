@@ -8,6 +8,10 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
+  html, body, #root {
+    height: 100%;
+  }
+
   body {
     font-family: 'Noto Sans', 'sans-serif';
     background-color: #EAF2F2;
