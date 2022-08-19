@@ -1,6 +1,6 @@
 import { AppRouter } from "./routers";
 
-function App() {
+const App = () => {
   return <AppRouter />;
 }
 
