@@ -9,7 +9,7 @@ export const AppRouter = () => {
       <Route path={ROUTE.HOME} element={<MainTemplate />}>
         <Route index element={<Home />} />
         <Route path={ROUTE.TRENDS} element={<Trends />} />
-        <Route path={ROUTE.FAVOURITS} element={<Favourits />} />
+        <Route path={ROUTE.FAVORITES} element={<Favourits />} />
         <Route path={ROUTE.SETTINGS} element={<Settings />} />
         <Route path={ROUTE.MOVIE} element={<Movie />} />
         <Route path={ROUTE.SIGN_IN} element={<SignIn />} />
