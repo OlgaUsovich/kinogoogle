@@ -6,7 +6,7 @@ export const StyledNav = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  flex-shrink: 0;
 `;
 
 export const StyledUl = styled.ul`
