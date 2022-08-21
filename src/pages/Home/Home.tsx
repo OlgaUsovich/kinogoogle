@@ -36,7 +36,6 @@ export const Home = () => {
         fetchedMovies.forEach((movie: any) => {
           movieAPI.getById(movie.imdbID).then((response) => {
             setMovies((previousMovies) => {
-                console.log(response)
               const transformedMovie = transformMovie(response);
               return previousMovies.map((el) => (el.imdbID === transformedMovie.imdbID ? transformedMovie : el));
             });
