@@ -54,8 +54,8 @@ class MovieAPI {
     return data;
   }
 
-  public async getById(id: string): Promise<any> {
-    const params = { ...this.DEFALUT_REQUEST_PARAMS, i: id };
+  public async getById(id: string | undefined): Promise<any> {
+    const params = { ...this.DEFALUT_REQUEST_PARAMS, i: id, plot: "full" };
 
     const { data } = await this.API.get("", { params });
 

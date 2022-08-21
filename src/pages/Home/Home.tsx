@@ -18,6 +18,7 @@ export interface IMovie {
   imdbID: string;
   type: string;
   boxOffice: string;
+  production: string;
 }
 
 export const Home = () => {
