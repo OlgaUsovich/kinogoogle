@@ -11,12 +11,12 @@ export const Card = styled(Link)`
   text-decoration: none;
 `;
 
-export const Poster = styled.img`
-  position: relative;
-  height: 357px;
-  width: 266px;
-  border-radius: 20px;
-`;
+// export const Poster = styled.img`
+//   position: relative;
+//   height: 357px;
+//   width: 266px;
+//   border-radius: 20px;
+// `;
 
 export const Title = styled.h3`
   ${subline12}
