@@ -12,6 +12,11 @@ export const Card = styled(Link)`
 `;
 
 export const Title = styled.h3`
+  margin-top: 24px;
   ${subline12}
   color: ${COLOR.WHITE};
+
+  &:hover {
+    color: ${COLOR.PRIMARY};
+  }
 `;
