@@ -30,10 +30,8 @@ class MovieAPI {
       "hero",
       "girl",
       "boy",
-      "suffer",
       "murder",
       "kill",
-      "mistery",
       "bat",
       "happy",
       "hello",
@@ -58,6 +56,16 @@ class MovieAPI {
     const params = { ...this.DEFALUT_REQUEST_PARAMS, i: id, plot: "full" };
 
     const { data } = await this.API.get("", { params });
+
+    return data;
+  }
+
+  public async getTrends(newParams: MovieRequestParams): Promise<any> {
+    const params = { ...this.DEFALUT_REQUEST_PARAMS, ...newParams, s: this.getRandomParam(), y: new Date().getFullYear(),  };
+
+    const { data } = await this.API.get("", {
+      params,
+    });
 
     return data;
   }
