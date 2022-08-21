@@ -1,3 +1,3 @@
-import { RaitingBadge } from "./RaitingBadge";
+import { Badge } from "./RaitingBadge";
 
-export { RaitingBadge };
+export { Badge };

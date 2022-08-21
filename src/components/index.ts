@@ -4,6 +4,6 @@ import { MovieCard } from "./MovieCard";
 import { MovieList } from "./MovieList";
 import { Nav } from "./Nav";
 import { Poster } from "./Poster";
-import { RaitingBadge } from "./RaitingBadge";
+import { Badge } from "./RaitingBadge";
 
-export { MainTemplate, MovieCard, MovieList, Nav, Poster, GenreList, RaitingBadge };
+export { MainTemplate, MovieCard, MovieList, Nav, Poster, GenreList, Badge };

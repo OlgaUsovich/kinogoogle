@@ -1,10 +1,13 @@
-import { defineBadgeColor } from "../../helpers";
+import { ReactNode } from "react";
 import { Raiting } from "./styles";
 
 interface IProps {
-  raiting: string;
+  text: string;
+  color: string;
+  isCard?: boolean | undefined;
+  svg?: ReactNode | undefined;
 }
 
-export const RaitingBadge = ({ raiting }: IProps) => {
-  return <Raiting raitingColor={defineBadgeColor(raiting)}>{raiting}</Raiting>;
+export const Badge = ({ text, color, isCard, svg }: IProps) => {
+  return <Raiting raitingColor={color} isCard={isCard}>{svg} {text}</Raiting>;
 };
