@@ -1,5 +1,6 @@
 import { defineBadgeColor } from "../../helpers";
 import { IMovie } from "../../pages";
+import { createPath, ROUTE } from "../../routers";
 import { Card, Genre, GenreList, Poster, Raiting, Title } from "./styles";
 
 interface IProps {
@@ -9,7 +10,7 @@ interface IProps {
 export const MovieCard = ({ movie }: IProps) => {
 
   return (
-    <Card>
+    <Card to={createPath(ROUTE.MOVIE, {id: movie.imdbID})}>
       <Poster src={movie.poster} />
       <Raiting raitingColor={defineBadgeColor(movie.imdbRating)}>{movie.imdbRating}</Raiting>
       <Title>{movie.title}</Title>

@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { COLOR, subline12, subline13 } from "../../ui";
 
-export const Card = styled.div`
+export const Card = styled(Link)`
   display: flex;
   flex-direction: column;
   gap: 4px;
   height: 433px;
   width: 266px;
+  text-decoration: none;
 `;
 
 export const Poster = styled.img`
