@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { body, COLOR, h1, subline13 } from "../../ui";
+import { BODY, COLOR, H1, SUBLINE13 } from "../../ui";
 
 export const MovieInfo = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ export const InfoBlock = styled.section`
 
 export const MovieTitle = styled.h1`
   margin-bottom: 24px;
-  ${h1};
+  ${H1};
   color: ${COLOR.WHITE};
 `;
 
@@ -29,7 +29,7 @@ export const BadgeBlock = styled.div`
 
 export const Description = styled.p`
   margin: 40px 0;
-  ${body};
+  ${BODY};
   font-weight: 500;
   color: ${COLOR.WHITE};
 `;
@@ -43,14 +43,14 @@ export const StyledRow = styled.tr``;
 export const StyledHead = styled.th`
   width: 136px;
   padding: 10px 0;
-  ${subline13};
+  ${SUBLINE13};
   text-align: left;
   color: ${COLOR.GRAPHITE};
 `;
 
 export const StyledCell = styled.td`
   padding: 10px 0;
-  ${subline13}
+  ${SUBLINE13}
   color: ${COLOR.WHITE}
 `;
 

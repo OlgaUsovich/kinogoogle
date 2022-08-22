@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR, subline13 } from "../../ui";
+import { COLOR, SUBLINE13 } from "../../ui";
 
 export const StyledUl = styled.ul`
   display: flex;
@@ -9,7 +9,7 @@ export const StyledUl = styled.ul`
 `;
 
 export const Genre = styled.li`
-  ${subline13}
+  ${SUBLINE13}
   font-weight: 500;
   color: ${COLOR.LIGTH};
   list-style-type: none;

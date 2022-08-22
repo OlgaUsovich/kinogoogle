@@ -1,5 +1,5 @@
 import { COLOR } from "./colors";
 import { MEDIA } from "./media";
-import { h1, h2, h3, subline11, subline12, subline13, body } from "./typography";
+import { H1, H2, H3, SUBLINE11, SUBLINE12, SUBLINE13, BODY } from "./typography";
 
-export { COLOR, MEDIA, h1, h2, h3, subline11, subline12, subline13, body };
+export { COLOR, MEDIA, H1, H2, H3, SUBLINE11, SUBLINE12, SUBLINE13, BODY };

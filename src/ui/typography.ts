@@ -1,7 +1,7 @@
 import { css } from "styled-components";
 import { MEDIA } from "./media";
 
-const h1 = css`
+const H1 = css`
   font-family: "Exo 2";
   font-style: normal;
   font-weight: 600;
@@ -19,7 +19,7 @@ const h1 = css`
   }
 `;
 
-const h2 = css`
+const H2 = css`
   font-family: "Exo 2", "sans-serif";
   font-style: normal;
   font-weight: 600;
@@ -31,7 +31,7 @@ const h2 = css`
   }
 `;
 
-const h3 = css`
+const H3 = css`
   font-family: "Exo 2", "sans-serif";
   font-style: normal;
   font-weight: 600;
@@ -44,7 +44,7 @@ const h3 = css`
   }
 `;
 
-const subline11 = css`
+const SUBLINE11 = css`
   font-family: "Exo 2", "sans-serif";
   font-style: normal;
   font-weight: 600;
@@ -52,7 +52,7 @@ const subline11 = css`
   line-height: 24px;
 `;
 
-const subline12 = css`
+const SUBLINE12 = css`
   font-family: "Exo 2", "sans-serif";
   font-style: normal;
   font-weight: 700;
@@ -60,7 +60,7 @@ const subline12 = css`
   line-height: 24px;
 `;
 
-const subline13 = css`
+const SUBLINE13 = css`
   font-family: "Exo 2", "sans-serif";
   font-style: normal;
   font-weight: 600;
@@ -68,7 +68,7 @@ const subline13 = css`
   line-height: 24px;
 `;
 
-const body = css`
+const BODY = css`
   font-family: "Exo 2";
   font-style: normal;
   font-weight: 400;
@@ -76,4 +76,4 @@ const body = css`
   line-height: 24px;
 `;
 
-export { h1, h2, h3, subline11, subline12, subline13, body };
+export { H1, H2, H3, SUBLINE11, SUBLINE12, SUBLINE13, BODY };

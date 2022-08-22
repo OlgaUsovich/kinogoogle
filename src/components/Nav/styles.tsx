@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { body, COLOR, subline11 } from "../../ui";
+import { BODY, COLOR, SUBLINE11 } from "../../ui";
 
 export const StyledNav = styled.nav`
   display: flex;
@@ -17,7 +17,7 @@ export const StyledUl = styled.ul`
 `;
 export const CustomLink = styled(NavLink)`
   display: flex;
-  ${subline11}
+  ${SUBLINE11}
   color: ${COLOR.SECONDARY};
   text-decoration: none;
 
@@ -45,7 +45,7 @@ export const LinkText = styled.span`
 
 export const Rigths = styled.span`
   justify-self: end;
-  ${body};
+  ${BODY};
   font-weight: 500;
   color: ${COLOR.LIGTH};
 `;

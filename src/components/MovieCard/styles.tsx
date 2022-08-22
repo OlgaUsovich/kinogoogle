@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { COLOR, subline12 } from "../../ui";
+import { COLOR, SUBLINE12 } from "../../ui";
 
 export const Card = styled(Link)`
   display: flex;
@@ -13,7 +13,7 @@ export const Card = styled(Link)`
 
 export const Title = styled.h3`
   margin-top: 24px;
-  ${subline12}
+  ${SUBLINE12}
   color: ${COLOR.WHITE};
 
   &:hover {
