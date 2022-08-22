@@ -31,7 +31,7 @@ export const CustomLink = styled(NavLink)`
   }
 
   &:hover {
-    color: ${COLOR.PRIMARY2};
+    color: ${COLOR.PRIMARY_DIMMER};
   }
 
   &:disabled {
