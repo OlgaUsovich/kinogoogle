@@ -44,11 +44,12 @@ class MovieAPI {
   }
 
   public async getAll(newParams: MovieRequestParams): Promise<any> {
+
     if (! this.requestWord) {
       this.requestWord = this.getRandomParam()
     }
 
-    const params = { ...this.DEFALUT_REQUEST_PARAMS, ...newParams, s: this.getRandomParam() };
+    const params = { ...this.API_KEY, ...newParams, s: this.requestWord };
 
     const { data } = await this.API.get("", {
       params,
