@@ -8,12 +8,12 @@ const h1 = css`
   font-size: 40px;
   line-height: 60px;
 
-  @media (${MEDIA.MD}) {
+  ${MEDIA.MD} {
     font-size: 32px;
     line-height: 48px;
   }
 
-  @media (${MEDIA.SM}) {
+  ${MEDIA.SM} {
     font-size: 28px;
     line-height: 42px;
   }
@@ -26,7 +26,7 @@ const h2 = css`
   font-size: 24px;
   line-height: 36px;
 
-  @media (${MEDIA.SM}) {
+  ${MEDIA.SM} {
     font-size: 20px;
   }
 `;
@@ -38,7 +38,7 @@ const h3 = css`
   font-size: 20px;
   line-height: 32px;
 
-  @media (${MEDIA.SM}) {
+  ${MEDIA.SM} {
     font-size: 18px;
     line-height: 28px;
   }
