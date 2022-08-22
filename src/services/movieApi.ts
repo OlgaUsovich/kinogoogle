@@ -16,10 +16,11 @@ class MovieAPI {
   private readonly API = axios.create({
     baseURL: this.BASE_URL,
   });
+  private requestWord = '';
 
   private readonly API_KEY: MovieRequestParams = { apikey: process.env.REACT_APP_MOVIE_API_KEY };
 
-  public getRandomParam(): string {
+  private getRandomParam(): string {
     const searchWords = [
       "cat",
       "dog",
@@ -43,7 +44,11 @@ class MovieAPI {
   }
 
   public async getAll(newParams: MovieRequestParams): Promise<any> {
-    const params = { ...this.API_KEY, ...newParams, s: this.getRandomParam() };
+    if (! this.requestWord) {
+      this.requestWord = this.getRandomParam()
+    }
+
+    const params = { ...this.DEFALUT_REQUEST_PARAMS, ...newParams, s: this.getRandomParam() };
 
     const { data } = await this.API.get("", {
       params,
