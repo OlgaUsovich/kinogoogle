@@ -4,6 +4,7 @@ import { BODY, COLOR, H1, SUBLINE13 } from "../../ui";
 export const MovieInfo = styled.div`
   display: flex;
   gap: 42px;
+  flex-grow: 1;
 `;
 
 export const PosterBlock = styled.div`
