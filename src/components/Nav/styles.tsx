@@ -1,12 +1,16 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { body, COLOR, subline11 } from "../../ui";
+import { BODY, COLOR, MEDIA, SUBLINE11 } from "../../ui";
 
 export const StyledNav = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-shrink: 0;
+
+  ${MEDIA.MD} {
+    display: none;
+  }
 `;
 
 export const StyledUl = styled.ul`
@@ -15,9 +19,10 @@ export const StyledUl = styled.ul`
   gap: 40px;
   list-style: none;
 `;
+
 export const CustomLink = styled(NavLink)`
   display: flex;
-  ${subline11}
+  ${SUBLINE11}
   color: ${COLOR.SECONDARY};
   text-decoration: none;
 
@@ -31,7 +36,7 @@ export const CustomLink = styled(NavLink)`
   }
 
   &:hover {
-    color: ${COLOR.PRIMARY2};
+    color: ${COLOR.PRIMARY_DIMMER};
   }
 
   &:disabled {
@@ -45,7 +50,7 @@ export const LinkText = styled.span`
 
 export const Rigths = styled.span`
   justify-self: end;
-  ${body};
+  ${BODY};
   font-weight: 500;
   color: ${COLOR.LIGTH};
 `;

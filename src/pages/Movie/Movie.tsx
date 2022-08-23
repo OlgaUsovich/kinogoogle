@@ -44,16 +44,27 @@ export const Movie = () => {
       <PosterBlock>
         <Poster img={movie?.poster} />
         <ButtonGroup>
-            <StyledButton><BsFillBookmarkFill /></StyledButton>
-            <StyledButton><FiShare2 /></StyledButton>
+          <StyledButton>
+            <BsFillBookmarkFill />
+          </StyledButton>
+          <StyledButton>
+            <FiShare2 />
+          </StyledButton>
         </ButtonGroup>
       </PosterBlock>
       <InfoBlock>
         <GenreList genreList={movie?.genre} />
         <MovieTitle>{movie?.title}</MovieTitle>
         <BadgeBlock>
-          <Badge text={movie?.imdbRating} color={defineBadgeColor(movie?.imdbRating)} />
-          <Badge text={movie?.imdbRating} color={COLOR.GRAPHITE} svg={<IMDb />} />
+          <Badge
+            text={movie?.imdbRating}
+            color={defineBadgeColor(movie?.imdbRating)}
+          />
+          <Badge
+            text={movie?.imdbRating}
+            color={COLOR.GRAPHITE}
+            svg={<IMDb />}
+          />
           <Badge text={movie?.runtime} color={COLOR.GRAPHITE} />
         </BadgeBlock>
         <Description>{movie?.plot}</Description>
