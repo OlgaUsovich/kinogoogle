@@ -12,12 +12,12 @@ export type MovieRequestParams = {
 };
 
 class MovieAPI {
-  private readonly BASE_URL = "http://www.omdbapi.com/"; //не приходит урл из .env
+  private readonly BASE_URL = process.env.REACT_APP_BASE_URL_MOVIES_API as string;
   private readonly API = axios.create({
     baseURL: this.BASE_URL,
   });
 
-  private readonly DEFALUT_REQUEST_PARAMS: MovieRequestParams = { apikey: "333f98df" }; //не приходит из .env
+  private readonly API_KEY: MovieRequestParams = { apikey: process.env.REACT_APP_API_KEY };
 
   public getRandomParam(): string {
     const searchWords = [
@@ -36,14 +36,14 @@ class MovieAPI {
       "happy",
       "hello",
       "chance",
-      "clever"
+      "clever",
     ];
 
     return searchWords[Math.floor(Math.random() * searchWords.length)];
   }
 
   public async getAll(newParams: MovieRequestParams): Promise<any> {
-    const params = { ...this.DEFALUT_REQUEST_PARAMS, ...newParams, s: this.getRandomParam() };
+    const params = { ...this.API_KEY, ...newParams, s: this.getRandomParam() };
 
     const { data } = await this.API.get("", {
       params,
@@ -53,7 +53,7 @@ class MovieAPI {
   }
 
   public async getById(id: string | undefined): Promise<any> {
-    const params = { ...this.DEFALUT_REQUEST_PARAMS, i: id, plot: "full" };
+    const params = { ...this.API_KEY, i: id, plot: "full" };
 
     const { data } = await this.API.get("", { params });
 
@@ -61,7 +61,7 @@ class MovieAPI {
   }
 
   public async getTrends(newParams: MovieRequestParams): Promise<any> {
-    const params = { ...this.DEFALUT_REQUEST_PARAMS, ...newParams, s: this.getRandomParam(), y: new Date().getFullYear(),  };
+    const params = { ...this.API_KEY, ...newParams, s: this.getRandomParam(), y: new Date().getFullYear() };
 
     const { data } = await this.API.get("", {
       params,
