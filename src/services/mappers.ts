@@ -1,4 +1,5 @@
-import { IMovie } from "../pages/Home/Home";
+import { IMovie } from "../types";
+
 
 export const transformMovie = (movie: any): IMovie => {
   return {

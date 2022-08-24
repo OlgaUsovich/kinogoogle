@@ -20,6 +20,7 @@ export const Home = () => {
           movieAPI.getById(movie.imdbID).then((response) => {
             setMovies((previousMovies) => {
               const transformedMovie = transformMovie(response);
+              setIsLoading(false);
               return previousMovies.map((el) => (el.imdbID === transformedMovie.imdbID ? transformedMovie : el));
             });
           });
