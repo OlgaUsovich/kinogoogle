@@ -1,25 +1,7 @@
 import { useEffect, useState } from "react";
 import { MovieList } from "../../components";
 import { movieAPI, MovieRequestParams, transformMovie } from "../../services";
-
-export interface IMovie {
-  title: string;
-  year: string;
-  released: string;
-  runtime: string;
-  genre: string[];
-  director: string;
-  writer: string[];
-  actors: string[];
-  plot: string;
-  country: string;
-  poster: string;
-  imdbRating: string;
-  imdbID: string;
-  type: string;
-  boxOffice: string;
-  production: string;
-}
+import { IMovie } from "../../types";
 
 export const Home = () => {
   const [movies, setMovies] = useState<IMovie[]>([]);
@@ -28,10 +10,10 @@ export const Home = () => {
   const [requestParams, setRequestParams] = useState<MovieRequestParams>({});
 
   useEffect(() => {
+    setIsLoading(true);
     movieAPI
       .getAll(requestParams)
       .then((response) => {
-        setIsLoading(false);
         let fetchedMovies = response["Search"]
         setMovies(fetchedMovies);
         fetchedMovies.forEach((movie: any) => {

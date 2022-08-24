@@ -1,4 +1,4 @@
-import { IMovie } from "../../pages";
+import { IMovie } from "../../types";
 import { MovieCard } from "../MovieCard";
 import { StyledMovieList } from "./styles";
 

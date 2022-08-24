@@ -1,6 +1,6 @@
 import { defineBadgeColor } from "../../helpers";
-import { IMovie } from "../../pages";
 import { createPath, ROUTE } from "../../routers";
+import { IMovie } from "../../types";
 import { GenreList } from "../GenreList";
 import { Poster } from "../Poster";
 import { Badge } from "../RaitingBadge";

@@ -1,4 +1,3 @@
-import { Home, IMovie } from "./Home";
+import { Home } from "./Home";
 
 export { Home };
-export type { IMovie };
