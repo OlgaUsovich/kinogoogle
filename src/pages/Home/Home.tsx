@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { MovieList } from "../../components";
 import { movieAPI, MovieRequestParams, transformMovie } from "../../services";
-import { IMovie } from "../../types";
+import { IMovie, ISearchMovie } from "../../types";
 
 export const Home = () => {
   const [movies, setMovies] = useState<IMovie[]>([]);
@@ -16,7 +16,7 @@ export const Home = () => {
       .then((response) => {
         let fetchedMovies = response["Search"]
         setMovies(fetchedMovies);
-        fetchedMovies.forEach((movie: any) => {
+        fetchedMovies.forEach((movie: ISearchMovie) => {
           movieAPI.getById(movie.imdbID).then((response) => {
             setMovies((previousMovies) => {
               const transformedMovie = transformMovie(response);
