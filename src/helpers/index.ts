@@ -1,3 +1,3 @@
-import { defineBadgeColor } from "./helpers";
+import { defineBadgeColor, getUserInitials } from "./helpers";
 
-export {defineBadgeColor};
+export { defineBadgeColor, getUserInitials };

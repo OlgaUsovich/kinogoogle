@@ -9,12 +9,20 @@ export const HeaderWrapper = styled.header`
   display: flex;
   align-items: center;
   gap: 146px;
+  max-width: 1796px;
+  margin: 0 auto;
   padding-top: 40px;
   padding-bottom: 56px;
-  background-color: ${COLOR.BLACK}
+  background-color: ${COLOR.BLACK};
 `;
 
 export const Logo = styled(LogoSvg)`
-    width: 158px;
-    height: 40px;
-`
+  width: 158px;
+  height: 40px;
+`;
+
+export const StyledDiv = styled.div`
+  display: flex;
+  gap: 41px;
+  flex-grow: 1;
+`;

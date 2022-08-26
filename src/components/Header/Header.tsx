@@ -1,12 +1,15 @@
 import { Search } from "../Search";
-import { HeaderWrapper, Logo } from "./styles";
+import { AuthBlock } from "../AuthBlock";
+import { HeaderWrapper, Logo, StyledDiv } from "./styles";
 
 export const Header = () => {
-
-    return (
-      <HeaderWrapper>
-        <Logo />
+  return (
+    <HeaderWrapper>
+      <Logo />
+      <StyledDiv>
         <Search />
-      </HeaderWrapper>
-    );
-  };
+        <AuthBlock />
+      </StyledDiv>
+    </HeaderWrapper>
+  );
+};
