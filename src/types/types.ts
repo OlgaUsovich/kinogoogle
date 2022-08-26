@@ -16,3 +16,11 @@ export interface IMovie {
     boxOffice: string;
     production: string;
 }
+
+export interface ISearchMovie {
+    Title: string;
+    Year: string;
+    imdbID: string;
+    Type: string;
+    Poster: string
+}
