@@ -4,5 +4,4 @@ export const StyledMovieList = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
-    justify-content: space-between;
 `
