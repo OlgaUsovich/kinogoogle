@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { COLOR, SUBLINE13 } from "../../ui";
 
 export const StyledInput = styled.input`
+    display: inline-block;
     height: 56px;
     width: 100%;
     border: 0;

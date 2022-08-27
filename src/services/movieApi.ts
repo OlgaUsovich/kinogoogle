@@ -17,7 +17,7 @@ class MovieAPI {
     baseURL: this.BASE_URL,
   });
 
-  private readonly API_KEY: MovieRequestParams = { apikey: process.env.REACT_APP_API_KEY };
+  private readonly API_KEY: MovieRequestParams = { apikey: process.env.REACT_APP_MOVIE_API_KEY };
 
   public getRandomParam(): string {
     const searchWords = [
