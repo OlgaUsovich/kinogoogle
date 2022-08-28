@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Noto Sans', 'sans-serif';
-    background-color: ${COLOR.BLACK}
+    background-color: ${COLOR.BLACK};
+    padding: 0 62px 64px;
   }
 `;

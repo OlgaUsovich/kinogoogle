@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BODY, COLOR, H2, SUBLINE13 } from "../../ui";
 
 export const StyledForm = styled.form`
-  max-width: 574px;
+  width: 574px;
   min-height: 732px;
   padding: 40px;
   border-radius: 10px;
