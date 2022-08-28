@@ -16,3 +16,7 @@ export const Wrapper = styled.div`
         max-width: 320px;
     }
 `
+
+export const MainWrapper = styled.div`
+    margin: 0 62px 64px;
+`

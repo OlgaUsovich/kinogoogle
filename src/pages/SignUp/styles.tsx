@@ -6,6 +6,7 @@ export const StyledForm = styled.form`
   width: 574px;
   min-height: 732px;
   padding: 40px;
+  margin: 10px;
   border-radius: 10px;
   background-color: ${COLOR.DARK};
 `;
