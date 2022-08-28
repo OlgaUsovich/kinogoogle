@@ -17,7 +17,7 @@ export interface IMovie {
     production: string;
 }
 
-export interface ISearchMovie {
+export interface ISearchMovieAPI {
     Title: string;
     Year: string;
     imdbID: string;
