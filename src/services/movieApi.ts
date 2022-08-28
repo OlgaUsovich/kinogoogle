@@ -1,4 +1,5 @@
 import axios from "axios";
+import { IMovieAPI, ISearchMovieListAPI } from "../types";
 
 export type MovieRequestParams = {
   apikey?: string;
@@ -52,7 +53,7 @@ class MovieAPI {
     return data;
   }
 
-  public async getById(id: string | undefined): Promise<any> {
+  public async getById(id: string | undefined): Promise<IMovieAPI> {
     const params = { ...this.API_KEY, i: id, plot: "full" };
 
     const { data } = await this.API.get("", { params });
@@ -60,7 +61,7 @@ class MovieAPI {
     return data;
   }
 
-  public async getTrends(newParams: MovieRequestParams): Promise<any> {
+  public async getTrends(newParams: MovieRequestParams): Promise<ISearchMovieListAPI> {
     const params = { ...this.API_KEY, ...newParams, s: this.getRandomParam(), y: new Date().getFullYear() };
 
     const { data } = await this.API.get("", {

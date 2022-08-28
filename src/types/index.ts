@@ -1,3 +1,3 @@
-import { IMovie, ISearchMovieAPI } from "./types";
+import { IMovie, IMovieAPI, ISearchMovieAPI, ISearchMovieListAPI } from "./types";
 
-export type { IMovie, ISearchMovieAPI };
+export type { IMovie, ISearchMovieAPI, IMovieAPI, ISearchMovieListAPI };
