@@ -50,7 +50,7 @@ export const SignUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(name, email, password, confirmPassword);
-        console.log(userCredential)
+        console.log(userCredential);
         // const user = userCredential.user;
       })
       .catch((error) => {
@@ -73,8 +73,15 @@ export const SignUp = () => {
               name="name"
               control={control}
               rules={{ required: "Enter your name" }}
-              render={({ field }) => {
-                return <Input placeholder="Your name" type="text" {...field} />;
+              render={({ field: { value, onChange } }) => {
+                return (
+                  <Input
+                    placeholder="Your name"
+                    type="text"
+                    value={value}
+                    onChange={onChange}
+                  />
+                );
               }}
             />
           </StyledLabel>
@@ -92,9 +99,14 @@ export const SignUp = () => {
                   message: "Password should be at least 6 sybbols",
                 },
               }}
-              render={({ field }) => {
+              render={({ field: { value, onChange } }) => {
                 return (
-                  <Input placeholder="Your email" type="email" {...field} />
+                  <Input
+                    placeholder="Your email"
+                    type="email"
+                    value={value}
+                    onChange={onChange}
+                  />
                 );
               }}
             />
@@ -107,12 +119,13 @@ export const SignUp = () => {
               name="password"
               control={control}
               rules={{ required: "Enter your password" }}
-              render={({ field }) => {
+              render={({ field: { value, onChange } }) => {
                 return (
                   <Input
                     placeholder="Your password"
                     type="password"
-                    {...field}
+                    value={value}
+                    onChange={onChange}
                   />
                 );
               }}
@@ -128,12 +141,13 @@ export const SignUp = () => {
               name="confirmPassword"
               control={control}
               rules={{ required: "Confirm password" }}
-              render={({ field }) => {
+              render={({ field: { value, onChange } }) => {
                 return (
                   <Input
                     placeholder="Confirm password"
                     type="password"
-                    {...field}
+                    value={value}
+                    onChange={onChange}
                   />
                 );
               }}
