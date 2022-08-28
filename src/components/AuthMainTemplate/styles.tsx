@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import background from "../../assets/backgrounds/auth-bg.png";
+import { AuthBG } from "../../assets";
 import { COLOR, SUBLINE12 } from "../../ui";
 
 export const Wrapper = styled.div`
@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   height: 100vh;
   background: no-repeat
       linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 45.65%),
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${background});
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${AuthBG});
   background-size: cover;
 `;
 

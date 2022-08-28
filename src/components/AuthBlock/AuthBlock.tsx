@@ -1,9 +1,9 @@
 import { FiUser } from "react-icons/fi";
 import { getUserInitials } from "../../helpers";
 import { Avatar, LinkItem, LinksList, StyledDiv, Text, UserButton, UserName } from "./styles";
-import { ReactComponent as ArrowButton } from "../../assets/icons/arrow-button.svg";
 import { useToggle } from "../../hooks";
 import { ROUTE } from "../../routers";
+import { ArrowButton } from "../../assets";
 
 interface IProps {
   name?: string;

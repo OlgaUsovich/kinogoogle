@@ -21,7 +21,7 @@ import {
   StyledRow,
   TableBody,
 } from "./styles";
-import { ReactComponent as IMDb } from "../../assets/icons/imdb.svg";
+import { IMDb } from "../../assets";
 
 export const Movie = () => {
   const { id } = useParams();
