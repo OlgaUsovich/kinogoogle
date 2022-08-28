@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as LogoSvg } from "../../assets/logo.svg";
+import { ReactComponent as LogoSvg } from "../../assets/icons/logo.svg";
 import { COLOR } from "../../ui";
 
 export const HeaderWrapper = styled.header`
@@ -17,6 +17,7 @@ export const HeaderWrapper = styled.header`
 `;
 
 export const Logo = styled(LogoSvg)`
+  display: block;
   width: 158px;
   height: 40px;
 `;

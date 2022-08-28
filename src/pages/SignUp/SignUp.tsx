@@ -94,10 +94,6 @@ export const SignUp = () => {
               control={control}
               rules={{
                 required: "Enter your email",
-                minLength: {
-                  value: 6,
-                  message: "Password should be at least 6 sybbols",
-                },
               }}
               render={({ field: { value, onChange } }) => {
                 return (
@@ -118,7 +114,13 @@ export const SignUp = () => {
             <Controller
               name="password"
               control={control}
-              rules={{ required: "Enter your password" }}
+              rules={{
+                required: "Enter your password",
+                minLength: {
+                  value: 6,
+                  message: "Password should be at least 6 sybbols",
+                },
+              }}
               render={({ field: { value, onChange } }) => {
                 return (
                   <Input
