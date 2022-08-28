@@ -24,8 +24,8 @@ export const AppRouter = () => {
         <Route path={ROUTE.MOVIE} element={<Movie />} />
         <Route path={ROUTE.NOT_FOUND} element={<NotFound />} />
       </Route>
-      <Route path={ROUTE.SIGN_UP} element={<AuthMainTemplate />}>
-        <Route index element={<SignUp />} />
+      <Route path={ROUTE.HOME} element={<AuthMainTemplate />}>
+        <Route path={ROUTE.SIGN_UP} element={<SignUp />} />
         <Route path={ROUTE.SIGN_IN} element={<SignIn />} />
       </Route>
     </Routes>

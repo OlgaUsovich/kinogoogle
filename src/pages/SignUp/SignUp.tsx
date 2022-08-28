@@ -161,7 +161,7 @@ export const SignUp = () => {
       </FormContainer>
       <StyledSpan>
         Already have an account?{" "}
-        <StyledLink to={ROUTE.SIGN_IN}>Sign In</StyledLink>
+        <StyledLink to={`/${ROUTE.SIGN_IN}`}>Sign In</StyledLink>
       </StyledSpan>
     </StyledForm>
   );
