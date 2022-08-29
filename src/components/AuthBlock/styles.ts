@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { COLOR, SUBLINE13 } from "../../ui";
+import { COLOR, MEDIA, SUBLINE13 } from "../../ui";
 
 export const StyledDiv = styled.div`
   position: relative;
@@ -8,6 +8,10 @@ export const StyledDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 264px;
+
+  ${MEDIA.MDLG} {
+    width: fit-content;
+  }
 `;
 
 export const Avatar = styled.div`
@@ -41,11 +45,19 @@ export const UserButton = styled.button<{ isOpen: boolean }>`
   background-color: transparent;
   cursor: pointer;
   transform: ${(props) => (props.isOpen ? "rotate(90deg)" : 0)};
+
+  ${MEDIA.MDLG} {
+    display: none;
+  }
 `;
 
 export const UserName = styled.div`
   display: flex;
   align-items: center;
+
+  ${MEDIA.MDLG} {
+    display: none;
+  }
 `;
 
 export const LinksList = styled.div<{ isOpen: boolean }>`
@@ -55,6 +67,12 @@ export const LinksList = styled.div<{ isOpen: boolean }>`
   display: ${(props) => (props.isOpen ? "block" : "none")};
   background-color: ${COLOR.DARK};
   border-radius: 10px;
+
+  ${MEDIA.MDLG} {
+    top: 70px;
+    left: -94px;
+    width: 150px;
+  }
 `;
 
 export const LinkItem = styled(Link)`
@@ -75,3 +93,18 @@ export const LinkItem = styled(Link)`
     color: ${COLOR.SECONDARY};
   }
 `;
+
+
+export const BurgerButton = styled.button`
+  display: none;
+  width: 56px;
+  height: 56px;
+  border: 0;
+  border-radius: 10px;
+  background-color: ${COLOR.PRIMARY};
+  cursor: pointer;
+
+  ${MEDIA.MDLG} {
+    display: block;
+  }
+`

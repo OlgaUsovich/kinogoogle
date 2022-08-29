@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { LogoSvg } from "../../assets";
-import { COLOR } from "../../ui";
+import { COLOR, MEDIA } from "../../ui";
 
 export const HeaderWrapper = styled.header`
   position: sticky;
@@ -14,16 +14,60 @@ export const HeaderWrapper = styled.header`
   padding-top: 40px;
   padding-bottom: 56px;
   background-color: ${COLOR.BLACK};
+
+  ${MEDIA.MDLG} {
+    gap: 78px;
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  ${MEDIA.MD} {
+    gap: 71px;
+    padding-top: 36px;
+    padding-bottom: 44px;
+  }
+
+  ${MEDIA.SM} {
+    gap: 64px;
+    padding-top: 32px;
+    padding-bottom: 40px;
+  }
 `;
 
 export const Logo = styled(LogoSvg)`
   display: block;
   width: 158px;
   height: 40px;
+
+  ${MEDIA.MDLG} {
+    width: 156px;
+  }
+
+  ${MEDIA.MD} {
+    width: 154px;
+  }
+
+  ${MEDIA.SM} {
+    width: 152px;
+    height: 39px;
+  }
 `;
 
 export const StyledDiv = styled.div`
   display: flex;
   gap: 41px;
   flex-grow: 1;
+
+  ${MEDIA.MDLG} {
+    gap: 32px;
+  }
+
+  ${MEDIA.MD} {
+    gap: 30px;
+  }
+
+  ${MEDIA.SM} {
+    flex-wrap: wrap;
+    gap: 64px;
+  }
 `;
