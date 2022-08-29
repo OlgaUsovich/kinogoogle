@@ -13,6 +13,9 @@ import {
   StyledSpan,
   Title,
 } from "./styles";
+import { useState } from "react";
+import { getFirebaseMessageError } from "../../utils"
+import { useNavigate } from "react-router-dom";
 
 type SignUpFormValue = {
   name: string;
@@ -39,27 +42,30 @@ export const SignUp = () => {
     },
   });
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [errorMessage, setErrorMesage] = useState<string>('');
+  const navigate = useNavigate();
+
   const onSubmit: SubmitHandler<SignUpFormValue> = ({
     name,
     email,
     password,
     confirmPassword,
   }) => {
+    setIsLoading(true);
     const auth = getAuth();
-    console.log(name, email, password, confirmPassword);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(name, email, password, confirmPassword);
-        console.log(userCredential);
-        // const user = userCredential.user;
+        navigate(ROUTE.HOME, { replace: true });
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
+        setErrorMesage(getFirebaseMessageError(errorCode))
+      })
+      .finally(() => {
+        setIsLoading(false);
+        reset();
       });
-    // console.log(name, email, password, confirmPassword);
-    reset();
   };
 
   return (
@@ -159,6 +165,7 @@ export const SignUp = () => {
             <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>
           )}
         </InputsContainer>
+        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         <FormButton text="Sign up" />
       </FormContainer>
       <StyledSpan>
