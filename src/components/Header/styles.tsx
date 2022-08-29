@@ -9,8 +9,6 @@ export const HeaderWrapper = styled.header`
   display: flex;
   align-items: center;
   gap: 146px;
-  max-width: 1796px;
-  margin: 0 auto;
   padding-top: 40px;
   padding-bottom: 56px;
   background-color: ${COLOR.BLACK};
