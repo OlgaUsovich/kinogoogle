@@ -6,6 +6,7 @@ export const StyledUl = styled.ul`
   flex-wrap: wrap;
   flex-grow: 1;
   gap: 8px;
+  padding: 0; 
 `;
 
 export const Genre = styled.li`

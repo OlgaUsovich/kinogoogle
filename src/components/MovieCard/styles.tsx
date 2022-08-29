@@ -4,18 +4,14 @@ import { COLOR, MEDIA, SUBLINE12 } from "../../ui";
 
 export const Card = styled(Link)`
   position: relative;
-  height: 433px;
-  width: 266px;
   text-decoration: none;
 
   ${MEDIA.MD} {
     height: 379px;
-    width: 208px;
   }
 
   ${MEDIA.SM} {
     height: 437px;
-    width: 272px;
     gap: 0;
   }
 `;
