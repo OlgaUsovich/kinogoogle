@@ -16,4 +16,8 @@ export const Rigths = styled.span`
   ${SUBLINE12};
   font-weight: 500;
   color: ${COLOR.WHITE};
+  height: 80px;
+  margin-top: -80px;
+
+
 `;

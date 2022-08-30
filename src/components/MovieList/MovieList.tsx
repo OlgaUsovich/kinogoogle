@@ -11,7 +11,7 @@ interface IProps {
 export const MovieList = ({ movies, isLoading, errorMessage }: IProps) => {
   if (isLoading) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: 400 }}>
+      <div className="d-flex justify-content-center align-items-center flex-grow-1" style={{ height: 400 }}>
         <div className="spinner-border" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>

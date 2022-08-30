@@ -1,9 +1,10 @@
 import { FiUser } from "react-icons/fi";
 import { getUserInitials } from "../../helpers";
-import { Avatar, LinkItem, LinksList, StyledDiv, Text, UserButton, UserName } from "./styles";
-import { useToggle } from "../../hooks";
+import { Avatar, BurgerButton, LinkItem, LinksList, StyledDiv, Text, UserButton, UserName } from "./styles";
 import { ROUTE } from "../../routers";
 import { ArrowButton } from "../../assets";
+import {useToggle} from 'react-use';
+import {useDetectClickOutside} from 'react-detect-click-outside'
 
 interface IProps {
   name?: string;
@@ -11,7 +12,8 @@ interface IProps {
 }
 
 export const AuthBlock = ({ name, surname }: IProps) => {
-  const [isOpen, setIsOpen] = useToggle();
+  const [isOpen, setIsOpen] = useToggle(false);
+  const ref: any = useDetectClickOutside({ onTriggered: () => setIsOpen(false) });
 
   return (
     <StyledDiv>
@@ -21,9 +23,10 @@ export const AuthBlock = ({ name, surname }: IProps) => {
         </Avatar>
         <Text>{name && surname ? `${name} ${surname}` : "Sign In"}</Text>
       </UserName>
-      <UserButton onClick={setIsOpen} isOpen={isOpen}>
+      <UserButton ref={ref} onClick={setIsOpen} isOpen={isOpen}>
         <ArrowButton />
       </UserButton>
+      <BurgerButton onClick={setIsOpen}></BurgerButton>
       <LinksList isOpen={isOpen}>
         <LinkItem to={ROUTE.SIGN_IN}>{name && surname ? "Edit profile" : "Sign In"}</LinkItem>
         <LinkItem to={ROUTE.SIGN_UP}>{name && surname ? "Log Out" : "Sign Up"}</LinkItem>

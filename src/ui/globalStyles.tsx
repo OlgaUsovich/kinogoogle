@@ -13,4 +13,9 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Noto Sans', 'sans-serif';
     background-color: ${COLOR.BLACK};
   }
+
+
+html, body, #root {
+  height: 100%;
+}
 `;

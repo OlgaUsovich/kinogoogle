@@ -8,7 +8,7 @@ export const StyledNav = styled.nav`
   justify-content: space-between;
   flex-shrink: 0;
 
-  ${MEDIA.MD} {
+  ${MEDIA.MDLG} {
     display: none;
   }
 `;
