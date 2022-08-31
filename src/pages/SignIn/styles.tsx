@@ -4,7 +4,7 @@ import { BODY, COLOR, H2, SUBLINE13 } from "../../ui";
 
 export const StyledForm = styled.form`
   width: 574px;
-  min-height: 732px;
+  min-height: 540px;
   padding: 40px;
   margin: 10px;
   border-radius: 10px;
