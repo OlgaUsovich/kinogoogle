@@ -28,7 +28,6 @@ type SignUpFormValue = {
 
 export const SignUp = () => {
   const {
-    register,
     handleSubmit,
     reset,
     formState: { errors },
@@ -48,7 +47,7 @@ export const SignUp = () => {
   const [errorMessage, setErrorMesage] = useState<string>('');
   const navigate = useNavigate();
 
-  const [isOpen, toggleModal] = useState<boolean>(true);
+  const [isOpen, toggleModal] = useState<boolean>(false);
 
   const handleModal = () => {
     toggleModal(isOpen => !isOpen);
