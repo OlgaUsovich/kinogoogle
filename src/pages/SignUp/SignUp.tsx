@@ -17,6 +17,7 @@ import {
 import { useState } from "react";
 import { getFirebaseMessageError } from "../../utils"
 import { useNavigate } from "react-router-dom";
+import { Modal } from "../../components";
 
 type SignUpFormValue = {
   name: string;
@@ -47,6 +48,13 @@ export const SignUp = () => {
   const [errorMessage, setErrorMesage] = useState<string>('');
   const navigate = useNavigate();
 
+  const [isOpen, toggleModal] = useState<boolean>(true);
+
+  const handleModal = () => {
+    toggleModal(isOpen => !isOpen);
+    navigate(ROUTE.HOME, { replace: true });
+  }
+
   const onSubmit: SubmitHandler<SignUpFormValue> = ({
     name,
     email,
@@ -57,7 +65,8 @@ export const SignUp = () => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        navigate(ROUTE.HOME, { replace: true });
+        handleModal();
+        // navigate(ROUTE.HOME, { replace: true });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -177,6 +186,7 @@ export const SignUp = () => {
         Already have an account?{" "}
         <StyledLink to={`/${ROUTE.SIGN_IN}`}>Sign In</StyledLink>
       </StyledSpan>
+    <Modal isOpen={isOpen} handleModal={handleModal}/>
     </StyledForm>
   );
 };
