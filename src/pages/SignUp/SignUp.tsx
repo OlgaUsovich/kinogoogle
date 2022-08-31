@@ -7,6 +7,7 @@ import {
   ErrorMessage,
   FormContainer,
   InputsContainer,
+  LabelText,
   StyledForm,
   StyledLabel,
   StyledLink,
@@ -73,8 +74,8 @@ export const SignUp = () => {
       <FormContainer>
         <Title>Sign Up</Title>
         <InputsContainer>
-          <StyledLabel htmlFor="name">
-            Name{" "}
+          <StyledLabel>
+            <LabelText>Name</LabelText>
             <Controller
               name="name"
               control={control}
@@ -94,7 +95,7 @@ export const SignUp = () => {
           {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
 
           <StyledLabel htmlFor="email">
-            Email{" "}
+          <LabelText>Email</LabelText>
             <Controller
               name="email"
               control={control}
@@ -116,7 +117,7 @@ export const SignUp = () => {
           {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
 
           <StyledLabel htmlFor="password">
-            Password{" "}
+          <LabelText>Password</LabelText>
             <Controller
               name="password"
               control={control}
@@ -144,7 +145,7 @@ export const SignUp = () => {
           )}
 
           <StyledLabel htmlFor="confirmPassword">
-            Confirm password{" "}
+          <LabelText>Confirm password</LabelText>
             <Controller
               name="confirmPassword"
               control={control}
