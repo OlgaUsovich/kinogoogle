@@ -1,11 +1,16 @@
 import { Outlet } from "react-router-dom";
-import { Rigths, Wrapper } from "./styles";
+import { AuthHeader, Container, Rigths, Wrapper } from "./styles";
+import { Logo } from "../../components";
 
 export const AuthMainTemplate = () => {
-
   return (
     <Wrapper>
-      <Outlet />
+      <AuthHeader>
+        <Logo />
+      </AuthHeader>
+      <Container>
+        <Outlet />
+      </Container>
       <Rigths>© All Rights Reserved</Rigths>
     </Wrapper>
   );
