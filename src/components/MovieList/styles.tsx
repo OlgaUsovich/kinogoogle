@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MEDIA } from "../../ui";
+import { COLOR, H1, MEDIA } from "../../ui";
 
 export const StyledMovieList = styled.div`
   display: grid;
@@ -21,4 +21,20 @@ export const StyledMovieList = styled.div`
   ${MEDIA.SM} {
     grid-template-columns: 1fr;
   }
+`;
+
+export const StyledContainer = styled.div`
+  display: grid;
+  width: 100%;
+  heigth: 100%;
+  place-items: center;
+`;
+
+export const ErrorMessage = styled.h1`
+  ${H1};
+  color: ${COLOR.WHITE};
+`;
+
+export const Error = styled.span`
+  color: ${COLOR.PRIMARY};
 `;

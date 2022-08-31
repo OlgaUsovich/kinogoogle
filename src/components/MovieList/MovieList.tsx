@@ -1,6 +1,7 @@
 import { IMovie } from "../../types";
 import { MovieCard } from "../MovieCard";
-import { StyledMovieList } from "./styles";
+import { Spinner } from "../Spinner";
+import { ErrorMessage, Error, StyledContainer, StyledMovieList } from "./styles";
 
 interface IProps {
   movies: IMovie[];
@@ -11,15 +12,17 @@ interface IProps {
 export const MovieList = ({ movies, isLoading, errorMessage }: IProps) => {
   if (isLoading) {
     return (
-      <div className="d-flex justify-content-center align-items-center flex-grow-1" style={{ height: 400 }}>
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
+      <StyledContainer>
+        <Spinner />
+      </StyledContainer>
     );
   }
   if (errorMessage) {
-    return <h4 className="text-center mt-5">Oooooppps {errorMessage} 🙉</h4>;
+    return (
+      <StyledContainer>
+        <ErrorMessage>An error has occurred - <Error>{errorMessage}</Error></ErrorMessage>
+      </StyledContainer>
+    )
   }
   return (
     <StyledMovieList>
