@@ -14,7 +14,6 @@ export const StyledInput = styled.input<{error: string | undefined}>`
     font-weight: 500;
     color: ${COLOR.WHITE};
     background-color: ${COLOR.GRAPHITE};
-    ${(props) => (props ? `${console.log(props)}` : 0)};
     outline: ${(props) => (props.error ? `2px solid ${COLOR.ERROR}` : 0)};
 
     &::placeholder { 

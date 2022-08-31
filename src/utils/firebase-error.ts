@@ -1,10 +1,12 @@
-type FirebaseMessageErrors = 
+type FirebaseMessageErrors =
 |"auth/email-already-in-use"
 |"auth/email-already-exists"
 |"auth/user-not-found"
 |"auth/invalid-email"
 |"auth/invalid-password"
 |"auth/invalid-display-name"
+|"auth/wrong-password"
+|"auth/too-many-requests"
 
 enum ErrorMessage {
     EMAIL_ALREADY_IN_USE = 'This email is already in use, please choose another one',
@@ -13,6 +15,8 @@ enum ErrorMessage {
     INVALID_EMAIL = "Invalid email",
     INVALID_PASSWORD = "Invalid password",
     INVALID_DISPLAY_NAME = "Invalid username",
+    WRONG_PASSWORD = "Wrong password",
+    MANY_REQUESTS = "Too many attemps, please try again later",
     UNKNOWN_ERROR = 'Unknown error, please reload page'
 }
 
@@ -29,7 +33,11 @@ export const getFirebaseMessageError = (code: FirebaseMessageErrors): ErrorMessa
         case "auth/invalid-password":
             return ErrorMessage.INVALID_PASSWORD;
         case "auth/invalid-display-name":
-            return ErrorMessage.UNKNOWN_ERROR;
+            return ErrorMessage.INVALID_DISPLAY_NAME;
+        case "auth/wrong-password":
+            return ErrorMessage.WRONG_PASSWORD;
+        case "auth/too-many-requests":
+            return ErrorMessage.MANY_REQUESTS;
         default:
             return ErrorMessage.UNKNOWN_ERROR;
     }

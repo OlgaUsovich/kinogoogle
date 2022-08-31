@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { ROUTE } from "./routes";
-import { MainTemplate } from "../components";
+import { MainTemplate, RequireAuth } from "../components";
 import {
+  Account,
   Favourits,
   Home,
   Movie,
@@ -19,7 +20,10 @@ export const AppRouter = () => {
       <Route path={ROUTE.HOME} element={<MainTemplate />}>
         <Route index element={<Home />} />
         <Route path={ROUTE.TRENDS} element={<Trends />} />
-        <Route path={ROUTE.FAVORITES} element={<Favourits />} />
+        <Route element={<RequireAuth />}>
+          <Route path={ROUTE.FAVORITES} element={<Favourits />} />
+          <Route path={ROUTE.ACCOUNT} element={<Account />} />
+        </Route>
         <Route path={ROUTE.SETTINGS} element={<Settings />} />
         <Route path={ROUTE.MOVIE} element={<Movie />} />
         <Route path={ROUTE.NOT_FOUND} element={<NotFound />} />
