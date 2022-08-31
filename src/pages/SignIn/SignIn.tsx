@@ -64,6 +64,7 @@ export const SignIn = () => {
                     type="email"
                     value={value}
                     onChange={onChange}
+                    error={errors.email?.message}
                   />
                 );
               }}
@@ -90,6 +91,7 @@ export const SignIn = () => {
                     type="password"
                     value={value}
                     onChange={onChange}
+                    error={errors.password?.message}
                   />
                 );
               }}

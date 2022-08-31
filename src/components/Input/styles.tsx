@@ -1,7 +1,8 @@
+import { FieldError } from "react-hook-form";
 import styled from "styled-components";
 import { COLOR, SUBLINE13 } from "../../ui";
 
-export const StyledInput = styled.input`
+export const StyledInput = styled.input<{error: string | undefined}>`
     display: inline-block;
     height: 56px;
     width: 100%;
@@ -13,6 +14,8 @@ export const StyledInput = styled.input`
     font-weight: 500;
     color: ${COLOR.WHITE};
     background-color: ${COLOR.GRAPHITE};
+    ${(props) => (props ? `${console.log(props)}` : 0)};
+    outline: ${(props) => (props.error ? `2px solid ${COLOR.ERROR}` : 0)};
 
     &::placeholder { 
         color: ${COLOR.SECONDARY};

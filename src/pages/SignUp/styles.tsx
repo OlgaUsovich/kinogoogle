@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { BODY, COLOR, H2, SUBLINE13 } from "../../ui";
+import { BODY, COLOR, H2, H3, MEDIA, SUBLINE13 } from "../../ui";
 
 export const StyledForm = styled.form`
   width: 574px;
@@ -9,11 +9,20 @@ export const StyledForm = styled.form`
   margin: 10px;
   border-radius: 10px;
   background-color: ${COLOR.DARK};
+
+  ${MEDIA.SM} {
+    width: 272px;
+    padding: 24px;
+  }
 `;
 
 export const Title = styled.h1`
   ${H2};
   color: ${COLOR.WHITE};
+
+  ${MEDIA.SM} {
+    ${H3};
+  }
 `;
 
 export const StyledLabel = styled.label`
@@ -38,6 +47,12 @@ export const StyledSpan = styled.span`
   text-align: center;
   ${SUBLINE13};
   color: ${COLOR.SECONDARY};
+
+  ${MEDIA.SM} {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -50,6 +65,7 @@ export const StyledLink = styled(Link)`
 `;
 
 export const ErrorMessage = styled.span`
+  display: block;
   ${BODY};
   color: ${COLOR.ERROR};
 `;

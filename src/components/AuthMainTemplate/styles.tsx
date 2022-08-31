@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { AuthBG } from "../../assets";
-import { COLOR, SUBLINE12 } from "../../ui";
+import { COLOR, MEDIA, SUBLINE12 } from "../../ui";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -25,6 +25,11 @@ export const Rigths = styled.span`
 export const AuthHeader = styled.header`
   padding: 43px 0 0 43px;
   align-self: start;
+
+  ${MEDIA.SM} {
+    padding: 32px 0 0 0;
+    align-self: center;
+  }
 `;
 
 export const Container = styled.div`

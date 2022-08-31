@@ -17,7 +17,6 @@ import {
 import { useState } from "react";
 import { getFirebaseMessageError } from "../../utils"
 import { useNavigate } from "react-router-dom";
-import { Spinner } from "../../components";
 
 type SignUpFormValue = {
   name: string;
@@ -88,6 +87,7 @@ export const SignUp = () => {
                     type="text"
                     value={value}
                     onChange={onChange}
+                    error={errors.name?.message}
                   />
                 );
               }}
@@ -110,6 +110,7 @@ export const SignUp = () => {
                     type="email"
                     value={value}
                     onChange={onChange}
+                    error={errors.email?.message}
                   />
                 );
               }}
@@ -136,6 +137,7 @@ export const SignUp = () => {
                     type="password"
                     value={value}
                     onChange={onChange}
+                    error={errors.password?.message}
                   />
                 );
               }}
@@ -158,6 +160,7 @@ export const SignUp = () => {
                     type="password"
                     value={value}
                     onChange={onChange}
+                    error={errors.confirmPassword?.message}
                   />
                 );
               }}
