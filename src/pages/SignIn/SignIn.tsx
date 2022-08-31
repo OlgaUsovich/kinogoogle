@@ -7,7 +7,9 @@ import { ROUTE } from "../../routers";
 import { getFirebaseMessageError } from "../../utils";
 import {
   ErrorMessage,
+  ForgotPassword,
   FormContainer,
+  FormTitleContainer,
   InputsContainer,
   LabelText,
   StyledForm,
@@ -24,7 +26,6 @@ type SignInFormValue = {
 
 export const SignIn = () => {
   const {
-    register,
     handleSubmit,
     reset,
     formState: { errors },
@@ -49,7 +50,7 @@ export const SignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // console.log(userCredential)
-        // navigate(ROUTE.HOME, { replace: true });
+        navigate(`/${ROUTE.ACCOUNT}`, { replace: true });
       })
       .catch(error => {
         setErrorMesage(getFirebaseMessageError(error.code))
@@ -63,7 +64,10 @@ export const SignIn = () => {
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <FormContainer>
+        <FormTitleContainer>
         <Title>Sign In</Title>
+        <ForgotPassword to={ROUTE.NOT_FOUND}>Forgot Password</ForgotPassword>
+        </FormTitleContainer>
         <InputsContainer>
           <StyledLabel>
           <LabelText>Email</LabelText>

@@ -73,3 +73,20 @@ export const LabelText = styled.span`
   display: inline-block;
   padding-bottom: 8px;
 `;
+
+export const ForgotPassword = styled(Link)`
+  display: block;
+  ${BODY};
+  color: ${COLOR.PRIMARY_DIMMER};
+  text-decoration: none;
+
+  &:hover {
+    color: ${COLOR.WHITE};
+  }
+`;
+
+export const FormTitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
