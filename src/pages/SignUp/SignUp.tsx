@@ -17,6 +17,7 @@ import {
 import { useState } from "react";
 import { getFirebaseMessageError } from "../../utils"
 import { useNavigate } from "react-router-dom";
+import { Spinner } from "../../components";
 
 type SignUpFormValue = {
   name: string;
@@ -167,7 +168,7 @@ export const SignUp = () => {
           )}
         </InputsContainer>
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
-        <FormButton text="Sign up" />
+        <FormButton text="Sign up" isLoading={isLoading} />
       </FormContainer>
       <StyledSpan>
         Already have an account?{" "}

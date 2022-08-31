@@ -10,4 +10,14 @@ export const StyledButton = styled.button`
   color: ${COLOR.WHITE};
   background-color: ${COLOR.PRIMARY};
   cursor: pointer;
+
+  &:hover {
+    background-color: ${COLOR.PRIMARY_DIMMER};
+  }
+
+  &:disabled {
+    color: ${COLOR.LIGTH};
+    background-color: ${COLOR.SECONDARY};
+    cursor: wait;
+  }
 `;

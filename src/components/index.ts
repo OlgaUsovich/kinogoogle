@@ -8,5 +8,6 @@ import { MovieList } from "./MovieList";
 import { Nav } from "./Nav";
 import { Poster } from "./Poster";
 import { Badge } from "./RaitingBadge";
+import { Spinner } from "./Spinner";
 
-export { MainTemplate, MovieCard, MovieList, Nav, Poster, GenreList, Badge, Input, FormButton, Logo };
+export { MainTemplate, MovieCard, MovieList, Nav, Poster, GenreList, Badge, Input, FormButton, Logo, Spinner };

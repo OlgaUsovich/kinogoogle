@@ -100,7 +100,7 @@ export const SignIn = () => {
           )}
         </InputsContainer>
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
-        <FormButton text="Sign up" />
+        <FormButton text="Sign up" isLoading={isLoading} />
       </FormContainer>
       <StyledSpan>
         Don’t have an account?{" "}
