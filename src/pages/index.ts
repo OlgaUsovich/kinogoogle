@@ -1,4 +1,5 @@
 import { Account } from "./Account";
+import { ChangePassword } from "./ChangePassword";
 import { Favourits } from "./Favourits";
 import { Home } from "./Home";
 import { Movie } from "./Movie";
@@ -18,4 +19,5 @@ export {
   SignUp,
   NotFound,
   Account,
+  ChangePassword,
 };

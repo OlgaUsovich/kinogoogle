@@ -66,7 +66,7 @@ export const SignIn = () => {
       <FormContainer>
         <FormTitleContainer>
           <Title>Sign In</Title>
-          <ForgotPassword to={ROUTE.NOT_FOUND}>Forgot Password</ForgotPassword>
+          <ForgotPassword to={ROUTE.CHANGE_PASSWORD}>Forgot Password</ForgotPassword>
         </FormTitleContainer>
         <InputsContainer>
           <StyledLabel>

@@ -3,6 +3,7 @@ import { ROUTE } from "./routes";
 import { MainTemplate, RequireAuth } from "../components";
 import {
   Account,
+  ChangePassword,
   Favourits,
   Home,
   Movie,
@@ -31,6 +32,7 @@ export const AppRouter = () => {
       <Route path={ROUTE.HOME} element={<AuthMainTemplate />}>
         <Route path={ROUTE.SIGN_UP} element={<SignUp />} />
         <Route path={ROUTE.SIGN_IN} element={<SignIn />} />
+        <Route path={`${ROUTE.SIGN_IN}/${ROUTE.CHANGE_PASSWORD}`} element={<ChangePassword />} />
       </Route>
     </Routes>
   );
