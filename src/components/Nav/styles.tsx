@@ -17,6 +17,7 @@ export const StyledUl = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  padding: 0;
   list-style: none;
 `;
 
