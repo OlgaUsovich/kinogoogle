@@ -8,6 +8,7 @@ import {
   Home,
   Movie,
   NotFound,
+  SendEmail,
   Settings,
   SignIn,
   SignUp,
@@ -33,6 +34,7 @@ export const AppRouter = () => {
         <Route path={ROUTE.SIGN_UP} element={<SignUp />} />
         <Route path={ROUTE.SIGN_IN} element={<SignIn />} />
         <Route path={`${ROUTE.SIGN_IN}/${ROUTE.CHANGE_PASSWORD}`} element={<ChangePassword />} />
+        <Route path={`${ROUTE.SIGN_IN}/${ROUTE.SEND_EMAIL_CHANGE_PASSWORD}`} element={<SendEmail />} />
       </Route>
     </Routes>
   );

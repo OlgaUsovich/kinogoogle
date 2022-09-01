@@ -111,7 +111,7 @@ export const SignUp = () => {
           </StyledLabel>
           {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
 
-          <StyledLabel htmlFor="email">
+          <StyledLabel>
             <LabelText>Email</LabelText>
             <Controller
               name="email"

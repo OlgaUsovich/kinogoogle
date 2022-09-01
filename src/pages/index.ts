@@ -4,6 +4,7 @@ import { Favourits } from "./Favourits";
 import { Home } from "./Home";
 import { Movie } from "./Movie";
 import { NotFound } from "./NotFound";
+import { SendEmail } from "./SendEmailChangePassword";
 import { Settings } from "./Settings";
 import { SignIn } from "./SignIn";
 import { SignUp } from "./SignUp";
@@ -20,4 +21,5 @@ export {
   NotFound,
   Account,
   ChangePassword,
+  SendEmail
 };

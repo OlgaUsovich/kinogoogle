@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BODY, COLOR, H2, H3, MEDIA, SUBLINE13 } from "../../ui";
 
-export const ChangePasswordForm = styled.form`
+export const SendEmailForm = styled.form`
   width: 574px;
   padding: 40px;
   margin: 10px;
