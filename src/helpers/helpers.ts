@@ -9,8 +9,9 @@ export const defineBadgeColor = (raiting: string): string => {
     : COLOR.GREEN;
 };
 
-export const getUserInitials = (name: string, surname: string): string => {
-  return [name, surname]
+export const getUserInitials = (name: string): string => {
+  const initialsWords = name.split(' ');
+  return initialsWords
     .map((namePart) => namePart[0])
     .join("")
     .toUpperCase();

@@ -1,5 +1,5 @@
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { FormButton } from "../../components/FormButton";
 import { Input } from "../../components/Input";
 import { ROUTE } from "../../routers";
@@ -67,6 +67,11 @@ export const SignUp = () => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        if (auth.currentUser) {
+          updateProfile(auth.currentUser, {
+            displayName: name
+          })
+        }
         handleModal();
         // navigate(ROUTE.HOME, { replace: true });
       })
