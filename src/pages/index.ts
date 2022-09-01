@@ -8,4 +8,14 @@ import { SignIn } from "./SignIn";
 import { SignUp } from "./SignUp";
 import { Trends } from "./Trends";
 
-export { Home, Trends, Favourits, Settings, Movie, SignIn, SignUp, NotFound, Account }
+export {
+  Home,
+  Trends,
+  Favourits,
+  Settings,
+  Movie,
+  SignIn,
+  SignUp,
+  NotFound,
+  Account,
+};

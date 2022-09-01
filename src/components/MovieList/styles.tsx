@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { COLOR, H1, MEDIA } from "../../ui";
 
 export const StyledMovieList = styled.div`
+  flex-grow: 1;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 40px;
