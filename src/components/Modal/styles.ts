@@ -8,7 +8,7 @@ export const ModalContent = styled.div`
   width: 45%;
   min-height: 65%;
   border-radius: 10px;
-  background-color: ${COLOR.GRAPHITE};
+  background-color: ${COLOR.DARK};
 `;
 
 export const ModalHeader = styled.div`

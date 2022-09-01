@@ -20,7 +20,7 @@ export const Modal = ({isOpen, handleModal}: ModalProps) => {
             <ModalTitle>Successful registration</ModalTitle>
           </ModalHeader>
           <ModalBody>
-            <ModalText>YOU'VE JUST SUCESSFULLY REGISTERED! <StyledSpan>WELCOME TO KINOGOOGLE!</StyledSpan></ModalText>
+            <ModalText>YOU'VE JUST SUCCESSFULLY REGISTERED! <StyledSpan>WELCOME TO KINOGOOGLE!</StyledSpan></ModalText>
           </ModalBody>
             <ModalButton to={ROUTE.HOME} className="btn btn-primary">
               Explore

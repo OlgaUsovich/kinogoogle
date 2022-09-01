@@ -54,7 +54,7 @@ export const SignUp = () => {
 
   const handleModal = () => {
     toggleModal((isOpen) => !isOpen);
-    navigate(ROUTE.HOME, { replace: true });
+    // navigate(ROUTE.HOME, { replace: true });
   };
 
   const onSubmit: SubmitHandler<SignUpFormValue> = ({
