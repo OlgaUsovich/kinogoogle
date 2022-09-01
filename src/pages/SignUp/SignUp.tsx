@@ -14,8 +14,8 @@ import {
   StyledSpan,
   Title,
 } from "./styles";
-import { useState } from "react";
-import { getFirebaseMessageError } from "../../utils"
+import { useRef, useState } from "react";
+import { getFirebaseMessageError } from "../../utils";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "../../components";
 
@@ -32,6 +32,7 @@ export const SignUp = () => {
     reset,
     formState: { errors },
     control,
+    watch,
   } = useForm<SignUpFormValue>({
     mode: "onSubmit",
     reValidateMode: "onSubmit",
@@ -44,15 +45,17 @@ export const SignUp = () => {
   });
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [errorMessage, setErrorMesage] = useState<string>('');
+  const [errorMessage, setErrorMesage] = useState<string>("");
   const navigate = useNavigate();
+  const password = useRef({});
+  password.current = watch("password", "");
 
   const [isOpen, toggleModal] = useState<boolean>(false);
 
   const handleModal = () => {
-    toggleModal(isOpen => !isOpen);
+    toggleModal((isOpen) => !isOpen);
     navigate(ROUTE.HOME, { replace: true });
-  }
+  };
 
   const onSubmit: SubmitHandler<SignUpFormValue> = ({
     name,
@@ -69,7 +72,7 @@ export const SignUp = () => {
       })
       .catch((error) => {
         const errorCode = error.code;
-        setErrorMesage(getFirebaseMessageError(errorCode))
+        setErrorMesage(getFirebaseMessageError(errorCode));
       })
       .finally(() => {
         setIsLoading(false);
@@ -104,12 +107,16 @@ export const SignUp = () => {
           {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
 
           <StyledLabel htmlFor="email">
-          <LabelText>Email</LabelText>
+            <LabelText>Email</LabelText>
             <Controller
               name="email"
               control={control}
               rules={{
                 required: "Enter your email",
+                pattern: {
+                  value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: 'Please enter a valid email',
+              },
               }}
               render={({ field: { value, onChange } }) => {
                 return (
@@ -127,7 +134,7 @@ export const SignUp = () => {
           {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
 
           <StyledLabel htmlFor="password">
-          <LabelText>Password</LabelText>
+            <LabelText>Password</LabelText>
             <Controller
               name="password"
               control={control}
@@ -156,11 +163,15 @@ export const SignUp = () => {
           )}
 
           <StyledLabel htmlFor="confirmPassword">
-          <LabelText>Confirm password</LabelText>
+            <LabelText>Confirm password</LabelText>
             <Controller
               name="confirmPassword"
               control={control}
-              rules={{ required: "Confirm password" }}
+              rules={{
+                required: "Confirm password",
+                validate: (value) =>
+                  value === password.current || "The passwords do not match",
+              }}
               render={({ field: { value, onChange } }) => {
                 return (
                   <Input
@@ -185,7 +196,7 @@ export const SignUp = () => {
         Already have an account?{" "}
         <StyledLink to={`/${ROUTE.SIGN_IN}`}>Sign In</StyledLink>
       </StyledSpan>
-    <Modal isOpen={isOpen} handleModal={handleModal}/>
+      <Modal isOpen={isOpen} handleModal={handleModal} />
     </StyledForm>
   );
 };

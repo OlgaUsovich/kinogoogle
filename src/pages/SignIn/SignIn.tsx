@@ -52,8 +52,8 @@ export const SignIn = () => {
         // console.log(userCredential)
         navigate(`/${ROUTE.ACCOUNT}`, { replace: true });
       })
-      .catch(error => {
-        setErrorMesage(getFirebaseMessageError(error.code))
+      .catch((error) => {
+        setErrorMesage(getFirebaseMessageError(error.code));
       })
       .finally(() => {
         setIsLoading(false);
@@ -65,17 +65,22 @@ export const SignIn = () => {
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <FormContainer>
         <FormTitleContainer>
-        <Title>Sign In</Title>
-        <ForgotPassword to={ROUTE.NOT_FOUND}>Forgot Password</ForgotPassword>
+          <Title>Sign In</Title>
+          <ForgotPassword to={ROUTE.NOT_FOUND}>Forgot Password</ForgotPassword>
         </FormTitleContainer>
         <InputsContainer>
           <StyledLabel>
-          <LabelText>Email</LabelText>
+            <LabelText>Email</LabelText>
             <Controller
               name="email"
               control={control}
               rules={{
                 required: "Enter your email",
+                pattern: {
+                  value:
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: "Please enter a valid email",
+                },
               }}
               render={({ field: { value, onChange } }) => {
                 return (
