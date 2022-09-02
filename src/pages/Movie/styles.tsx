@@ -85,3 +85,20 @@ export const StyledButton = styled.button`
     background-color: ${COLOR.SECONDARY};
   }
 `;
+
+export const StyledContainer = styled.div`
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+`;
+
+export const ErrorMessage = styled.h1`
+  ${H1};
+  color: ${COLOR.WHITE};
+`;
+
+export const Error = styled.span`
+  color: ${COLOR.PRIMARY};
+`;
+

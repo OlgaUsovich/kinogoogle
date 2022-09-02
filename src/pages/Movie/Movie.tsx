@@ -1,48 +1,68 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { FiShare2 } from "react-icons/fi";
-import { Badge, GenreList, Poster } from "../../components";
+import { Badge, GenreList, Poster, Spinner } from "../../components";
 import { defineBadgeColor } from "../../utils";
-import { movieAPI, transformMovie } from "../../services";
 import { COLOR } from "../../ui";
 import {
   BadgeBlock,
   ButtonGroup,
   DataTable,
   Description,
+  ErrorMessage,
   InfoBlock,
   MovieInfo,
   MovieTitle,
   PosterBlock,
   StyledButton,
   StyledCell,
+  StyledContainer,
   StyledHead,
   StyledRow,
   TableBody,
+  Error,
 } from "./styles";
 import { IMDb } from "../../assets";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getMovie } from "../../store";
 
 export const Movie = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [movie, setMovie] = useState<any>();
+  const dispatch = useAppDispatch();
+  const { result, isLoading, error } = useAppSelector(({ movie }) => movie);
 
   const handleBack = () => {
     navigate(-1);
   };
 
   useEffect(() => {
-    movieAPI.getById(id).then((rawMovie) => {
-      const transformedMovie = transformMovie(rawMovie);
-      setMovie(transformedMovie);
-    });
-  }, [id]);
+    if (id) {
+      dispatch(getMovie(id));
+    }
+  }, [dispatch, id]);
 
+  if (isLoading) {
+    return (
+      <StyledContainer>
+        <Spinner />
+      </StyledContainer>
+    );
+  }
+  if (error) {
+    return (
+      <StyledContainer>
+        <ErrorMessage>
+          An error has occurred - <Error>{error}</Error>
+        </ErrorMessage>
+      </StyledContainer>
+    );
+  }
   return (
     <MovieInfo>
       <PosterBlock>
-        <Poster img={movie?.poster} />
+        <Poster img={result.poster} />
         <ButtonGroup>
           <StyledButton>
             <BsFillBookmarkFill />
@@ -53,54 +73,54 @@ export const Movie = () => {
         </ButtonGroup>
       </PosterBlock>
       <InfoBlock>
-        <GenreList genreList={movie?.genre} />
-        <MovieTitle>{movie?.title}</MovieTitle>
+        <GenreList genreList={result.genre} />
+        <MovieTitle>{result.title}</MovieTitle>
         <BadgeBlock>
           <Badge
-            text={movie?.imdbRating}
-            color={defineBadgeColor(movie?.imdbRating)}
+            text={result.imdbRating}
+            color={defineBadgeColor(result.imdbRating)}
           />
           <Badge
-            text={movie?.imdbRating}
+            text={result.imdbRating}
             color={COLOR.GRAPHITE}
             svg={<IMDb />}
           />
-          <Badge text={movie?.runtime} color={COLOR.GRAPHITE} />
+          <Badge text={result.runtime} color={COLOR.GRAPHITE} />
         </BadgeBlock>
-        <Description>{movie?.plot}</Description>
+        <Description>{result.plot}</Description>
         <DataTable>
           <TableBody>
             <StyledRow>
               <StyledHead>Year</StyledHead>
-              <StyledCell>{movie?.year}</StyledCell>
+              <StyledCell>{result.year}</StyledCell>
             </StyledRow>
             <StyledRow>
               <StyledHead>Released</StyledHead>
-              <StyledCell>{movie?.released}</StyledCell>
+              <StyledCell>{result.released}</StyledCell>
             </StyledRow>
             <StyledRow>
               <StyledHead>BoxOffice</StyledHead>
-              <StyledCell>{movie?.boxOffice}</StyledCell>
+              <StyledCell>{result.boxOffice}</StyledCell>
             </StyledRow>
             <StyledRow>
               <StyledHead>Country</StyledHead>
-              <StyledCell>{movie?.country}</StyledCell>
+              <StyledCell>{result.country}</StyledCell>
             </StyledRow>
             <StyledRow>
               <StyledHead>Production</StyledHead>
-              <StyledCell>{movie?.production}</StyledCell>
+              <StyledCell>{result.production}</StyledCell>
             </StyledRow>
             <StyledRow>
               <StyledHead>Actors</StyledHead>
-              <StyledCell>{movie?.actors}</StyledCell>
+              <StyledCell>{result.actors}</StyledCell>
             </StyledRow>
             <StyledRow>
               <StyledHead>Director</StyledHead>
-              <StyledCell>{movie?.director}</StyledCell>
+              <StyledCell>{result.director}</StyledCell>
             </StyledRow>
             <StyledRow>
               <StyledHead>Writers</StyledHead>
-              <StyledCell>{movie?.writer}</StyledCell>
+              <StyledCell>{result.writer}</StyledCell>
             </StyledRow>
           </TableBody>
         </DataTable>
