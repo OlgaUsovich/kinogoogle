@@ -1,38 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { MovieList } from "../../components";
-import {
-  movieAPI,
-  MovieRequestParams,
-  transformSearchMovie,
-} from "../../services";
-import { ISearchMovie, ISearchMovieListAPI } from "../../types";
+import { getMovies } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 export const Home = () => {
-  const [movies, setMovies] = useState<ISearchMovie[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [errorMessage, setErrorMessage] = useState<string>("");
-  const [requestParams, setRequestParams] = useState<MovieRequestParams>({});
+  const dispatch = useAppDispatch();
+  const { results, isLoading, error } = useAppSelector(({ movies }) => movies);
+
 
   useEffect(() => {
-    setIsLoading(true);
-    movieAPI
-      .getAll(requestParams)
-      .then((response: ISearchMovieListAPI) => {
-        const movies = transformSearchMovie(response["Search"]);
-        setMovies(movies);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setErrorMessage(err.message);
-      });
-  }, [requestParams]);
+    dispatch(getMovies())
+  }, [dispatch]);
 
   return (
     <MovieList
-      movies={movies}
+      movies={results}
       isLoading={isLoading}
-      errorMessage={errorMessage}
+      errorMessage={error}
     />
   );
 };
