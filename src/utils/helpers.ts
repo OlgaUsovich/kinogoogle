@@ -9,6 +9,16 @@ export const defineBadgeColor = (raiting: string): string => {
     : COLOR.GREEN;
 };
 
+export const defineBadgeColorYear = (year: string): string => {
+  const numYear = Number(year.split("-")[0]);
+  return numYear < 2000
+    ? COLOR.ORANGE
+    : numYear < 2010
+    ? COLOR.YELLOW
+    : COLOR.GREEN;
+};
+
+
 export const getUserInitials = (name: string): string => {
   const initialsWords = name.split(' ');
   return initialsWords

@@ -1,6 +1,6 @@
 import { Search } from "../Search";
 import { AuthBlock } from "../AuthBlock";
-import { HeaderWrapper, StyledDiv } from "./styles";
+import { Container, Wrapper } from "./styles";
 import { Logo } from "../../components";
 import { getAuth } from "firebase/auth";
 
@@ -10,12 +10,12 @@ export const Header = () => {
   const userName = auth.currentUser?.displayName
 
   return (
-    <HeaderWrapper>
+    <Wrapper>
       <Logo />
-      <StyledDiv>
+      <Container>
         <Search />
         <AuthBlock name={userName} />
-      </StyledDiv>
-    </HeaderWrapper>
+      </Container>
+    </Wrapper>
   );
 };

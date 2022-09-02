@@ -7,11 +7,11 @@ export const Wrapper = styled.div`
   place-items: center;
 `;
 
-export const StyledP = styled.p`
+export const Message = styled.p`
   ${H1};
   color: ${COLOR.WHITE};
 `;
 
-export const StyledSpan = styled.span`
+export const Page = styled.span`
   color: ${COLOR.PRIMARY};
 `;

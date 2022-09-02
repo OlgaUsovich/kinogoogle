@@ -1,16 +1,16 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "../Header";
 import { Nav } from "../Nav";
-import { MainWrapper, Wrapper } from "./styles";
+import { Container, Wrapper } from "./styles";
 
 export const MainTemplate = () => {
   return (
-    <MainWrapper>
+    <Wrapper>
       <Header />
-      <Wrapper>
+      <Container>
         <Nav />
         <Outlet />
-      </Wrapper>
-    </MainWrapper>
+      </Container>
+    </Wrapper>
   );
 };

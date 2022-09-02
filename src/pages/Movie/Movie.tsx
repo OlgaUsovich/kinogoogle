@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { FiShare2 } from "react-icons/fi";
 import { Badge, GenreList, Poster } from "../../components";
-import { defineBadgeColor } from "../../helpers";
+import { defineBadgeColor } from "../../utils";
 import { movieAPI, transformMovie } from "../../services";
 import { COLOR } from "../../ui";
 import {

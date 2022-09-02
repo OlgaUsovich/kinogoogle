@@ -1,10 +1,10 @@
 import { FiUser } from "react-icons/fi";
-import { getUserInitials } from "../../helpers";
 import { Avatar, BurgerButton, LinkItem, LinksList, StyledDiv, Text, UserButton, UserName } from "./styles";
 import { ROUTE } from "../../routers";
 import { ArrowButton } from "../../assets";
 import {useToggle} from 'react-use';
 import {useDetectClickOutside} from 'react-detect-click-outside'
+import { getUserInitials } from "../../utils";
 
 interface IProps {
   name?: string | null;

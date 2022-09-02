@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { MovieList } from "../../components";
-import { movieAPI, MovieRequestParams, transformMovie } from "../../services";
-import { IMovie, ISearchMovieAPI } from "../../types";
+import {
+  movieAPI,
+  MovieRequestParams,
+  transformSearchMovie,
+} from "../../services";
+import { ISearchMovie, ISearchMovieListAPI } from "../../types";
 
 export const Home = () => {
-  const [movies, setMovies] = useState<IMovie[]>([]);
+  const [movies, setMovies] = useState<ISearchMovie[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [requestParams, setRequestParams] = useState<MovieRequestParams>({});
@@ -13,18 +17,10 @@ export const Home = () => {
     setIsLoading(true);
     movieAPI
       .getAll(requestParams)
-      .then((response) => {
-        let fetchedMovies = response["Search"]
-        setMovies(fetchedMovies);
-        fetchedMovies.forEach((movie: ISearchMovieAPI) => {
-          movieAPI.getById(movie.imdbID).then((response) => {
-            setMovies((previousMovies) => {
-              const transformedMovie = transformMovie(response);
-              setIsLoading(false);
-              return previousMovies.map((el) => (el.imdbID === transformedMovie.imdbID ? transformedMovie : el));
-            });
-          });
-        });
+      .then((response: ISearchMovieListAPI) => {
+        const movies = transformSearchMovie(response["Search"]);
+        setMovies(movies);
+        setIsLoading(false);
       })
       .catch((err) => {
         setIsLoading(false);
@@ -33,6 +29,10 @@ export const Home = () => {
   }, [requestParams]);
 
   return (
-    <MovieList movies={movies} isLoading={isLoading} errorMessage={errorMessage} />
+    <MovieList
+      movies={movies}
+      isLoading={isLoading}
+      errorMessage={errorMessage}
+    />
   );
 };

@@ -1,10 +1,10 @@
-import { IMovie } from "../../types";
+import { ISearchMovie, ISearchMovieAPI } from "../../types";
 import { MovieCard } from "../MovieCard";
 import { Spinner } from "../Spinner";
 import { ErrorMessage, Error, StyledContainer, StyledMovieList } from "./styles";
 
 interface IProps {
-  movies: IMovie[];
+  movies: ISearchMovie[];
   isLoading: boolean;
   errorMessage: string;
 }

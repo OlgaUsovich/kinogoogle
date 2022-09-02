@@ -1,11 +1,11 @@
-import { StyledP, StyledSpan, Wrapper } from "./styles";
+import { Message, Page, Wrapper } from "./styles";
 
 export const NotFound = () => {
   return (
     <Wrapper>
-      <StyledP>
-        <StyledSpan>PAGE</StyledSpan> NOT FOUND
-      </StyledP>
+      <Message>
+        <Page>PAGE</Page> NOT FOUND
+      </Message>
     </Wrapper>
   );
 };

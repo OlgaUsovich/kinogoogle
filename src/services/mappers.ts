@@ -1,7 +1,6 @@
-import { IMovie } from "../types";
+import { IMovie, IMovieAPI, ISearchMovie, ISearchMovieAPI } from "../types";
 
-
-export const transformMovie = (movie: any): IMovie => {
+export const transformMovie = (movie: IMovieAPI): IMovie => {
   return {
     imdbID: movie.imdbID,
     title: movie.Title,
@@ -20,4 +19,18 @@ export const transformMovie = (movie: any): IMovie => {
     boxOffice: movie.BoxOffice,
     production: movie.Production,
   };
+};
+
+export const transformSearchMovie = (
+  searchMovies: ISearchMovieAPI[]
+): ISearchMovie[] => {
+  return searchMovies.map((searchMovie) => {
+    return {
+      title: searchMovie.Title,
+      year: searchMovie.Year,
+      imdbID: searchMovie.imdbID,
+      type: searchMovie.Type,
+      poster: searchMovie.Poster,
+    };
+  });
 };

@@ -11,10 +11,10 @@ export const PosterBlock = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  width: 266px;
+  max-width: 266px;
 `;
 export const InfoBlock = styled.section`
-  width: 878px;
+  max-width: 878px;
 `;
 
 export const MovieTitle = styled.h1`
@@ -46,7 +46,7 @@ export const StyledHead = styled.th`
   padding: 10px 0;
   ${SUBLINE13};
   text-align: left;
-  color: ${COLOR.GRAPHITE};
+  color: ${COLOR.LIGTH};
 `;
 
 export const StyledCell = styled.td`

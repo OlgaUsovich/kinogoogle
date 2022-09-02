@@ -1,5 +1,5 @@
-import { transformMovie } from "./mappers";
+import { transformMovie, transformSearchMovie } from "./mappers";
 import { movieAPI, MovieRequestParams } from "./movieApi";
 
-export { transformMovie, movieAPI };
+export { transformMovie, movieAPI, transformSearchMovie };
 export type { MovieRequestParams };

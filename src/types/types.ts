@@ -38,8 +38,8 @@ export interface IMovie {
   runtime: string;
   genre: string[];
   director: string;
-  writer: string[];
-  actors: string[];
+  writer: string;
+  actors: string;
   plot: string;
   country: string;
   poster: string;
@@ -48,6 +48,14 @@ export interface IMovie {
   type: string;
   boxOffice: string;
   production: string;
+}
+
+export interface ISearchMovie {
+  title: string;
+  year: string;
+  imdbID: string;
+  type: string;
+  poster: string;
 }
 
 export interface ISearchMovieAPI {

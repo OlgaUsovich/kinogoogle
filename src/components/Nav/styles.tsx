@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { BODY, COLOR, MEDIA, SUBLINE11 } from "../../ui";
 
 export const StyledNav = styled.nav`
+  position: sticky;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

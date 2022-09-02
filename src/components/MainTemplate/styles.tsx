@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { MEDIA } from "../../ui";
 
-export const Wrapper = styled.div`
+export const Container = styled.div`
     flex-grow: 1;
     display: flex;
     justify-content: center;
-    gap: 146px;
+    gap: 50px;
 `
 
-export const MainWrapper = styled.div`
+export const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;

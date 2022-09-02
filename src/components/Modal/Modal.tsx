@@ -1,6 +1,6 @@
 import { ROUTE } from "../../routers";
 import { Portal, PortalTarget } from "../Portal";
-import { ModalBody, ModalButton, ModalContent, ModalHeader, ModalText, ModalTitle, StyledSpan } from "./styles";
+import { Body, Container, Header, Title, Text, PurpleText, Button, Content } from "./styles";
 
 interface ModalProps {
     isOpen: boolean;
@@ -10,23 +10,19 @@ interface ModalProps {
 export const Modal = ({isOpen, handleModal}: ModalProps) => {
   return isOpen ? (
     <Portal target={PortalTarget.MODAL}>
-      <div
-        className="modal d-flex justify-content-center align-items-center"
-        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-        onClick={handleModal}
-      >
-        <ModalContent>
-          <ModalHeader>
-            <ModalTitle>Successful registration</ModalTitle>
-          </ModalHeader>
-          <ModalBody>
-            <ModalText>YOU'VE JUST SUCCESSFULLY REGISTERED! <StyledSpan>WELCOME TO KINOGOOGLE!</StyledSpan></ModalText>
-          </ModalBody>
-            <ModalButton to={ROUTE.HOME} className="btn btn-primary">
+      <Container onClick={handleModal}>
+        <Content>
+          <Header>
+            <Title>Successful registration</Title>
+          </Header>
+          <Body>
+            <Text>YOU'VE JUST SUCCESSFULLY REGISTERED! <PurpleText>WELCOME TO KINOGOOGLE!</PurpleText></Text>
+          </Body>
+            <Button to={ROUTE.HOME} className="btn btn-primary">
               Explore
-            </ModalButton>
-        </ModalContent>
-      </div>
+            </Button>
+        </Content>
+      </Container>
     </Portal>
   ) : null;
 };
