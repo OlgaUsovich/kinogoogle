@@ -1,4 +1,4 @@
-import { ISearchMovie, ISearchMovieAPI } from "../../types";
+import { ISearchMovie } from "../../types";
 import { MovieCard } from "../MovieCard";
 import { Spinner } from "../Spinner";
 import { ErrorMessage, Error, StyledContainer, StyledMovieList } from "./styles";

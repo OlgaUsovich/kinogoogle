@@ -11,10 +11,10 @@ export const PosterBlock = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  max-width: 266px;
+  min-width: 266px;
 `;
 export const InfoBlock = styled.section`
-  max-width: 878px;
+  max-width: 975px;
 `;
 
 export const MovieTitle = styled.h1`
