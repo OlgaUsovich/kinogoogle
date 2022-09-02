@@ -1,4 +1,4 @@
-type FirebaseMessageErrors =
+export type FirebaseMessageErrors =
   | "auth/email-already-in-use"
   | "auth/email-already-exists"
   | "auth/user-not-found"
@@ -21,7 +21,7 @@ enum ErrorMessage {
 }
 
 export const getFirebaseMessageError = (
-  code: FirebaseMessageErrors
+  code: FirebaseMessageErrors | string
 ): ErrorMessage => {
   switch (code) {
     case "auth/email-already-in-use":

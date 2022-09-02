@@ -71,3 +71,8 @@ export interface ISearchMovieListAPI {
   totalResults: string;
   Response: string;
 }
+
+export interface UserData {
+  displayName: string | null; 
+  email: string | null;
+}

@@ -1,4 +1,5 @@
-import { IMovie, IMovieAPI, ISearchMovie, ISearchMovieAPI } from "../types";
+import { UserCredential } from "firebase/auth";
+import { IMovie, IMovieAPI, ISearchMovie, ISearchMovieAPI, UserData } from "../types";
 
 export const transformMovie = (movie: IMovieAPI): IMovie => {
   return {
@@ -34,3 +35,10 @@ export const transformSearchMovie = (
     };
   });
 };
+
+export const transformUserCredential = (userCredential: UserCredential): UserData => {
+  return {
+    displayName: userCredential.user.displayName,
+    email: userCredential.user.email,
+  };
+}

@@ -1,5 +1,4 @@
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { FormButton } from "../../components/FormButton";
 import { Input } from "../../components/Input";
 import { ROUTE } from "../../routers";
@@ -15,9 +14,10 @@ import {
   Title,
 } from "./styles";
 import { useRef, useState } from "react";
-import { getFirebaseMessageError } from "../../utils";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "../../components";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { createUser } from "../../store/features/userSlice";
 
 type SignUpFormValue = {
   name: string;
@@ -44,11 +44,11 @@ export const SignUp = () => {
     },
   });
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [errorMessage, setErrorMesage] = useState<string>("");
   const navigate = useNavigate();
   const password = useRef({});
   password.current = watch("password", "");
+  const dispatch = useAppDispatch();
+  const { isLoading, error } = useAppSelector(({ users }) => users);
 
   const [isOpen, toggleModal] = useState<boolean>(false);
 
@@ -61,28 +61,9 @@ export const SignUp = () => {
     name,
     email,
     password,
-    confirmPassword,
   }) => {
-    setIsLoading(true);
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        if (auth.currentUser) {
-          updateProfile(auth.currentUser, {
-            displayName: name
-          })
-        }
-        handleModal();
-        // navigate(ROUTE.HOME, { replace: true });
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        setErrorMesage(getFirebaseMessageError(errorCode));
-      })
-      .finally(() => {
-        setIsLoading(false);
-        reset();
-      });
+    dispatch(createUser({ password, email, name, handleModal }));
+    reset();
   };
 
   return (
@@ -119,9 +100,10 @@ export const SignUp = () => {
               rules={{
                 required: "Enter your email",
                 pattern: {
-                  value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                  message: 'Please enter a valid email',
-              },
+                  value:
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: "Please enter a valid email",
+                },
               }}
               render={({ field: { value, onChange } }) => {
                 return (
@@ -194,7 +176,7 @@ export const SignUp = () => {
             <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>
           )}
         </InputsContainer>
-        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <FormButton text="Sign up" isLoading={isLoading} />
       </FormContainer>
       <StyledSpan>
