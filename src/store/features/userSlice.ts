@@ -3,12 +3,14 @@ import { FirebaseError } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  signInWithEmailAndPassword,
   updateProfile,
   UserCredential,
 } from "firebase/auth";
 import { UserData } from "../../types";
 import { transformUserCredential } from "../../services";
 import { getFirebaseMessageError } from "../../utils";
+import { isPendingAction } from "../utils"
 
 interface UserState {
   isLoading: boolean;
@@ -25,8 +27,8 @@ const initialState: UserState = {
 type UserRegData = {
   email: string;
   password: string;
-  name: string;
-  handleModal: () => void;
+  name?: string;
+  handleModal?: () => void;
 };
 
 export const createUser = createAsyncThunk<
@@ -46,7 +48,31 @@ export const createUser = createAsyncThunk<
       if (auth.currentUser) {
         await updateProfile(auth.currentUser, { displayName: name });
       }
-      handleModal();
+      if (handleModal) {
+        handleModal();
+      }
+      return response;
+    } catch (error) {
+      const firebaseError = error as FirebaseError;
+      return rejectWithValue(firebaseError.code);
+    }
+  }
+);
+
+export const logInUser = createAsyncThunk<
+  UserCredential,
+  UserRegData,
+  { rejectValue: string }
+>(
+  "user/logInUser",
+  async ({ email, password }: UserRegData, { rejectWithValue }) => {
+    const auth = getAuth();
+    try {
+      const response = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       return response;
     } catch (error) {
       const firebaseError = error as FirebaseError;
@@ -75,6 +101,25 @@ export const userSlice = createSlice({
         state.error = getFirebaseMessageError(payload);
       }
     });
+    builder.addCase(logInUser.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(logInUser.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.result = transformUserCredential(payload);
+    });
+    builder.addCase(logInUser.rejected, (state, { payload }) => {
+      console.log(payload)
+      state.isLoading = false;
+      if (payload) {
+        state.error = getFirebaseMessageError(payload);
+      }
+    });
+    // builder.addMatcher(isPendingAction, (state) => {
+    //   state.isLoading = true;
+    //   state.error = null;
+    // })
   },
 });
 

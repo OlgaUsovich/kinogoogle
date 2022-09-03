@@ -1,10 +1,9 @@
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { FormButton, Input } from "../../components";
 import { ROUTE } from "../../routers";
-import { getFirebaseMessageError } from "../../utils";
+import { logInUser } from "../../store/features/userSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   ErrorMessage,
   ForgotPassword,
@@ -39,26 +38,14 @@ export const SignIn = () => {
     },
   });
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [errorMessage, setErrorMesage] = useState<string | null>(null);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { isLoading, error } = useAppSelector(({ users }) => users);
 
   const onSubmit: SubmitHandler<SignInFormValue> = ({ email, password }) => {
-    setIsLoading(true);
-    setErrorMesage(null);
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // console.log(userCredential)
-        navigate(`/${ROUTE.ACCOUNT}`, { replace: true });
-      })
-      .catch((error) => {
-        setErrorMesage(getFirebaseMessageError(error.code));
-      })
-      .finally(() => {
-        setIsLoading(false);
-        reset();
-      });
+    dispatch(logInUser({ password, email }));
+    reset();
+    navigate(`/${ROUTE.ACCOUNT}`);
   };
 
   return (
@@ -66,7 +53,9 @@ export const SignIn = () => {
       <FormContainer>
         <FormTitleContainer>
           <Title>Sign In</Title>
-          <ForgotPassword to={ROUTE.SEND_EMAIL_CHANGE_PASSWORD}>Forgot Password</ForgotPassword>
+          <ForgotPassword to={ROUTE.SEND_EMAIL_CHANGE_PASSWORD}>
+            Forgot Password
+          </ForgotPassword>
         </FormTitleContainer>
         <InputsContainer>
           <StyledLabel>
@@ -126,7 +115,7 @@ export const SignIn = () => {
             <ErrorMessage>{errors.password.message}</ErrorMessage>
           )}
         </InputsContainer>
-        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <FormButton text="Sign In" isLoading={isLoading} />
       </FormContainer>
       <StyledSpan>

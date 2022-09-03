@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { MovieList, PaginateButton } from "../../components";
-import { useWindowSize } from "../../hooks";
 import { getMovies } from "../../store";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { Container } from "./styles";
