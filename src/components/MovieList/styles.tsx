@@ -5,6 +5,7 @@ export const StyledMovieList = styled.div`
   flex-grow: 1;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 433px;
   gap: 40px;
 
   ${MEDIA.LG} {
@@ -13,6 +14,7 @@ export const StyledMovieList = styled.div`
 
   ${MEDIA.LGMD} {
     grid-template-columns: 1fr 1fr 1fr;
+    height: 379px;
   }
 
   ${MEDIA.MD} {
@@ -21,6 +23,7 @@ export const StyledMovieList = styled.div`
 
   ${MEDIA.SM} {
     grid-template-columns: 1fr;
+    height: 437px;
   }
 `;
 

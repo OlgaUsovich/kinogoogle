@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { movieAPI, MovieRequestParams, transformSearchMovie } from "../../services";
-import { IMovieAPI, ISearchMovie, ISearchMovieListAPI } from "../../types";
+import { ISearchMovie, ISearchMovieListAPI } from "../../types";
 
 interface MoviesState {
   isLoading: boolean;
@@ -22,19 +22,6 @@ export const getMovies = createAsyncThunk<
 >("movies/getMovies", async ({ page }, { rejectWithValue }) => {
   try {
     return await movieAPI.getAll({ page });
-  } catch (error) {
-    const axiosError = error as AxiosError;
-    return rejectWithValue(axiosError.message);
-  }
-});
-
-export const getMovie = createAsyncThunk<
-  IMovieAPI,
-  string,
-  { rejectValue: string }
->("movies/getMovie", async (id, { rejectWithValue }) => {
-  try {
-    return await movieAPI.getById(id);
   } catch (error) {
     const axiosError = error as AxiosError;
     return rejectWithValue(axiosError.message);

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { MovieList, PaginateButton } from "../../components";
+import { useWindowSize } from "../../hooks";
 import { getMovies } from "../../store";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { Container } from "./styles";
@@ -8,13 +9,20 @@ export const Home = () => {
   const dispatch = useAppDispatch();
   const { results, isLoading, error } = useAppSelector(({ movies }) => movies);
   const [page, setPage] = useState<string>("1");
+  const [windowHeight, setWindowHeigth] = useState<number>(906);
+  
 
   useEffect(() => {
     dispatch(getMovies({ page }));
-  }, [dispatch, page]);
+  }, [page, dispatch]);
 
   const handlePagination = () => {
     setPage(`${+page + 1}`);
+    window.scrollTo({
+      top: windowHeight,
+      behavior: "smooth",
+    });
+    setWindowHeigth((prev) => 2 * prev);
   };
 
   return (
