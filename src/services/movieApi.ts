@@ -44,13 +44,13 @@ class MovieAPI {
     return searchWords[Math.floor(Math.random() * searchWords.length)];
   }
 
-  public async getAll() {
+  public async getAll(movieRequestParams: MovieRequestParams) {
 
     if (! this.requestWord) {
       this.requestWord = this.getRandomParam()
     }
 
-    const params = { s: this.requestWord };
+    const params = { ...movieRequestParams, s: this.requestWord };
 
     const { data } = await this.API.get<ISearchMovieListAPI>("", {
       params,

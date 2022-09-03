@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import { movieAPI, transformSearchMovie } from "../../services";
+import { movieAPI, MovieRequestParams, transformSearchMovie } from "../../services";
 import { IMovieAPI, ISearchMovie, ISearchMovieListAPI } from "../../types";
 
 interface MoviesState {
@@ -17,11 +17,11 @@ const initialState: MoviesState = {
 
 export const getMovies = createAsyncThunk<
   ISearchMovieListAPI,
-  undefined,
+  MovieRequestParams,
   { rejectValue: string }
->("movies/getMovies", async (_, { rejectWithValue }) => {
+>("movies/getMovies", async ({ page }, { rejectWithValue }) => {
   try {
-    return await movieAPI.getAll();
+    return await movieAPI.getAll({ page });
   } catch (error) {
     const axiosError = error as AxiosError;
     return rejectWithValue(axiosError.message);
@@ -52,7 +52,8 @@ export const moviesSlice = createSlice({
     });
     builder.addCase(getMovies.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      state.results = transformSearchMovie(payload["Search"]);
+      const newMovies = transformSearchMovie(payload["Search"]);
+      state.results.push(...newMovies);
     });
     builder.addCase(getMovies.rejected, (state, { payload }) => {
         state.isLoading = false;

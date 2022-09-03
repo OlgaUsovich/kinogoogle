@@ -7,9 +7,10 @@ import { Modal } from "./Modal";
 import { MovieCard } from "./MovieCard";
 import { MovieList } from "./MovieList";
 import { Nav } from "./Nav";
+import { PaginateButton } from "./PaginateButton";
 import { Poster } from "./Poster";
 import { Badge } from "./RaitingBadge";
 import { RequireAuth } from "./RequireAuth";
 import { Spinner } from "./Spinner";
 
-export { MainTemplate, MovieCard, MovieList, Nav, Poster, GenreList, Badge, Input, FormButton, Logo, Spinner, Modal, RequireAuth };
+export { MainTemplate, MovieCard, MovieList, Nav, Poster, GenreList, Badge, Input, FormButton, Logo, Spinner, Modal, RequireAuth, PaginateButton };
