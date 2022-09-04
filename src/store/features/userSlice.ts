@@ -11,7 +11,6 @@ import {
 import { UserData } from "../../types";
 import { transformUserCredential } from "../../services";
 import { getFirebaseMessageError } from "../../utils";
-import { isPendingAction } from "../utils"
 
 interface UserState {
   isLoading: boolean;
@@ -38,7 +37,10 @@ export const createUser = createAsyncThunk<
   { rejectValue: string }
 >(
   "user/createUser",
-  async ({ email, password, name, handleModal }: UserRegData, { rejectWithValue }) => {
+  async (
+    { email, password, name, handleModal }: UserRegData,
+    { rejectWithValue }
+  ) => {
     const auth = getAuth();
     try {
       const response = await createUserWithEmailAndPassword(
@@ -69,11 +71,8 @@ export const logInUser = createAsyncThunk<
   async ({ email, password }: UserRegData, { rejectWithValue }) => {
     const auth = getAuth();
     try {
-      const response = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const response = await signInWithEmailAndPassword(auth, email, password);
+      localStorage.setItem("userId", response.user.uid);
       return response;
     } catch (error) {
       const firebaseError = error as FirebaseError;
@@ -86,20 +85,16 @@ export const logOutUser = createAsyncThunk<
   any,
   undefined,
   { rejectValue: string }
->(
-  "user/logOutUser",
-  async (_, { rejectWithValue }) => {
-    const auth = getAuth();
-    try {
-      const response = await signOut(auth);
-      console.log(response);
-      return response;
-    } catch (error) {
-      const firebaseError = error as FirebaseError;
-      return rejectWithValue(firebaseError.code);
-    }
+>("user/logOutUser", async (_, { rejectWithValue }) => {
+  const auth = getAuth();
+  try {
+    const response = await signOut(auth);
+    return response;
+  } catch (error) {
+    const firebaseError = error as FirebaseError;
+    return rejectWithValue(firebaseError.code);
   }
-);
+});
 
 export const userSlice = createSlice({
   name: "user",
@@ -115,7 +110,6 @@ export const userSlice = createSlice({
       state.result = transformUserCredential(payload);
     });
     builder.addCase(createUser.rejected, (state, { payload }) => {
-      console.log(payload)
       state.isLoading = false;
       if (payload) {
         state.error = getFirebaseMessageError(payload);
