@@ -12,7 +12,9 @@ export const Home = () => {
   
 
   useEffect(() => {
-    dispatch(getMovies({ page }));
+    if (page!== '1' || !results.length){
+      dispatch(getMovies({ page }));
+    }
   }, [page, dispatch]);
 
   const handlePagination = () => {

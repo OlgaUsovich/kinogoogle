@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
+  signOut,
   updateProfile,
   UserCredential,
 } from "firebase/auth";
@@ -81,6 +82,25 @@ export const logInUser = createAsyncThunk<
   }
 );
 
+export const logOutUser = createAsyncThunk<
+  any,
+  undefined,
+  { rejectValue: string }
+>(
+  "user/logOutUser",
+  async (_, { rejectWithValue }) => {
+    const auth = getAuth();
+    try {
+      const response = await signOut(auth);
+      console.log(response);
+      return response;
+    } catch (error) {
+      const firebaseError = error as FirebaseError;
+      return rejectWithValue(firebaseError.code);
+    }
+  }
+);
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -110,7 +130,6 @@ export const userSlice = createSlice({
       state.result = transformUserCredential(payload);
     });
     builder.addCase(logInUser.rejected, (state, { payload }) => {
-      console.log(payload)
       state.isLoading = false;
       if (payload) {
         state.error = getFirebaseMessageError(payload);
