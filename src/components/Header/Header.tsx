@@ -7,7 +7,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 export const Header = () => {
 
-  const [loading, isUser] = useAuth();
+  const [loading] = useAuth();
   
   if (!loading) {
     const auth = getAuth();

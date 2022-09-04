@@ -1,3 +1,5 @@
+import { ChangeEventHandler } from "react";
+
 interface IMovieRaitingsAPI {
   Source: string;
   Value: string;
@@ -75,4 +77,9 @@ export interface ISearchMovieListAPI {
 export interface UserData {
   displayName: string | null; 
   email: string | null;
+}
+
+export interface ISearchOptions {
+  value: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 }

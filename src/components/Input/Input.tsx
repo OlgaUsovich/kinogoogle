@@ -1,11 +1,11 @@
-import { FieldError } from "react-hook-form";
+import { ChangeEventHandler } from "react";
 import { StyledInput } from "./styles";
 
 interface IProps {
   placeholder: string;
   type: string;
   value?: string;
-  onChange?: () => void;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   onBlur?: () => void;
   error?: string | undefined;
 }

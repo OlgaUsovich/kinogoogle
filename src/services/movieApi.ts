@@ -76,6 +76,16 @@ class MovieAPI {
 
     return data;
   }
+
+  public async getSearchMovies(searchWord: string | undefined, newParams: MovieRequestParams) {
+    const params = { ...newParams, s: searchWord };
+
+    const { data } = await this.API.get<ISearchMovieListAPI>("", {
+      params,
+    });
+
+    return data;
+  }
 }
 
 export const movieAPI = new MovieAPI();

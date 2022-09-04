@@ -7,6 +7,7 @@ interface MoviesState {
   isLoading: boolean;
   error: string | null;
   results: ISearchMovie[];
+  searchWord?: string;
 }
 
 const initialState: MoviesState = {
@@ -41,12 +42,28 @@ export const getTrends = createAsyncThunk<
   }
 });
 
+export const getSearchMovies = createAsyncThunk<
+  ISearchMovieListAPI,
+  MovieRequestParams,
+  { rejectValue: string }
+>("movies/getSearchMovies", async ({ s, page }, { rejectWithValue }) => {
+  try {
+    return await movieAPI.getSearchMovies(s, { page });
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    return rejectWithValue(axiosError.message);
+  }
+});
+
 export const moviesSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
     cleanStore: (state) => {
       state.results = []
+    },
+    addSearchWord: (state, { payload }) => {
+      state.searchWord = payload
     }
   },
   extraReducers(builder) {
@@ -80,8 +97,23 @@ export const moviesSlice = createSlice({
             state.error = payload;
         }
     });
+    builder.addCase(getSearchMovies.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(getSearchMovies.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      const newMovies = transformSearchMovie(payload["Search"]);
+      state.results.push(...newMovies);
+    });
+    builder.addCase(getSearchMovies.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        if (payload) {
+            state.error = payload;
+        }
+    });
   },
 });
 
-export const { cleanStore } = moviesSlice.actions;
+export const { cleanStore, addSearchWord } = moviesSlice.actions;
 export default moviesSlice.reducer;

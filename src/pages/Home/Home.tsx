@@ -1,20 +1,31 @@
 import { useEffect, useState } from "react";
 import { MovieList, PaginateButton } from "../../components";
 import { getMovies } from "../../store";
-import { cleanStore } from "../../store/features/moviesSlice";
+import {
+  cleanStore,
+  getSearchMovies,
+} from "../../store/features/moviesSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { Container } from "./styles";
 
 export const Home = () => {
   const dispatch = useAppDispatch();
-  const { results, isLoading, error } = useAppSelector(({ movies }) => movies);
+  const { results, isLoading, error, searchWord } = useAppSelector(
+    ({ movies }) => movies
+  );
   const [page, setPage] = useState<string>("1");
   const [windowHeight, setWindowHeigth] = useState<number>(906);
-  
 
   useEffect(() => {
-      dispatch(getMovies({ page }));
+    dispatch(getMovies({ page }));
   }, [page, dispatch]);
+
+  useEffect(() => {
+    if (searchWord !== '') {
+      dispatch(cleanStore());
+      dispatch(getSearchMovies({ s: searchWord, page }));
+    }
+  }, [searchWord, dispatch]);
 
   useEffect(() => {
     dispatch(cleanStore()); // <-- reset when unmounting
