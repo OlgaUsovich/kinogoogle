@@ -28,6 +28,19 @@ export const getMovies = createAsyncThunk<
   }
 });
 
+export const getTrends = createAsyncThunk<
+  ISearchMovieListAPI,
+  MovieRequestParams,
+  { rejectValue: string }
+>("movies/getTrends", async ({ page }, { rejectWithValue }) => {
+  try {
+    return await movieAPI.getTrends({ page });
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    return rejectWithValue(axiosError.message);
+  }
+});
+
 export const moviesSlice = createSlice({
   name: "movies",
   initialState,
@@ -47,6 +60,21 @@ export const moviesSlice = createSlice({
       state.results.push(...newMovies);
     });
     builder.addCase(getMovies.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        if (payload) {
+            state.error = payload;
+        }
+    });
+    builder.addCase(getTrends.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(getTrends.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      const newMovies = transformSearchMovie(payload["Search"]);
+      state.results.push(...newMovies);
+    });
+    builder.addCase(getTrends.rejected, (state, { payload }) => {
         state.isLoading = false;
         if (payload) {
             state.error = payload;

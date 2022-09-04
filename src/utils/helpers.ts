@@ -18,11 +18,15 @@ export const defineBadgeColorYear = (year: string): string => {
     : COLOR.GREEN;
 };
 
-
 export const getUserInitials = (name: string): string => {
-  const initialsWords = name.split(' ');
+  const initialsWords = name.split(" ");
   return initialsWords
     .map((namePart) => namePart[0])
     .join("")
     .toUpperCase();
+};
+
+export const isTrend = (year: string): boolean => {
+  const numYear = Number(year.split("-")[0]);
+  return numYear === new Date().getFullYear() ? true : false;
 };
