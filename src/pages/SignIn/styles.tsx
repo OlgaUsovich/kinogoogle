@@ -10,7 +10,7 @@ export const StyledForm = styled.form`
   border-radius: 10px;
   background-color: ${COLOR.DARK};
 
-  ${MEDIA.SM} {
+  ${MEDIA.XS} {
     width: 272px;
     padding: 24px;
   }
@@ -20,7 +20,7 @@ export const Title = styled.h1`
   ${H2};
   color: ${COLOR.WHITE};
 
-  ${MEDIA.SM} {
+  ${MEDIA.XS} {
     ${H3};
   }
 `;
@@ -48,7 +48,7 @@ export const StyledSpan = styled.span`
   ${SUBLINE13};
   color: ${COLOR.SECONDARY};
 
-  ${MEDIA.SM} {
+  ${MEDIA.XS} {
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;

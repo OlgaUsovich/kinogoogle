@@ -26,7 +26,7 @@ export const AuthHeader = styled.header`
   padding: 43px 0 0 43px;
   align-self: start;
 
-  ${MEDIA.SM} {
+  ${MEDIA.XS} {
     padding: 32px 0 0 0;
     align-self: center;
   }

@@ -6,11 +6,11 @@ export const Card = styled(Link)`
   position: relative;
   text-decoration: none;
 
-  ${MEDIA.MD} {
+  ${MEDIA.SM} {
     height: 379px;
   }
 
-  ${MEDIA.SM} {
+  ${MEDIA.XS} {
     height: 437px;
     gap: 0;
   }
@@ -26,7 +26,7 @@ export const Title = styled.h3`
     color: ${COLOR.PRIMARY};
   }
 
-  ${MEDIA.SM} {
+  ${MEDIA.XS} {
     margin-top: 20px;
   }
 `;

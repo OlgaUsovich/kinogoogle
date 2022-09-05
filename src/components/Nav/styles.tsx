@@ -9,7 +9,7 @@ export const StyledNav = styled.nav`
   justify-content: space-between;
   flex-shrink: 0;
 
-  ${MEDIA.MDLG} {
+  ${MEDIA.MD} {
     display: none;
   }
 `;

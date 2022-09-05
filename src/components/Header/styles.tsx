@@ -12,19 +12,19 @@ export const Wrapper = styled.header`
   padding-bottom: 56px;
   background-color: ${COLOR.BLACK};
 
-  ${MEDIA.MDLG} {
+  ${MEDIA.MD} {
     gap: 40px;
     padding-top: 40px;
     padding-bottom: 48px;
   }
 
-  ${MEDIA.MD} {
+  ${MEDIA.SM} {
     gap: 71px;
     padding-top: 30px;
     padding-bottom: 44px;
   }
 
-  ${MEDIA.SM} {
+  ${MEDIA.XS} {
     gap: 64px;
     padding-top: 32px;
     padding-bottom: 40px;
@@ -36,15 +36,15 @@ export const Container = styled.div`
   gap: 41px;
   flex-grow: 1;
 
-  ${MEDIA.MDLG} {
+  ${MEDIA.MD} {
     gap: 32px;
   }
 
-  ${MEDIA.MD} {
+  ${MEDIA.SM} {
     gap: 30px;
   }
 
-  ${MEDIA.SM} {
+  ${MEDIA.XS} {
     flex-wrap: wrap;
     gap: 64px;
   }

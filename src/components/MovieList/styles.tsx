@@ -8,20 +8,20 @@ export const StyledMovieList = styled.div`
   grid-template-rows: 433px;
   gap: 40px;
 
-  ${MEDIA.LG} {
+  ${MEDIA.XL} {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
-  ${MEDIA.LGMD} {
+  ${MEDIA.XL} {
     grid-template-columns: 1fr 1fr 1fr;
     height: 379px;
   }
 
-  ${MEDIA.MD} {
+  ${MEDIA.SM} {
     grid-template-columns: 1fr 1fr;
   }
 
-  ${MEDIA.SM} {
+  ${MEDIA.XS} {
     grid-template-columns: 1fr;
     height: 437px;
   }

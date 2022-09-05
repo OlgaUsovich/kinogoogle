@@ -9,7 +9,7 @@ export const StyledDiv = styled.div`
   justify-content: space-between;
   width: 264px;
 
-  ${MEDIA.MDLG} {
+  ${MEDIA.MD} {
     width: fit-content;
   }
 `;
@@ -46,7 +46,7 @@ export const UserButton = styled.button<{ isOpen: boolean }>`
   cursor: pointer;
   transform: ${(props) => (props.isOpen ? "rotate(90deg)" : 0)};
 
-  ${MEDIA.MDLG} {
+  ${MEDIA.MD} {
     display: none;
   }
 `;
@@ -55,7 +55,7 @@ export const UserName = styled.div`
   display: flex;
   align-items: center;
 
-  ${MEDIA.MDLG} {
+  ${MEDIA.MD} {
     display: none;
   }
 `;
@@ -68,7 +68,7 @@ export const LinksList = styled.div<{ isOpen: boolean }>`
   background-color: ${COLOR.DARK};
   border-radius: 10px;
 
-  ${MEDIA.MDLG} {
+  ${MEDIA.MD} {
     top: 70px;
     left: -94px;
     width: 150px;
@@ -104,7 +104,7 @@ export const BurgerButton = styled.button`
   background-color: ${COLOR.PRIMARY};
   cursor: pointer;
 
-  ${MEDIA.MDLG} {
+  ${MEDIA.MD} {
     display: block;
   }
 `

@@ -6,11 +6,11 @@ export const StyledImg = styled.img`
   width: 100%;
   border-radius: 20px;
 
-  ${MEDIA.MD} {
+  ${MEDIA.SM} {
     height: 279px;
   }
 
-  ${MEDIA.SM} {
+  ${MEDIA.XS} {
     height: 365px;
   }
 `;

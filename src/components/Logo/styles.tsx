@@ -7,15 +7,15 @@ export const StyledLogo = styled(LogoSvg)`
   width: 158px;
   height: 40px;
 
-  ${MEDIA.MDLG} {
+  ${MEDIA.MD} {
     width: 156px;
   }
 
-  ${MEDIA.MD} {
+  ${MEDIA.SM} {
     width: 154px;
   }
 
-  ${MEDIA.SM} {
+  ${MEDIA.XS} {
     width: 152px;
     height: 39px;
   }

@@ -17,11 +17,11 @@ export const Wrapper = styled.div`
     padding: 0 62px 64px;
     margin: 0 auto;
 
-    ${MEDIA.MD} {
+    ${MEDIA.SM} {
         max-width: 768px;
     }
 
-    ${MEDIA.SM} {
+    ${MEDIA.XS} {
         max-width: 320px;
     }
 `
