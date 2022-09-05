@@ -1,5 +1,5 @@
 import { FiUser } from "react-icons/fi";
-import { Avatar, BurgerButton, LinkItem, LinksList, StyledDiv, Text, UserButton, UserName } from "./styles";
+import { Avatar, LinkItem, LinksList, StyledDiv, Text, UserButton, UserName } from "./styles";
 import { ROUTE } from "../../routers";
 import { ArrowButton } from "../../assets";
 import {useToggle} from 'react-use';
@@ -25,7 +25,6 @@ export const AuthBlock = ({ name }: IProps) => {
       <UserButton ref={ref} onClick={setIsOpen} isOpen={isOpen}>
         <ArrowButton />
       </UserButton>
-      <BurgerButton onClick={setIsOpen}></BurgerButton>
       <LinksList isOpen={isOpen}>
         <LinkItem to={name ? ROUTE.ACCOUNT : ROUTE.SIGN_IN}>{name ? "Edit profile" : "Sign In"}</LinkItem>
         <LinkItem to={name ? ROUTE.LOG_OUT : ROUTE.SIGN_UP}>{name ? "Log Out" : "Sign Up"}</LinkItem>

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { COLOR } from "../../ui";
 
 export const SearchWrapper = styled.div`
+  grid-area: search;
   position: relative;
   flex-grow: 1;
 `;

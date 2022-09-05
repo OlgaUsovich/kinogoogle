@@ -3,14 +3,16 @@ import styled from "styled-components";
 import { COLOR, MEDIA, SUBLINE13 } from "../../ui";
 
 export const StyledDiv = styled.div`
+  justify-self: end;
+  grid-area: burger;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 264px;
 
-  ${MEDIA.MD} {
-    width: fit-content;
+  ${MEDIA.LG} {
+    display: none;
   }
 `;
 
@@ -45,10 +47,6 @@ export const UserButton = styled.button<{ isOpen: boolean }>`
   background-color: transparent;
   cursor: pointer;
   transform: ${(props) => (props.isOpen ? "rotate(90deg)" : 0)};
-
-  ${MEDIA.MD} {
-    display: none;
-  }
 `;
 
 export const UserName = styled.div`
@@ -93,18 +91,3 @@ export const LinkItem = styled(Link)`
     color: ${COLOR.SECONDARY};
   }
 `;
-
-
-export const BurgerButton = styled.button`
-  display: none;
-  width: 56px;
-  height: 56px;
-  border: 0;
-  border-radius: 10px;
-  background-color: ${COLOR.PRIMARY};
-  cursor: pointer;
-
-  ${MEDIA.MD} {
-    display: block;
-  }
-`

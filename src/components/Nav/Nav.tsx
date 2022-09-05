@@ -4,9 +4,13 @@ import { BsFillBookmarkFill } from "react-icons/bs";
 import { ROUTE } from "../../routers";
 import { CustomLink, LinkText, Rigths, StyledNav, StyledUl } from "./styles";
 
-export const Nav = () => {
+interface IProps {
+  isNavOpen: boolean;
+}
+
+export const Nav = ({isNavOpen}: IProps) => {
   return (
-    <StyledNav>
+    <StyledNav isNavOpen={isNavOpen}>
       <StyledUl>
         <CustomLink to={ROUTE.HOME}>
           <RiHome6Fill />

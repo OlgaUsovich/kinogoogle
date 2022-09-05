@@ -8,13 +8,8 @@ export const StyledMovieList = styled.div`
   grid-template-rows: 433px;
   gap: 40px;
 
-  ${MEDIA.XL} {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-
-  ${MEDIA.XL} {
+  ${MEDIA.LG} {
     grid-template-columns: 1fr 1fr 1fr;
-    height: 379px;
   }
 
   ${MEDIA.SM} {
@@ -23,7 +18,7 @@ export const StyledMovieList = styled.div`
 
   ${MEDIA.XS} {
     grid-template-columns: 1fr;
-    height: 437px;
+    place-items: center;
   }
 `;
 

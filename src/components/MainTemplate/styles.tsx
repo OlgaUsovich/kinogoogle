@@ -2,26 +2,22 @@ import styled from "styled-components";
 import { MEDIA } from "../../ui";
 
 export const Container = styled.div`
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-`
+  min-height: 100%;
+  position: relative;
+`;
 
 export const Wrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    max-width: 1920px;
-    min-height: 100%;
-    padding: 0 62px 64px;
-    margin: 0 auto;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+`;
 
-    ${MEDIA.SM} {
-        max-width: 768px;
-    }
+export const OutletContainer = styled.div<{ isNavOpen: boolean }>`
+  margin-left: 208px;
+  transition: margin-right 0.4s;
 
-    ${MEDIA.XS} {
-        max-width: 320px;
-    }
-`
+  ${MEDIA.LG} {
+    margin-left: 0;
+    margin-right: ${(props) => (props.isNavOpen ? "208px" : 0)};
+  }
+`;

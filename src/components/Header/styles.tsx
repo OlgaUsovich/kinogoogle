@@ -12,16 +12,15 @@ export const Wrapper = styled.header`
   padding-bottom: 56px;
   background-color: ${COLOR.BLACK};
 
-  ${MEDIA.MD} {
-    gap: 40px;
-    padding-top: 40px;
-    padding-bottom: 48px;
-  }
-
-  ${MEDIA.SM} {
-    gap: 71px;
-    padding-top: 30px;
-    padding-bottom: 44px;
+  ${MEDIA.XS} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "logo burger"
+    "search search";
+    column-gap: 0;
+    row-gap: 40px;
   }
 
   ${MEDIA.XS} {

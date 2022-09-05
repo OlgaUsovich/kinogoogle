@@ -2,15 +2,20 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { BODY, COLOR, MEDIA, SUBLINE11 } from "../../ui";
 
-export const StyledNav = styled.nav`
-  position: sticky;
+export const StyledNav = styled.nav<{ isNavOpen: boolean }>`
+  width: 158px;
+  height: calc(100% - 192px);
+  position: fixed;
+  background-color: ${COLOR.BLACK};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-shrink: 0;
 
-  ${MEDIA.MD} {
-    display: none;
+  ${MEDIA.LG} {
+    display: ${(props) => (props.isNavOpen ? "flex" : "none")};
+    height: calc(100% - 260px);
+    right: 10px;
+    z-index: 1;
   }
 `;
 

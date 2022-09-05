@@ -3,6 +3,7 @@ import { MEDIA } from "../../ui";
 import { LogoSvg } from "../../assets";
 
 export const StyledLogo = styled(LogoSvg)`
+  grid-area: logo;
   display: block;
   width: 158px;
   height: 40px;

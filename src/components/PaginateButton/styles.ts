@@ -24,6 +24,7 @@ export const Spinner = styled.span`
 `;
 
 export const Button = styled.button`
+  place-self: center;
   width: 161px;
   height: 40px;
   border: 0;

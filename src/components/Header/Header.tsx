@@ -1,11 +1,17 @@
 import { Search } from "../Search";
 import { AuthBlock } from "../AuthBlock";
-import { Container, Wrapper } from "./styles";
+import { Wrapper } from "./styles";
 import { Logo, Spinner } from "../../components";
 import { getAuth } from "firebase/auth";
 import { useAuth } from "../../hooks/useAuth";
+import { BurgerButton } from "../BurgerButton";
 
-export const Header = () => {
+interface IProps {
+  isNavOpen: boolean;
+  setIsNavOpen: (nextValue: boolean) => void;
+}
+
+export const Header = ({isNavOpen, setIsNavOpen}: IProps) => {
 
   const [loading] = useAuth();
   
@@ -16,10 +22,9 @@ export const Header = () => {
     return (
       <Wrapper>
         <Logo />
-        <Container>
-          <Search />
-          <AuthBlock name={userName} />
-        </Container>
+        <Search />
+        <AuthBlock name={userName} />
+        <BurgerButton isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
       </Wrapper>
     );
   }
