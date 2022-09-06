@@ -15,7 +15,7 @@ import { getFirebaseMessageError } from "../../utils";
 interface UserState {
   isLoading: boolean;
   error: string | null;
-  result: UserData;
+  result: UserData | null;
 }
 
 const initialState: UserState = {
@@ -63,7 +63,7 @@ export const createUser = createAsyncThunk<
 );
 
 export const logInUser = createAsyncThunk<
-  UserCredential,
+  UserCredential | null,
   UserRegData,
   { rejectValue: string }
 >(
@@ -72,7 +72,7 @@ export const logInUser = createAsyncThunk<
     const auth = getAuth();
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
-      return response;
+      return response.user ? response : null;
     } catch (error) {
       const firebaseError = error as FirebaseError;
       return rejectWithValue(firebaseError.code);
@@ -81,14 +81,13 @@ export const logInUser = createAsyncThunk<
 );
 
 export const logOutUser = createAsyncThunk<
-  any,
+  void,
   undefined,
   { rejectValue: string }
 >("user/logOutUser", async (_, { rejectWithValue }) => {
   const auth = getAuth();
   try {
-    const response = await signOut(auth);
-    return response;
+    await signOut(auth);
   } catch (error) {
     const firebaseError = error as FirebaseError;
     return rejectWithValue(firebaseError.code);
@@ -120,9 +119,27 @@ export const userSlice = createSlice({
     });
     builder.addCase(logInUser.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      state.result = transformUserCredential(payload);
+      if (payload) {
+        state.result = transformUserCredential(payload);
+      } else {
+        state.result = null;
+      }
     });
     builder.addCase(logInUser.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      if (payload) {
+        state.error = getFirebaseMessageError(payload);
+      }
+    });
+    builder.addCase(logOutUser.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(logOutUser.fulfilled, (state) => {
+      state.isLoading = false;
+      state.result = null;
+    });
+    builder.addCase(logOutUser.rejected, (state, { payload }) => {
       state.isLoading = false;
       if (payload) {
         state.error = getFirebaseMessageError(payload);
