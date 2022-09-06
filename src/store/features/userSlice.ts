@@ -72,7 +72,6 @@ export const logInUser = createAsyncThunk<
     const auth = getAuth();
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
-      localStorage.setItem("userId", response.user.uid);
       return response;
     } catch (error) {
       const firebaseError = error as FirebaseError;
