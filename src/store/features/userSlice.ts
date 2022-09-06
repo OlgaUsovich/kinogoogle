@@ -21,7 +21,7 @@ interface UserState {
 const initialState: UserState = {
   isLoading: false,
   error: null,
-  result: { displayName: null, email: null },
+  result: null,
 };
 
 type UserRegData = {
@@ -119,7 +119,7 @@ export const userSlice = createSlice({
     });
     builder.addCase(logInUser.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      if (payload) {
+      if (payload?.user.uid) {
         state.result = transformUserCredential(payload);
       } else {
         state.result = null;
