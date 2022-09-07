@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { MovieList, PaginateButton } from "../../components";
-import { cleanStore, getTrends } from "../../store/features/moviesSlice";
+import { cleanStore, getTrends, MoviesState } from "../../store/features/moviesSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { Container } from "./styles";
 
 export const Trends = () => {
   const dispatch = useAppDispatch();
-  const { results, isLoading, error } = useAppSelector(({ movies }) => movies);
+  const { results, isLoading, error }: MoviesState = useAppSelector((state) => state.persistedReducer.movies);
   const [page, setPage] = useState<string>("1");
 
   useEffect(() => {

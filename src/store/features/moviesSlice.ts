@@ -3,7 +3,7 @@ import { AxiosError } from "axios";
 import { movieAPI, MovieRequestParams, transformSearchMovie } from "../../services";
 import { ISearchMovie, ISearchMovieListAPI } from "../../types";
 
-interface MoviesState {
+export interface MoviesState {
   isLoading: boolean;
   error: string | null;
   results: ISearchMovie[];

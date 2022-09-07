@@ -6,18 +6,19 @@ import { GlobalStyle } from "./ui/globalStyles";
 import "./firebase";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
-import { store } from "./store";
+import { persistor, store } from "./store";
+import { PersistGate } from "redux-persist/integration/react";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-
-    <BrowserRouter>
-      <GlobalStyle />
-      <Provider store={store}>
+  <BrowserRouter>
+    <GlobalStyle />
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
         <App />
-      </Provider>
-    </BrowserRouter>
-
+      </PersistGate>
+    </Provider>
+  </BrowserRouter>
 );

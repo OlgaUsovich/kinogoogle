@@ -1,6 +1,6 @@
 import { Account } from "./Account";
 import { ChangePassword } from "./ChangePassword";
-import { Favourits } from "./Favourits";
+import { Favourits } from "./Favorites/Favourits";
 import { Home } from "./Home";
 import { Movie } from "./Movie";
 import { NotFound } from "./NotFound";

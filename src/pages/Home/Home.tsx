@@ -11,7 +11,7 @@ import { Container } from "./styles";
 export const Home = () => {
   const dispatch = useAppDispatch();
   const { results, isLoading, error, searchWord } = useAppSelector(
-    ({ movies }) => movies
+    (state) => state.persistedReducer.movies
   );
   const [page, setPage] = useState<string>("1");
   const [windowHeight, setWindowHeigth] = useState<number>(906);

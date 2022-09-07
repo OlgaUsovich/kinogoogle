@@ -11,7 +11,7 @@ interface IProps {
 }
 
 export const Header = ({ isNavOpen, setIsNavOpen }: IProps) => {
-  const user = useAppSelector((state) => state.users.result);
+  const user = useAppSelector((state) => state.persistedReducer.users.result);
 
   return (
     <Wrapper>

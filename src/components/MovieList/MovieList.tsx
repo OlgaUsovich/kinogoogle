@@ -5,8 +5,8 @@ import { ErrorMessage, Error, StyledContainer, StyledMovieList } from "./styles"
 
 interface IProps {
   movies: ISearchMovie[];
-  isLoading: boolean;
-  errorMessage: string | null;
+  isLoading?: boolean;
+  errorMessage?: string | null;
 }
 
 export const MovieList = ({ movies, isLoading, errorMessage }: IProps) => {

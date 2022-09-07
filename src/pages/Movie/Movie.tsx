@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { FiShare2 } from "react-icons/fi";
 import { Badge, GenreList, Poster, Spinner } from "../../components";
@@ -25,17 +25,14 @@ import {
 } from "./styles";
 import { IMDb } from "../../assets";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getMovie } from "../../store";
+import { addFavorite, getMovie } from "../../store";
 
 export const Movie = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { result, isLoading, error } = useAppSelector(({ movie }) => movie);
-
-  const handleBack = () => {
-    navigate(-1);
-  };
+  const { result, isLoading, error } = useAppSelector(
+    (state) => state.persistedReducer.movie
+  );
 
   useEffect(() => {
     if (id) {
@@ -64,7 +61,7 @@ export const Movie = () => {
       <PosterBlock>
         <Poster img={result.poster} />
         <ButtonGroup>
-          <StyledButton>
+          <StyledButton onClick={() => dispatch(addFavorite(result))}>
             <BsFillBookmarkFill />
           </StyledButton>
           <StyledButton>
@@ -79,13 +76,15 @@ export const Movie = () => {
           <Badge
             text={result.imdbRating}
             color={defineBadgeColor(result.imdbRating)}
+            type="detail"
           />
           <Badge
             text={result.imdbRating}
             color={COLOR.GRAPHITE}
             svg={<IMDb />}
+            type="detail"
           />
-          <Badge text={result.runtime} color={COLOR.GRAPHITE} />
+          <Badge text={result.runtime} color={COLOR.GRAPHITE} type="detail" />
         </BadgeBlock>
         <Description>{result.plot}</Description>
         <DataTable>

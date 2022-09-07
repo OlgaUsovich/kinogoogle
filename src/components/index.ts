@@ -9,7 +9,7 @@ import { MovieList } from "./MovieList";
 import { Nav } from "./Nav";
 import { PaginateButton } from "./PaginateButton";
 import { Poster } from "./Poster";
-import { Badge } from "./RaitingBadge";
+import { Badge } from "./Badge";
 import { RequireAuth } from "./RequireAuth";
 import { Spinner } from "./Spinner";
 

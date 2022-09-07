@@ -14,7 +14,6 @@ import {
   Title,
 } from "./styles";
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Modal } from "../../components";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { createUser } from "../../store/features/userSlice";
@@ -44,11 +43,10 @@ export const SignUp = () => {
     },
   });
 
-  const navigate = useNavigate();
   const password = useRef({});
   password.current = watch("password", "");
   const dispatch = useAppDispatch();
-  const { isLoading, error } = useAppSelector(({ users }) => users);
+  const { isLoading, error } = useAppSelector((state) => state.persistedReducer.users);
 
   const [isOpen, toggleModal] = useState<boolean>(false);
 

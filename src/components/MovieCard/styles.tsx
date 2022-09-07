@@ -6,6 +6,10 @@ export const Card = styled(Link)`
   position: relative;
   text-decoration: none;
 
+  &:hover > h3 {
+    color: ${COLOR.PRIMARY};
+  }
+
   ${MEDIA.SM} {
     height: 379px;
   }
@@ -22,11 +26,16 @@ export const Title = styled.h3`
   ${SUBLINE12}
   color: ${COLOR.WHITE};
 
-  &:hover {
-    color: ${COLOR.PRIMARY};
-  }
-
   ${MEDIA.XS} {
     margin-top: 20px;
+  }
+`;
+
+export const DeleteButton = styled.button`
+  border: 0;
+  padding: 0;
+
+  &:hover > * {
+    color: ${COLOR.WHITE};
   }
 `;

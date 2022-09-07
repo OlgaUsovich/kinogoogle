@@ -1,3 +1,4 @@
+import { IMovie, ISearchMovie } from "../types";
 import { COLOR } from "../ui";
 
 export const defineBadgeColor = (raiting: string): string => {
@@ -30,3 +31,6 @@ export const isTrend = (year: string): boolean => {
   const numYear = Number(year.split("-")[0]);
   return numYear === new Date().getFullYear() ? true : false;
 };
+
+export const isInFavorites = (favorites: IMovie[], movie: ISearchMovie) =>
+  favorites.find((fav) => fav.imdbID === movie.imdbID);

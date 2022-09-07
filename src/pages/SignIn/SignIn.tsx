@@ -40,7 +40,7 @@ export const SignIn = () => {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isLoading, error } = useAppSelector(({ users }) => users);
+  const { isLoading, error } = useAppSelector((state) => state.persistedReducer.users);
 
   const onSubmit: SubmitHandler<SignInFormValue> = ({ email, password }) => {
     dispatch(logInUser({ password, email }));
