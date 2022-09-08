@@ -11,6 +11,7 @@ import { isInFavorites, isTrend } from "../../utils/helpers";
 import { MdFavorite } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { removeFavorite } from "../../store";
+import { toast } from "react-toastify";
 
 interface IProps {
   movie: ISearchMovie;
@@ -21,6 +22,7 @@ export const MovieCard = ({ movie }: IProps) => {
   const { favorites } = useAppSelector(
     (state) => state.persistedReducer.favorites
   );
+  const notify = () => toast.info(`Movie "${movie.title}" has deleted from favorites`);
 
   return (
     <Card to={`/${createPath(ROUTE.MOVIE, { id: movie.imdbID })}`}>
@@ -40,10 +42,13 @@ export const MovieCard = ({ movie }: IProps) => {
         />
       )}
       {isInFavorites(favorites, movie) && (
-        <DeleteButton onClick={(event) =>{
-          event.preventDefault();
-          dispatch(removeFavorite(movie))}
-        }>
+        <DeleteButton
+          onClick={(event) => {
+            event.preventDefault();
+            dispatch(removeFavorite(movie));
+            notify();
+          }}
+        >
           <Badge type="fav" color={COLOR.GRAPHITE} svg={<MdFavorite />} />
         </DeleteButton>
       )}

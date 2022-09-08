@@ -256,4 +256,14 @@ body {
 html, body, #root {
   height: 100%;
 }
+
+:root {
+    --toastify-icon-color-success: ${COLOR.GREEN};
+    --toastify-text-color-success: ${COLOR.GREEN};
+    --toastify-color-progress-success: ${COLOR.GREEN};
+    --toastify-icon-color-info: ${COLOR.PRIMARY_DIMMER};
+    --toastify-text-color-info: ${COLOR.PRIMARY_DIMMER};
+    --toastify-color-progress-info: ${COLOR.PRIMARY_DIMMER};
+    --toastify-color-dark: ${COLOR.GRAPHITE};
+}
 `;

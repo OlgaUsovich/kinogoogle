@@ -26,6 +26,7 @@ import {
 import { IMDb } from "../../assets";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { addFavorite, getMovie } from "../../store";
+import { toast } from "react-toastify";
 
 export const Movie = () => {
   const { id } = useParams();
@@ -33,6 +34,7 @@ export const Movie = () => {
   const { result, isLoading, error } = useAppSelector(
     (state) => state.persistedReducer.movie
   );
+  const notify = () => toast.success(`Movie "${result.title}" has added to favorites`);
 
   useEffect(() => {
     if (id) {
@@ -61,7 +63,10 @@ export const Movie = () => {
       <PosterBlock>
         <Poster img={result.poster} />
         <ButtonGroup>
-          <StyledButton onClick={() => dispatch(addFavorite(result))}>
+          <StyledButton onClick={() => {
+            dispatch(addFavorite(result));
+            notify();
+            }}>
             <BsFillBookmarkFill />
           </StyledButton>
           <StyledButton>

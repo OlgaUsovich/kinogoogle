@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { useToggle } from "react-use";
 import { Header } from "../Header";
 import { Nav } from "../Nav";
@@ -16,6 +17,11 @@ export const MainTemplate = () => {
           <Outlet />
         </OutletContainer>
       </Container>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        theme="dark"
+      />
     </Wrapper>
   );
 };
