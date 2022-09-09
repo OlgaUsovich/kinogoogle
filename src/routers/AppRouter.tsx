@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import { ROUTE } from "./routes";
 import { MainTemplate, RequireAuth } from "../components";
 import {
-  Account,
   ChangePassword,
   Favourits,
   Home,
@@ -25,9 +24,8 @@ export const AppRouter = () => {
         <Route path={ROUTE.TRENDS} element={<Trends />} />
         <Route element={<RequireAuth />}>
           <Route path={ROUTE.FAVORITES} element={<Favourits />} />
-          <Route path={ROUTE.ACCOUNT} element={<Account />} />
+          <Route path={ROUTE.SETTINGS} element={<Settings />} />
         </Route>
-        <Route path={ROUTE.SETTINGS} element={<Settings />} />
         <Route path={ROUTE.MOVIE} element={<Movie />} />
         <Route path={ROUTE.NOT_FOUND} element={<NotFound />} />
       </Route>

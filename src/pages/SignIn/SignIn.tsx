@@ -45,7 +45,7 @@ export const SignIn = () => {
   const onSubmit: SubmitHandler<SignInFormValue> = ({ email, password }) => {
     dispatch(logInUser({ password, email }));
     reset();
-    navigate(`/${ROUTE.ACCOUNT}`);
+    navigate(`/${ROUTE.SETTINGS}`);
   };
 
   return (

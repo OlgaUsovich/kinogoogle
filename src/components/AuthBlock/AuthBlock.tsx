@@ -26,7 +26,7 @@ export const AuthBlock = ({ name }: IProps) => {
         <ArrowButton />
       </UserButton>
       <LinksList isOpen={isOpen}>
-        <LinkItem to={name ? ROUTE.ACCOUNT : ROUTE.SIGN_IN}>{name ? "Edit profile" : "Sign In"}</LinkItem>
+        <LinkItem to={name ? ROUTE.SETTINGS : ROUTE.SIGN_IN}>{name ? "Edit profile" : "Sign In"}</LinkItem>
         <LinkItem to={name ? ROUTE.LOG_OUT : ROUTE.SIGN_UP}>{name ? "Log Out" : "Sign Up"}</LinkItem>
       </LinksList>
     </StyledDiv>

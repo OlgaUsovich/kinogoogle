@@ -1,4 +1,3 @@
-import { FieldError } from "react-hook-form";
 import styled from "styled-components";
 import { COLOR, SUBLINE13 } from "../../ui";
 
