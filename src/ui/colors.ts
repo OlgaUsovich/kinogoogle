@@ -6,7 +6,7 @@ export enum COLOR {
   DARK = "#242426",
   GRAPHITE = "#323537",
   ERROR = "#FF5154",
-  LIGTH = "#AFB2B6",
+  LIGHT = "#AFB2B6",
   WHITE = "#FFFFFF",
   GREEN = "#00A340",
   YELLOW = "#F3A608",

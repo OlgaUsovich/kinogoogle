@@ -46,7 +46,7 @@ export const StyledHead = styled.th`
   padding: 10px 0;
   ${SUBLINE13};
   text-align: left;
-  color: ${COLOR.LIGTH};
+  color: ${COLOR.LIGHT};
 `;
 
 export const StyledCell = styled.td`
@@ -65,7 +65,7 @@ export const StyledButton = styled.button`
   border: 0;
   padding: 16px 0;
   font-size: 20px;
-  color: ${COLOR.LIGTH};
+  color: ${COLOR.LIGHT};
   background-color: ${COLOR.GRAPHITE};
   cursor: pointer;
 

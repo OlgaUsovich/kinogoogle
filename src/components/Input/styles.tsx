@@ -19,7 +19,7 @@ export const StyledInput = styled.input<{error: string | undefined}>`
         color: ${COLOR.SECONDARY};
 
         &:disabled {
-            color: ${COLOR.LIGTH};
+            color: ${COLOR.LIGHT};
         }
     }
 

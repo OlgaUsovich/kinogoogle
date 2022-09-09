@@ -12,7 +12,7 @@ export const StyledUl = styled.ul`
 export const Genre = styled.li`
   ${SUBLINE13}
   font-weight: 500;
-  color: ${COLOR.LIGTH};
+  color: ${COLOR.LIGHT};
   list-style-type: none;
 
   & + &::before {

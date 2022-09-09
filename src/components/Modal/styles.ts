@@ -33,7 +33,7 @@ export const Header = styled.div`
 
 export const Title = styled.h1`
   ${H1};
-  color: ${COLOR.LIGTH};
+  color: ${COLOR.LIGHT};
 `;
 
 export const Body = styled.div`

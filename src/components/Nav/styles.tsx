@@ -59,5 +59,5 @@ export const Rigths = styled.span`
   justify-self: end;
   ${BODY};
   font-weight: 500;
-  color: ${COLOR.LIGTH};
+  color: ${COLOR.LIGHT};
 `;

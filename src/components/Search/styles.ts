@@ -14,7 +14,7 @@ export const FilterButton = styled.button`
   border: 0;
   font-size: 24px;
   line-height: 1;
-  color: ${COLOR.LIGTH};
+  color: ${COLOR.LIGHT};
   background-color: transparent;
   cursor: pointer;
 

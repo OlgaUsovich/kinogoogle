@@ -16,7 +16,7 @@ export const StyledButton = styled.button`
   }
 
   &:disabled {
-    color: ${COLOR.LIGTH};
+    color: ${COLOR.LIGHT};
     background-color: ${COLOR.SECONDARY};
     cursor: wait;
   }
