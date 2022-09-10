@@ -21,6 +21,7 @@ interface UserState {
   error: string | null;
   result: UserData | null;
   checkedPassword: boolean;
+  isDarkTheme: boolean;
 }
 
 const initialState: UserState = {
@@ -28,6 +29,7 @@ const initialState: UserState = {
   error: null,
   result: null,
   checkedPassword: false,
+  isDarkTheme: true,
 };
 
 type UserRegData = {
@@ -164,7 +166,7 @@ export const checkCurrentPassword = createAsyncThunk<
       currentPassword
     );
     try {
-     return await reauthenticateWithCredential(user, credential);
+      return await reauthenticateWithCredential(user, credential);
     } catch (error) {
       const firebaseError = error as FirebaseError;
       return rejectWithValue(firebaseError.code);
@@ -175,7 +177,16 @@ export const checkCurrentPassword = createAsyncThunk<
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    setTheme: (state, { payload }) => {
+      state.isDarkTheme = payload;
+      return state;
+    },
+    changeTheme: ({ isDarkTheme }) => {
+      const htmlTag = document.documentElement;
+      htmlTag.setAttribute("theme", isDarkTheme ? "dark" : "light");
+    },
+  },
   extraReducers(builder) {
     builder.addCase(createUser.pending, (state) => {
       state.isLoading = true;
@@ -277,6 +288,7 @@ export const userSlice = createSlice({
     builder.addCase(checkCurrentPassword.fulfilled, (state, { payload }) => {
       state.checkedPassword = true;
       state.isLoading = false;
+      return state;
     });
     builder.addCase(checkCurrentPassword.rejected, (state, { payload }) => {
       state.isLoading = false;
@@ -292,4 +304,5 @@ export const userSlice = createSlice({
   },
 });
 
+export const { setTheme, changeTheme } = userSlice.actions;
 export default userSlice.reducer;

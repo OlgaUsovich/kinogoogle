@@ -1,11 +1,13 @@
 import { useRef } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { FormButton, Input } from "../../components";
+import { FormButton, Input, Switcher } from "../../components";
 import {
   changeEmail,
   changeName,
   changePassword,
+  changeTheme,
   checkCurrentPassword,
+  setTheme,
 } from "../../store/features/userSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
@@ -21,6 +23,8 @@ import {
   ThemaInfo,
   ThemaName,
   Title,
+  Text,
+  ThemeInputContainer,
 } from "./styles";
 
 type SettingsFormValue = {
@@ -29,14 +33,13 @@ type SettingsFormValue = {
   password: string;
   newPassword: string;
   confirmPassword: string;
-  theme: "Light" | "Dark" | "Default";
+  theme: boolean;
 };
 
 export const Settings = () => {
   const dispatch = useAppDispatch();
-  const { result, isLoading, error, checkedPassword } = useAppSelector(
-    (state) => state.persistedReducer.users
-  );
+  const { result, isLoading, error, checkedPassword, isDarkTheme } =
+    useAppSelector((state) => state.persistedReducer.users);
   const {
     handleSubmit,
     reset,
@@ -52,10 +55,9 @@ export const Settings = () => {
       password: "",
       newPassword: "",
       confirmPassword: "",
-      theme: "Default",
+      theme: isDarkTheme,
     },
   });
-
 
   const newPassword = useRef({});
   newPassword.current = watch("newPassword", "");
@@ -70,9 +72,11 @@ export const Settings = () => {
     dirtyFields.name && dispatch(changeName(name));
     dirtyFields.email && dispatch(changeEmail(email));
     if (dirtyFields.newPassword) {
-      dispatch(checkCurrentPassword(password))
+      dispatch(checkCurrentPassword(password));
       checkedPassword && dispatch(changePassword(newPassword));
     }
+    dispatch(setTheme(theme));
+    dispatch(changeTheme());
     reset();
   };
 
@@ -100,7 +104,6 @@ export const Settings = () => {
             />
             {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
           </Label>
-          
 
           <Label>
             <LabelText>Email</LabelText>
@@ -126,9 +129,10 @@ export const Settings = () => {
                 );
               }}
             />
-            {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+            {errors.email && (
+              <ErrorMessage>{errors.email.message}</ErrorMessage>
+            )}
           </Label>
-          
         </InputsContainer>
       </Block>
 
@@ -158,9 +162,10 @@ export const Settings = () => {
                 );
               }}
             />
-            {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
+            {errors.password && (
+              <ErrorMessage>{errors.password.message}</ErrorMessage>
+            )}
           </Label>
-          
 
           <Label>
             <LabelText>New Password</LabelText>
@@ -185,9 +190,10 @@ export const Settings = () => {
                 );
               }}
             />
-            {errors.newPassword && <ErrorMessage>{errors.newPassword.message}</ErrorMessage>}
+            {errors.newPassword && (
+              <ErrorMessage>{errors.newPassword.message}</ErrorMessage>
+            )}
           </Label>
-          
 
           <Label>
             <LabelText>Confirm Password</LabelText>
@@ -195,7 +201,7 @@ export const Settings = () => {
               name="confirmPassword"
               control={control}
               rules={{
-              validate: (value) =>
+                validate: (value) =>
                   value === newPassword.current || "The passwords do not match",
               }}
               render={({ field: { value, onChange } }) => {
@@ -210,18 +216,28 @@ export const Settings = () => {
                 );
               }}
             />
-            {errors.confirmPassword && <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>}
+            {errors.confirmPassword && (
+              <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>
+            )}
           </Label>
-          
         </PasswordInputsContainer>
       </Block>
 
       <Block>
         <Title>Color mode</Title>
-        <InputsContainer>
-          <ThemaName></ThemaName>
-          <ThemaInfo>Use dark thema</ThemaInfo>
-        </InputsContainer>
+        <ThemeInputContainer>
+          <Text>
+            <ThemaName>{isDarkTheme ? "Dark" : "Light"}</ThemaName>
+            <ThemaInfo>Use {isDarkTheme ? "dark" : "light"} thema</ThemaInfo>
+          </Text>
+          <Controller
+            name="theme"
+            control={control}
+            render={({ field: { value, onChange } }) => {
+              return <Switcher value={value} onChange={onChange} />;
+            }}
+          />
+        </ThemeInputContainer>
       </Block>
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <ButtonsBlock>

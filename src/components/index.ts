@@ -12,5 +12,6 @@ import { Poster } from "./Poster";
 import { Badge } from "./Badge";
 import { RequireAuth } from "./RequireAuth";
 import { Spinner } from "./Spinner";
+import { Switcher } from "./Switcher";
 
-export { MainTemplate, MovieCard, MovieList, Nav, Poster, GenreList, Badge, Input, FormButton, Logo, Spinner, Modal, RequireAuth, PaginateButton };
+export { MainTemplate, MovieCard, MovieList, Nav, Poster, GenreList, Badge, Input, FormButton, Logo, Spinner, Modal, RequireAuth, PaginateButton, Switcher };

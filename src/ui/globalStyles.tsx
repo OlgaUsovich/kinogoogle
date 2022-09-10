@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { COLOR } from "./colors";
+import { Theme } from "./themes";
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -266,4 +267,6 @@ html, body, #root {
     --toastify-color-progress-info: ${COLOR.PRIMARY_DIMMER};
     --toastify-color-dark: ${COLOR.GRAPHITE};
 }
+
+${Theme}
 `;

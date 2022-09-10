@@ -134,3 +134,21 @@ export const CancelButton = styled(Link)`
     cursor: wait;
   }
 `;
+
+export const Text = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ThemeInputContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  border-radius: 10px;
+  background-color: ${COLOR.DARK};
+
+  ${MEDIA.XS} {
+    padding: 24px;
+  }
+`;
