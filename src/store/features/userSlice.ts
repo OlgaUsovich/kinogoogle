@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateEmail,
+  updatePassword,
   updateProfile,
   UserCredential,
 } from "firebase/auth";
@@ -129,6 +130,23 @@ export const changeName = createAsyncThunk<
   }
 });
 
+export const changePassword = createAsyncThunk<
+  void,
+  string,
+  { rejectValue: string }
+>("user/changePassword", async (newPassword, { rejectWithValue }) => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (user) {
+    try {
+      return await updatePassword(user, newPassword);
+    } catch (error) {
+      const firebaseError = error as FirebaseError;
+      return rejectWithValue(firebaseError.code);
+    }
+  }
+});
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -207,6 +225,20 @@ export const userSlice = createSlice({
       }
     });
     builder.addCase(changeName.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      if (payload) {
+        state.error = getFirebaseMessageError(payload);
+      }
+    });
+    builder.addCase(changePassword.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(changePassword.fulfilled, (state, payload) => {
+      state.isLoading = false;
+      console.log(payload);
+    });
+    builder.addCase(changePassword.rejected, (state, { payload }) => {
       state.isLoading = false;
       if (payload) {
         state.error = getFirebaseMessageError(payload);

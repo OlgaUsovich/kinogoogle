@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { FormButton, Input } from "../../components";
-import { changeEmail, changeName } from "../../store/features/userSlice";
+import { changeEmail, changeName, changePassword } from "../../store/features/userSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   Block,
@@ -24,7 +24,7 @@ type SettingsFormValue = {
   password: string;
   newPassword: string;
   confirmPassword: string;
-  theme: "light" | "dark" | "default";
+  theme: "Light" | "Dark" | "Default";
 };
 
 export const Settings = () => {
@@ -35,7 +35,7 @@ export const Settings = () => {
   const {
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, dirtyFields },
     control,
     watch,
   } = useForm<SettingsFormValue>({
@@ -47,17 +47,17 @@ export const Settings = () => {
       password: "",
       newPassword: "",
       confirmPassword: "",
-      theme: "default",
+      theme: "Default",
     },
   });
 
   const password = useRef({});
   password.current = watch("password", "");
 
-  const onSubmit: SubmitHandler<SettingsFormValue> = ({ email, name, password, theme }) => {
-    console.log('here');
-    dispatch(changeEmail(email));
-    dispatch(changeName(name));
+  const onSubmit: SubmitHandler<SettingsFormValue> = ({ email, name, newPassword, theme }) => {
+    dirtyFields.name && dispatch(changeName(name));
+    dirtyFields.email && dispatch(changeEmail(email));
+    dirtyFields.newPassword && dispatch(changePassword(newPassword));
     reset();
   };
 
@@ -202,7 +202,7 @@ export const Settings = () => {
         <Block>
         <Title>Color mode</Title>
         <InputsContainer>
-              <ThemaName>Dark</ThemaName>
+              <ThemaName></ThemaName>
               <ThemaInfo>Use dark thema</ThemaInfo>
         </InputsContainer>
       </Block>
