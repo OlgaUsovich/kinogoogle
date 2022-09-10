@@ -1,7 +1,12 @@
 import { useRef } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { FormButton, Input } from "../../components";
-import { changeEmail, changeName, changePassword } from "../../store/features/userSlice";
+import {
+  changeEmail,
+  changeName,
+  changePassword,
+  checkCurrentPassword,
+} from "../../store/features/userSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   Block,
@@ -29,7 +34,7 @@ type SettingsFormValue = {
 
 export const Settings = () => {
   const dispatch = useAppDispatch();
-  const { result, isLoading, error } = useAppSelector(
+  const { result, isLoading, error, checkedPassword } = useAppSelector(
     (state) => state.persistedReducer.users
   );
   const {
@@ -51,13 +56,23 @@ export const Settings = () => {
     },
   });
 
-  const password = useRef({});
-  password.current = watch("password", "");
 
-  const onSubmit: SubmitHandler<SettingsFormValue> = ({ email, name, newPassword, theme }) => {
+  const newPassword = useRef({});
+  newPassword.current = watch("newPassword", "");
+
+  const onSubmit: SubmitHandler<SettingsFormValue> = ({
+    email,
+    name,
+    password,
+    newPassword,
+    theme,
+  }) => {
     dirtyFields.name && dispatch(changeName(name));
     dirtyFields.email && dispatch(changeEmail(email));
-    dirtyFields.newPassword && dispatch(changePassword(newPassword));
+    if (dirtyFields.newPassword) {
+      dispatch(checkCurrentPassword(password))
+      checkedPassword && dispatch(changePassword(newPassword));
+    }
     reset();
   };
 
@@ -83,8 +98,9 @@ export const Settings = () => {
                 );
               }}
             />
+            {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
           </Label>
-          {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
+          
 
           <Label>
             <LabelText>Email</LabelText>
@@ -110,13 +126,13 @@ export const Settings = () => {
                 );
               }}
             />
+            {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
           </Label>
-          {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+          
         </InputsContainer>
-        </Block>
+      </Block>
 
-        
-        <Block>
+      <Block>
         <Title>Password</Title>
         <PasswordInputsContainer>
           <Label>
@@ -142,8 +158,9 @@ export const Settings = () => {
                 );
               }}
             />
+            {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
           </Label>
-          {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
+          
 
           <Label>
             <LabelText>New Password</LabelText>
@@ -153,7 +170,7 @@ export const Settings = () => {
               rules={{
                 minLength: {
                   value: 6,
-                  message: "Password should be at least 6 sybbols",
+                  message: "Password should be at least 6 symbols",
                 },
               }}
               render={({ field: { value, onChange } }) => {
@@ -163,13 +180,14 @@ export const Settings = () => {
                     type="password"
                     value={value}
                     onChange={onChange}
-                    error={errors.password?.message}
+                    error={errors.newPassword?.message}
                   />
                 );
               }}
             />
+            {errors.newPassword && <ErrorMessage>{errors.newPassword.message}</ErrorMessage>}
           </Label>
-          {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+          
 
           <Label>
             <LabelText>Confirm Password</LabelText>
@@ -177,10 +195,8 @@ export const Settings = () => {
               name="confirmPassword"
               control={control}
               rules={{
-                minLength: {
-                  value: 6,
-                  message: "Password should be at least 6 sybbols",
-                },
+              validate: (value) =>
+                  value === newPassword.current || "The passwords do not match",
               }}
               render={({ field: { value, onChange } }) => {
                 return (
@@ -189,27 +205,28 @@ export const Settings = () => {
                     type="password"
                     value={value}
                     onChange={onChange}
-                    error={errors.password?.message}
+                    error={errors.confirmPassword?.message}
                   />
                 );
               }}
             />
+            {errors.confirmPassword && <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>}
           </Label>
-          {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+          
         </PasswordInputsContainer>
-        </Block>
+      </Block>
 
-        <Block>
+      <Block>
         <Title>Color mode</Title>
         <InputsContainer>
-              <ThemaName></ThemaName>
-              <ThemaInfo>Use dark thema</ThemaInfo>
+          <ThemaName></ThemaName>
+          <ThemaInfo>Use dark thema</ThemaInfo>
         </InputsContainer>
       </Block>
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <ButtonsBlock>
-      <CancelButton to={'/'}>Cancel</CancelButton>
-      <FormButton text='Save' isLoading={isLoading}/>
+        <CancelButton to={"/"}>Cancel</CancelButton>
+        <FormButton text="Save" isLoading={isLoading} />
       </ButtonsBlock>
     </SettingsForm>
   );
