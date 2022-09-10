@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { FormButton, Input } from "../../components";
+import { changeEmail } from "../../store/features/userSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   Block,
@@ -53,12 +54,14 @@ export const Settings = () => {
   const password = useRef({});
   password.current = watch("password", "");
 
-  const onSubmit: SubmitHandler<SettingsFormValue> = () => {
+  const onSubmit: SubmitHandler<SettingsFormValue> = ({ email, name, password, theme }) => {
+    console.log('here');
+    dispatch(changeEmail(email));
     reset();
   };
 
   return (
-    <SettingsForm>
+    <SettingsForm onSubmit={handleSubmit(onSubmit)}>
       <Block>
         <Title>Profile</Title>
         <InputsContainer>
@@ -67,7 +70,6 @@ export const Settings = () => {
             <Controller
               name="name"
               control={control}
-              rules={{ required: "Enter your name" }}
               render={({ field: { value, onChange } }) => {
                 return (
                   <Input
@@ -89,7 +91,6 @@ export const Settings = () => {
               name="email"
               control={control}
               rules={{
-                required: "Enter your email",
                 pattern: {
                   value:
                     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -123,7 +124,6 @@ export const Settings = () => {
               name="password"
               control={control}
               rules={{
-                required: "Enter your password",
                 minLength: {
                   value: 6,
                   message: "Password should be at least 6 sybbols",
@@ -150,7 +150,6 @@ export const Settings = () => {
               name="newPassword"
               control={control}
               rules={{
-                required: "Enter your password",
                 minLength: {
                   value: 6,
                   message: "Password should be at least 6 sybbols",
@@ -177,7 +176,6 @@ export const Settings = () => {
               name="confirmPassword"
               control={control}
               rules={{
-                required: "Enter your password",
                 minLength: {
                   value: 6,
                   message: "Password should be at least 6 sybbols",
@@ -207,9 +205,10 @@ export const Settings = () => {
               <ThemaInfo>Use dark thema</ThemaInfo>
         </InputsContainer>
       </Block>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
       <ButtonsBlock>
       <CancelButton to={'/'}>Cancel</CancelButton>
-      <FormButton text='Save' isLoading={false}/>
+      <FormButton text='Save' isLoading={isLoading}/>
       </ButtonsBlock>
     </SettingsForm>
   );
