@@ -96,7 +96,7 @@ export const logOutUser = createAsyncThunk<
 });
 
 export const changeEmail = createAsyncThunk<
-  any,
+  void,
   string,
   { rejectValue: string }
 >("user/changeEmail", async (newEmail, { rejectWithValue }) => {
@@ -105,6 +105,23 @@ export const changeEmail = createAsyncThunk<
   if (user) {
     try {
       return await updateEmail(user, newEmail);
+    } catch (error) {
+      const firebaseError = error as FirebaseError;
+      return rejectWithValue(firebaseError.code);
+    }
+  }
+});
+
+export const changeName = createAsyncThunk<
+  void,
+  string,
+  { rejectValue: string }
+>("user/changeName", async (newName, { rejectWithValue }) => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (user) {
+    try {
+      return await updateProfile(user, { displayName: newName });
     } catch (error) {
       const firebaseError = error as FirebaseError;
       return rejectWithValue(firebaseError.code);
@@ -170,11 +187,26 @@ export const userSlice = createSlice({
     builder.addCase(changeEmail.fulfilled, (state, payload) => {
       state.isLoading = false;
       if (state.result) {
-        state.result.email = payload.meta.arg
+        state.result.email = payload.meta.arg;
       }
-      
     });
     builder.addCase(changeEmail.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      if (payload) {
+        state.error = getFirebaseMessageError(payload);
+      }
+    });
+    builder.addCase(changeName.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(changeName.fulfilled, (state, payload) => {
+      state.isLoading = false;
+      if (state.result) {
+        state.result.displayName = payload.meta.arg;
+      }
+    });
+    builder.addCase(changeName.rejected, (state, { payload }) => {
       state.isLoading = false;
       if (payload) {
         state.error = getFirebaseMessageError(payload);

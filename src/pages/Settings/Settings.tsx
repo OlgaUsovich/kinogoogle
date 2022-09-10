@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { FormButton, Input } from "../../components";
-import { changeEmail } from "../../store/features/userSlice";
+import { changeEmail, changeName } from "../../store/features/userSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   Block,
@@ -57,6 +57,7 @@ export const Settings = () => {
   const onSubmit: SubmitHandler<SettingsFormValue> = ({ email, name, password, theme }) => {
     console.log('here');
     dispatch(changeEmail(email));
+    dispatch(changeName(name));
     reset();
   };
 
