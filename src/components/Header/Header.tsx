@@ -4,6 +4,7 @@ import { Wrapper } from "./styles";
 import { Logo } from "../../components";
 import { BurgerButton } from "../BurgerButton";
 import { useAppSelector } from "../../store/hooks";
+import { useWindowSize } from "../../hooks";
 
 interface IProps {
   isNavOpen: boolean;
@@ -12,13 +13,16 @@ interface IProps {
 
 export const Header = ({ isNavOpen, setIsNavOpen }: IProps) => {
   const user = useAppSelector((state) => state.persistedReducer.users.result);
+  const { width = 0 } = useWindowSize();
 
   return (
     <Wrapper>
       <Logo />
       <Search />
       <AuthBlock name={user?.displayName} />
-      <BurgerButton isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
+      {width < 1280 && (
+        <BurgerButton isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
+      )}
     </Wrapper>
   );
 };

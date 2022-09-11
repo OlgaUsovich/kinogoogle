@@ -1,25 +1,21 @@
 import styled from "styled-components";
-import { COLOR, MEDIA } from "../../ui";
+import { COLOR } from "../../ui";
 
 export const Button = styled.button`
-  justify-self: end;
   grid-area: burger;
+  display: inline-flex;
+  justify-self: end;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
   padding: 0;
-  display: none;
   width: 56px;
   height: 56px;
   border: 0;
   border-radius: 10px;
   background-color: ${COLOR.PRIMARY};
   cursor: pointer;
-
-  ${MEDIA.LG} {
-    display: inline-flex;
-  }
 `;
 
 export const Line = styled.span<{ isOpen: boolean }>`

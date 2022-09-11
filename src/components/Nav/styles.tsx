@@ -1,8 +1,9 @@
+import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { BODY, COLOR, MEDIA, SUBLINE11 } from "../../ui";
 
-export const StyledNav = styled.nav<{ isNavOpen: boolean }>`
+export const Nav = styled(motion.nav)`
   width: 158px;
   height: calc(100% - 192px);
   position: fixed;
@@ -12,14 +13,19 @@ export const StyledNav = styled.nav<{ isNavOpen: boolean }>`
   justify-content: space-between;
 
   ${MEDIA.LG} {
-    display: ${(props) => (props.isNavOpen ? "flex" : "none")};
-    height: calc(100% - 260px);
+    height: calc(100vh - 152px);
+    width: 178px;
+    padding-left: 20px;
     right: 10px;
     z-index: 1;
   }
+
+  ${MEDIA.XS} {
+    height: calc(100vh - 248px);
+  }
 `;
 
-export const StyledUl = styled.ul`
+export const Ul = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 40px;

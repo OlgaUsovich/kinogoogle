@@ -7,21 +7,17 @@ import { Container, OutletContainer, Wrapper } from "./styles";
 
 export const MainTemplate = () => {
   const [isNavOpen, setIsNavOpen] = useToggle(false);
-  
+
   return (
     <Wrapper>
       <Header isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
       <Container>
         <Nav isNavOpen={isNavOpen} />
-        <OutletContainer isNavOpen={isNavOpen}>
+        <OutletContainer>
           <Outlet />
         </OutletContainer>
       </Container>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={2000}
-        theme="dark"
-      />
+      <ToastContainer position="bottom-right" autoClose={2000} theme="dark" />
     </Wrapper>
   );
 };

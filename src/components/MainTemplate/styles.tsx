@@ -12,12 +12,11 @@ export const Wrapper = styled.div`
   padding: 0 20px 40px;
 `;
 
-export const OutletContainer = styled.div<{ isNavOpen: boolean }>`
+export const OutletContainer = styled.div`
   margin-left: 208px;
   transition: margin-right 0.4s;
 
   ${MEDIA.LG} {
     margin-left: 0;
-    margin-right: ${(props) => (props.isNavOpen ? "208px" : 0)};
   }
 `;
