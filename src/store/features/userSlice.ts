@@ -20,7 +20,6 @@ interface UserState {
   isLoading: boolean;
   error: string | null;
   result: UserData | null;
-  checkedPassword: boolean;
   isDarkTheme: boolean;
 }
 
@@ -28,7 +27,6 @@ const initialState: UserState = {
   isLoading: false,
   error: null,
   result: null,
-  checkedPassword: false,
   isDarkTheme: true,
 };
 
@@ -138,20 +136,24 @@ export const changeName = createAsyncThunk<
 
 export const changePassword = createAsyncThunk<
   void,
-  string,
+  { currentPassword: string; newPassword: string },
   { rejectValue: string }
->("user/changePassword", async (newPassword, { rejectWithValue }) => {
-  const auth = getAuth();
-  const user = auth.currentUser;
-  if (user) {
+>(
+  "user/changePassword",
+  async ({ currentPassword, newPassword }, { rejectWithValue, dispatch }) => {
     try {
-      return await updatePassword(user, newPassword);
+      const response = await dispatch(checkCurrentPassword(currentPassword));
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if (user) {
+      await updatePassword(response.payload.user, newPassword);
+      }
     } catch (error) {
       const firebaseError = error as FirebaseError;
       return rejectWithValue(firebaseError.code);
     }
   }
-});
+);
 
 export const checkCurrentPassword = createAsyncThunk<
   any,
@@ -272,7 +274,6 @@ export const userSlice = createSlice({
     });
     builder.addCase(changePassword.fulfilled, (state) => {
       state.isLoading = false;
-      state.checkedPassword = false;
     });
     builder.addCase(changePassword.rejected, (state, { payload }) => {
       state.isLoading = false;
@@ -283,16 +284,12 @@ export const userSlice = createSlice({
     builder.addCase(checkCurrentPassword.pending, (state) => {
       state.isLoading = true;
       state.error = null;
-      state.checkedPassword = false;
     });
-    builder.addCase(checkCurrentPassword.fulfilled, (state, { payload }) => {
-      state.checkedPassword = true;
+    builder.addCase(checkCurrentPassword.fulfilled, (state) => {
       state.isLoading = false;
-      return state;
     });
     builder.addCase(checkCurrentPassword.rejected, (state, { payload }) => {
       state.isLoading = false;
-      state.checkedPassword = false;
       if (payload) {
         state.error = getFirebaseMessageError(payload);
       }

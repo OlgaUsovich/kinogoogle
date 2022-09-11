@@ -1,12 +1,14 @@
 import { useRef } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { FormButton, Input, Switcher } from "../../components";
+import { ROUTE } from "../../routers";
 import {
   changeEmail,
   changeName,
   changePassword,
   changeTheme,
-  checkCurrentPassword,
   setTheme,
 } from "../../store/features/userSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -38,11 +40,10 @@ type SettingsFormValue = {
 
 export const Settings = () => {
   const dispatch = useAppDispatch();
-  const { result, isLoading, error, checkedPassword, isDarkTheme } =
+  const { result, isLoading, error, isDarkTheme } =
     useAppSelector((state) => state.persistedReducer.users);
   const {
     handleSubmit,
-    reset,
     formState: { errors, dirtyFields },
     control,
     watch,
@@ -58,6 +59,8 @@ export const Settings = () => {
       theme: isDarkTheme,
     },
   });
+  const navigate = useNavigate();
+  const notify = () => toast.success(`Settings saved`);
 
   const newPassword = useRef({});
   newPassword.current = watch("newPassword", "");
@@ -71,13 +74,11 @@ export const Settings = () => {
   }) => {
     dirtyFields.name && dispatch(changeName(name));
     dirtyFields.email && dispatch(changeEmail(email));
-    if (dirtyFields.newPassword) {
-      dispatch(checkCurrentPassword(password));
-      checkedPassword && dispatch(changePassword(newPassword));
-    }
+    dirtyFields.newPassword && dispatch(changePassword({currentPassword: password, newPassword}));
     dispatch(setTheme(theme));
     dispatch(changeTheme());
-    reset();
+    notify();
+    navigate(`${ROUTE.HOME}`);
   };
 
   return (
