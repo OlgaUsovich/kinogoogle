@@ -1,32 +1,19 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { FiShare2 } from "react-icons/fi";
 import { Badge, GenreList, Poster, Spinner } from "../../components";
 import { defineBadgeColor } from "../../utils";
 import { COLOR } from "../../ui";
-import {
-  BadgeBlock,
-  ButtonGroup,
-  DataTable,
-  Description,
-  ErrorMessage,
-  InfoBlock,
-  MovieInfo,
-  MovieTitle,
-  PosterBlock,
-  StyledButton,
-  StyledCell,
-  StyledContainer,
-  StyledHead,
-  StyledRow,
-  TableBody,
-  Error,
-} from "./styles";
 import { IMDb } from "../../assets";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { addFavorite, getMovie } from "../../store";
-import { toast } from "react-toastify";
+import {
+  addFavorite,
+  getMovie,
+  useAppSelector,
+  useAppDispatch,
+} from "../../store";
+import * as styles from "./styles";
 
 export const Movie = () => {
   const { id } = useParams();
@@ -34,7 +21,8 @@ export const Movie = () => {
   const { result, isLoading, error } = useAppSelector(
     (state) => state.persistedReducer.movie
   );
-  const notify = () => toast.success(`Movie "${result.title}" has added to favorites`);
+  const notify = () =>
+    toast.success(`Movie "${result.title}" has added to favorites`);
 
   useEffect(() => {
     if (id) {
@@ -44,40 +32,54 @@ export const Movie = () => {
 
   if (isLoading) {
     return (
-      <StyledContainer>
+      <styles.Container>
         <Spinner />
-      </StyledContainer>
+      </styles.Container>
     );
   }
   if (error) {
     return (
-      <StyledContainer>
-        <ErrorMessage>
-          An error has occurred - <Error>{error}</Error>
-        </ErrorMessage>
-      </StyledContainer>
+      <styles.Container>
+        <styles.ErrorMessage>
+          An error has occurred - <styles.Error>{error}</styles.Error>
+        </styles.ErrorMessage>
+      </styles.Container>
     );
   }
+
+  const dataSet = {
+    Year: result.year,
+    Released: result.released,
+    BoxOffice: result.boxOffice,
+    Country: result.country,
+    Production: result.production,
+    Actors: result.actors,
+    Director: result.director,
+    Writers: result.writer,
+  };
+
   return (
-    <MovieInfo>
-      <PosterBlock>
+    <styles.MovieInfo>
+      <styles.PosterBlock>
         <Poster img={result.poster} />
-        <ButtonGroup>
-          <StyledButton onClick={() => {
-            dispatch(addFavorite(result));
-            notify();
-            }}>
+        <styles.ButtonGroup>
+          <styles.StyledButton
+            onClick={() => {
+              dispatch(addFavorite(result));
+              notify();
+            }}
+          >
             <BsFillBookmarkFill />
-          </StyledButton>
-          <StyledButton>
+          </styles.StyledButton>
+          <styles.StyledButton>
             <FiShare2 />
-          </StyledButton>
-        </ButtonGroup>
-      </PosterBlock>
-      <InfoBlock>
+          </styles.StyledButton>
+        </styles.ButtonGroup>
+      </styles.PosterBlock>
+      <styles.InfoBlock>
         <GenreList genreList={result.genre} />
-        <MovieTitle>{result.title}</MovieTitle>
-        <BadgeBlock>
+        <styles.MovieTitle>{result.title}</styles.MovieTitle>
+        <styles.BadgeBlock>
           <Badge
             text={result.imdbRating}
             color={defineBadgeColor(result.imdbRating)}
@@ -90,45 +92,21 @@ export const Movie = () => {
             type="detail"
           />
           <Badge text={result.runtime} color={COLOR.GRAPHITE} type="detail" />
-        </BadgeBlock>
-        <Description>{result.plot}</Description>
-        <DataTable>
-          <TableBody>
-            <StyledRow>
-              <StyledHead>Year</StyledHead>
-              <StyledCell>{result.year}</StyledCell>
-            </StyledRow>
-            <StyledRow>
-              <StyledHead>Released</StyledHead>
-              <StyledCell>{result.released}</StyledCell>
-            </StyledRow>
-            <StyledRow>
-              <StyledHead>BoxOffice</StyledHead>
-              <StyledCell>{result.boxOffice}</StyledCell>
-            </StyledRow>
-            <StyledRow>
-              <StyledHead>Country</StyledHead>
-              <StyledCell>{result.country}</StyledCell>
-            </StyledRow>
-            <StyledRow>
-              <StyledHead>Production</StyledHead>
-              <StyledCell>{result.production}</StyledCell>
-            </StyledRow>
-            <StyledRow>
-              <StyledHead>Actors</StyledHead>
-              <StyledCell>{result.actors}</StyledCell>
-            </StyledRow>
-            <StyledRow>
-              <StyledHead>Director</StyledHead>
-              <StyledCell>{result.director}</StyledCell>
-            </StyledRow>
-            <StyledRow>
-              <StyledHead>Writers</StyledHead>
-              <StyledCell>{result.writer}</StyledCell>
-            </StyledRow>
-          </TableBody>
-        </DataTable>
-      </InfoBlock>
-    </MovieInfo>
+        </styles.BadgeBlock>
+        <styles.Description>{result.plot}</styles.Description>
+        <styles.DataTable>
+          {Object.entries(dataSet).map(([key, value]) => {
+            return (
+              <>
+                <styles.ParamName>{key}</styles.ParamName>
+                <styles.Param>
+                  {value && value !== "N/A" ? value : "---"}
+                </styles.Param>
+              </>
+            );
+          })}
+        </styles.DataTable>
+      </styles.InfoBlock>
+    </styles.MovieInfo>
   );
 };

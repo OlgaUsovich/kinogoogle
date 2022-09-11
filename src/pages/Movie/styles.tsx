@@ -1,10 +1,17 @@
 import styled from "styled-components";
-import { BODY, COLOR, H1, SUBLINE13 } from "../../ui";
+import { BODY, COLOR, H1, MEDIA, SUBLINE13 } from "../../ui";
 
 export const MovieInfo = styled.div`
   display: flex;
   gap: 42px;
   flex-grow: 1;
+
+  ${MEDIA.XS} {
+    flex-direction: column;
+    gap: 32px;
+    max-width: 272px;
+    margin: 0 auto;
+  }
 `;
 
 export const PosterBlock = styled.div`
@@ -12,6 +19,10 @@ export const PosterBlock = styled.div`
   flex-direction: column;
   gap: 32px;
   min-width: 266px;
+
+  ${MEDIA.XS} {
+    gap: 24px;
+  }
 `;
 export const InfoBlock = styled.section`
   max-width: 975px;
@@ -33,24 +44,24 @@ export const Description = styled.p`
   ${BODY};
   font-weight: 500;
   color: ${COLOR.WHITE};
+
+  ${MEDIA.XS} {
+    margin: 32px 0;
+  }
 `;
 
-export const DataTable = styled.table``;
+export const DataTable = styled.div`
+  display: grid;
+  grid-template-columns: 136px auto;
+  row-gap: 20px;
+`;
 
-export const TableBody = styled.tbody``;
-
-export const StyledRow = styled.tr``;
-
-export const StyledHead = styled.th`
-  width: 136px;
-  padding: 10px 0;
+export const ParamName = styled.span`
   ${SUBLINE13};
-  text-align: left;
   color: ${COLOR.LIGHT};
 `;
 
-export const StyledCell = styled.td`
-  padding: 10px 0;
+export const Param = styled.span`
   ${SUBLINE13}
   color: ${COLOR.WHITE}
 `;
@@ -86,11 +97,11 @@ export const StyledButton = styled.button`
   }
 `;
 
-export const StyledContainer = styled.div`
+export const Container = styled.div`
   display: grid;
+  place-items: center;
   width: 100%;
   height: 100%;
-  place-items: center;
 `;
 
 export const ErrorMessage = styled.h1`
@@ -101,4 +112,3 @@ export const ErrorMessage = styled.h1`
 export const Error = styled.span`
   color: ${COLOR.PRIMARY};
 `;
-
