@@ -5,7 +5,7 @@ import { COLOR, H1, H2, H3 } from "../../ui";
 export const Container = styled.div`
   position: fixed;
   top: 0;
-  eft: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,6 @@ export const Container = styled.div`
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-}
 `;
 
 export const Content = styled.div`

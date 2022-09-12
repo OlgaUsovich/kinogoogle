@@ -83,3 +83,8 @@ export interface ISearchOptions {
   value: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
+
+export interface IGenresOption {
+  readonly value: string;
+  readonly label: string;
+}

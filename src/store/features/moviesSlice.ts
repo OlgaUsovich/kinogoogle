@@ -46,9 +46,9 @@ export const getSearchMovies = createAsyncThunk<
   ISearchMovieListAPI,
   MovieRequestParams,
   { rejectValue: string }
->("movies/getSearchMovies", async ({ s, page }, { rejectWithValue }) => {
+>("movies/getSearchMovies", async ({ s, page, y, type }, { rejectWithValue }) => {
   try {
-    return await movieAPI.getSearchMovies(s, { page });
+    return await movieAPI.getSearchMovies(s, { page, y, type });
   } catch (error) {
     const axiosError = error as AxiosError;
     return rejectWithValue(axiosError.message);

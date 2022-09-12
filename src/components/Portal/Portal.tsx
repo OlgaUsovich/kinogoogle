@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 export enum PortalTarget {
     ROOT = 'root',
     MODAL = 'modal',
+    FILTERS = 'filters',
 }
 
 interface PortalProps {
