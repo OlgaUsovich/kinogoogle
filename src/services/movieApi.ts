@@ -4,7 +4,7 @@ import { IMovieAPI, ISearchMovieListAPI } from "../types";
 export type MovieRequestParams = {
   apikey?: string;
   s?: string;
-  type?: string;
+  type?: string | null;
   y?: string;
   r?: string;
   page?: string;

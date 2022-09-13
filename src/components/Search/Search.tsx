@@ -3,36 +3,16 @@ import { Controller, useForm } from "react-hook-form";
 import { BsFilterRight } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
 import { useDebounce, useInput } from "../../hooks";
-import {
-  addSearchWord,
-  cleanStore,
-  getSearchMovies,
-} from "../../store/features/moviesSlice";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { IGenresOption } from "../../types";
 import { CustomSelect } from "../CustomSelect";
 import { FormButton } from "../FormButton";
 import { Input } from "../Input";
 import { Portal, PortalTarget } from "../Portal";
-import {
-  Button,
-  ButtonsBlock,
-  CancelButton,
-  Container,
-  ErrorMessage,
-  FilterButton,
-  FilterForm,
-  Header,
-  InputsContainer,
-  Label,
-  LabelText,
-  SearchWrapper,
-  SelectLabel,
-  Title,
-} from "./styles";
+import * as store from "../../store";
+import * as styles from "./styles";
 
 type FiltersFormValue = {
-  type: IGenresOption;
+  type: IGenresOption | null;
   s: string;
   y: string;
 };
@@ -40,10 +20,10 @@ type FiltersFormValue = {
 export const Search = () => {
   const search = useInput("");
   const debounceValue = useDebounce(search.value, 500);
-  const dispatch = useAppDispatch();
+  const dispatch = store.useAppDispatch();
 
   useEffect(() => {
-    dispatch(addSearchWord(debounceValue));
+    dispatch(store.addSearchWord(debounceValue));
   }, [debounceValue, dispatch]);
 
   const [isOpen, toggleFilters] = useState<boolean>(false);
@@ -61,45 +41,45 @@ export const Search = () => {
     mode: "onSubmit",
     reValidateMode: "onSubmit",
     defaultValues: {
-      type: undefined,
+      type: null,
       s: "",
       y: "",
     },
   });
 
-  const { isLoading, error } = useAppSelector(
+  const { isLoading, error } = store.useAppSelector(
     (state) => state.persistedReducer.movies
   );
 
   const onSubmit = ({ type, s, y }: FiltersFormValue) => {
-    dispatch(cleanStore());
-    dispatch(getSearchMovies({ s, type: type.value, y }));
+    dispatch(store.cleanStore());
+    dispatch(store.getSearchMovies({ s, type: type && type.value, y }));
     reset();
     handleFilters();
   };
 
   return (
-    <SearchWrapper>
+    <styles.SearchWrapper>
       <Input placeholder="Search" type="text" {...search} />
-      <FilterButton onClick={handleFilters} type="button">
+      <styles.FilterButton onClick={handleFilters} type="button">
         <BsFilterRight />
-      </FilterButton>
+      </styles.FilterButton>
       {isOpen && (
         <Portal target={PortalTarget.FILTERS}>
-          <Container onClick={handleFilters}>
-            <FilterForm
+          <styles.Container onClick={handleFilters}>
+            <styles.FilterForm
               onClick={(event) => event.stopPropagation()}
               onSubmit={handleSubmit(onSubmit)}
             >
-              <Header>
-                <Title>Filters</Title>
-                <Button onClick={handleFilters} type="button">
+              <styles.Header>
+                <styles.Title>Filters</styles.Title>
+                <styles.Button onClick={handleFilters} type="button">
                   <IoMdClose />
-                </Button>
-              </Header>
-              <InputsContainer>
-                <SelectLabel>
-                  <LabelText>Type</LabelText>
+                </styles.Button>
+              </styles.Header>
+              <styles.InputsContainer>
+                <styles.SelectLabel>
+                  <styles.LabelText>Type</styles.LabelText>
                   <Controller
                     name="type"
                     control={control}
@@ -113,10 +93,10 @@ export const Search = () => {
                       );
                     }}
                   />
-                </SelectLabel>
+                </styles.SelectLabel>
 
-                <Label>
-                  <LabelText>Full or short movie name</LabelText>
+                <styles.Label>
+                  <styles.LabelText>Full or short movie name</styles.LabelText>
                   <Controller
                     name="s"
                     control={control}
@@ -133,11 +113,11 @@ export const Search = () => {
                       );
                     }}
                   />
-                  {errors.s && <ErrorMessage>{errors.s.message}</ErrorMessage>}
-                </Label>
+                  {errors.s && <styles.ErrorMessage>{errors.s.message}</styles.ErrorMessage>}
+                </styles.Label>
 
-                <Label>
-                  <LabelText>Year</LabelText>
+                <styles.Label>
+                  <styles.LabelText>Year</styles.LabelText>
                   <Controller
                     name="y"
                     control={control}
@@ -160,19 +140,19 @@ export const Search = () => {
                       );
                     }}
                   />
-                  {errors.y && <ErrorMessage>{errors.y.message}</ErrorMessage>}
-                </Label>
-              </InputsContainer>
-              <ButtonsBlock>
-                <CancelButton onClick={() => reset()}>
+                  {errors.y && <styles.ErrorMessage>{errors.y.message}</styles.ErrorMessage>}
+                </styles.Label>
+              </styles.InputsContainer>
+              <styles.ButtonsBlock>
+                <styles.CancelButton type='reset' onClick={() => reset()}>
                   Clear filter
-                </CancelButton>
+                </styles.CancelButton>
                 <FormButton text="Show results" isLoading={isLoading} />
-              </ButtonsBlock>
-            </FilterForm>
-          </Container>
+              </styles.ButtonsBlock>
+            </styles.FilterForm>
+          </styles.Container>
         </Portal>
       )}
-    </SearchWrapper>
+    </styles.SearchWrapper>
   );
 };

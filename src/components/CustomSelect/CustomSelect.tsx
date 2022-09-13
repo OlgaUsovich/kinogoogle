@@ -3,7 +3,7 @@ import Select from "react-select";
 import { customStyles } from "./styles";
 
 interface IProps {
-  value: IGenresOption | undefined;
+  value: IGenresOption | null;
   onChange: (option: IGenresOption | null) => void;
 }
 
