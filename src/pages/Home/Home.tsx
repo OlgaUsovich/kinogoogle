@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { MovieList, PaginateButton } from "../../components";
 import * as store from "../../store";
 import { Container } from "./styles";
-import { movieAPI } from "../../services";
 
 export const Home = () => {
   const dispatch = store.useAppDispatch();
@@ -13,23 +12,16 @@ export const Home = () => {
   const [windowHeight, setWindowHeigth] = useState<number>(906);
 
   useEffect(() => {
-    dispatch(store.getMovies({ page }));
-  }, [page, dispatch]);
-
-  useEffect(() => {
-    dispatch(store.cleanStore());
     if (searchWord !== "") {
       dispatch(store.getSearchMovies({ s: searchWord, page }));
     } else {
-      dispatch(store.addSearchWord(movieAPI.getRandomParam()));
+      dispatch(store.getMovies({ page }));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchWord, dispatch]);
+  }, [searchWord, page, dispatch]);
 
   useEffect(() => {
-    dispatch(store.cleanStore()); // <-- reset when unmounting
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(store.cleanStore());
+  }, [dispatch, searchWord]);
 
   const handlePagination = () => {
     setPage(`${+page + 1}`);
