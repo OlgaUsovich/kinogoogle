@@ -1,34 +1,32 @@
 import { useEffect, useState } from "react";
 import { MovieList, PaginateButton } from "../../components";
-import { getMovies } from "../../store";
-import {
-  cleanStore,
-  getSearchMovies,
-} from "../../store/features/moviesSlice";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import * as store from "../../store";
 import { Container } from "./styles";
+import { movieAPI } from "../../services";
 
 export const Home = () => {
-  const dispatch = useAppDispatch();
-  const { results, isLoading, error, searchWord } = useAppSelector(
+  const dispatch = store.useAppDispatch();
+  const { results, isLoading, error, searchWord } = store.useAppSelector(
     (state) => state.persistedReducer.movies
   );
   const [page, setPage] = useState<string>("1");
   const [windowHeight, setWindowHeigth] = useState<number>(906);
 
   useEffect(() => {
-    dispatch(getMovies({ page }));
+    dispatch(store.getMovies({ page }));
   }, [page, dispatch]);
 
   useEffect(() => {
-    if (searchWord !== '') {
-      dispatch(cleanStore());
-      dispatch(getSearchMovies({ s: searchWord, page }));
+    dispatch(store.cleanStore());
+    if (searchWord !== "") {
+      dispatch(store.getSearchMovies({ s: searchWord, page }));
+    } else {
+      dispatch(store.addSearchWord(movieAPI.getRandomParam()));
     }
   }, [searchWord, dispatch]);
 
   useEffect(() => {
-    dispatch(cleanStore()); // <-- reset when unmounting
+    dispatch(store.cleanStore()); // <-- reset when unmounting
   }, []);
 
   const handlePagination = () => {

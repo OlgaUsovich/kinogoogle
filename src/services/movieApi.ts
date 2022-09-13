@@ -21,7 +21,7 @@ class MovieAPI {
   });
   private requestWord = '';
 
-  private getRandomParam(): string {
+  public getRandomParam(): string {
     const searchWords = [
       "cat",
       "dog",
