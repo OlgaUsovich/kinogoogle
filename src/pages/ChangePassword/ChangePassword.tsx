@@ -3,7 +3,15 @@ import { useRef, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { FormButton, Input } from "../../components";
 import { getFirebaseMessageError } from "../../utils";
-import { ChangePasswordForm, ErrorMessage, FormContainer, InputsContainer, LabelText, StyledLabel, Title } from "./styles";
+import {
+  ChangePasswordForm,
+  ErrorMessage,
+  FormContainer,
+  InputsContainer,
+  LabelText,
+  StyledLabel,
+  Title,
+} from "./styles";
 
 type ChangePasswordFormValue = {
   password: string;
@@ -12,11 +20,10 @@ type ChangePasswordFormValue = {
 
 export const ChangePassword = () => {
   const {
-    handleSubmit,
     reset,
     formState: { errors },
     control,
-    watch
+    watch,
   } = useForm<ChangePasswordFormValue>({
     mode: "onSubmit",
     reValidateMode: "onSubmit",
@@ -31,6 +38,7 @@ export const ChangePassword = () => {
   const password = useRef({});
   password.current = watch("password", "");
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit: SubmitHandler<ChangePasswordFormValue> = ({ password }) => {
     setIsLoading(true);
 
@@ -82,9 +90,7 @@ export const ChangePassword = () => {
               }}
             />
           </StyledLabel>
-          {errors.password && (
-            <ErrorMessage>{errors.password.message}</ErrorMessage>
-          )}
+          {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
 
           <StyledLabel>
             <LabelText>Confirm password</LabelText>
@@ -93,8 +99,7 @@ export const ChangePassword = () => {
               control={control}
               rules={{
                 required: "Confirm password",
-                validate: (value) =>
-                  value === password.current || "The passwords do not match",
+                validate: (value) => value === password.current || "The passwords do not match",
               }}
               render={({ field: { value, onChange } }) => {
                 return (
@@ -109,9 +114,7 @@ export const ChangePassword = () => {
               }}
             />
           </StyledLabel>
-          {errors.confirmPassword && (
-            <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>
-          )}
+          {errors.confirmPassword && <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>}
         </InputsContainer>
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         <FormButton text="Change Password" isLoading={isLoading} />

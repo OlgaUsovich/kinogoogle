@@ -53,9 +53,7 @@ export const SignIn = () => {
       <FormContainer>
         <FormTitleContainer>
           <Title>Sign In</Title>
-          <ForgotPassword to={ROUTE.SEND_EMAIL_CHANGE_PASSWORD}>
-            Forgot Password
-          </ForgotPassword>
+          <ForgotPassword to={ROUTE.SEND_EMAIL_CHANGE_PASSWORD}>Forgot Password</ForgotPassword>
         </FormTitleContainer>
         <InputsContainer>
           <StyledLabel>
@@ -67,6 +65,7 @@ export const SignIn = () => {
                 required: "Enter your email",
                 pattern: {
                   value:
+                    // eslint-disable-next-line max-len
                     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                   message: "Please enter a valid email",
                 },
@@ -111,16 +110,13 @@ export const SignIn = () => {
               }}
             />
           </StyledLabel>
-          {errors.password && (
-            <ErrorMessage>{errors.password.message}</ErrorMessage>
-          )}
+          {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
         </InputsContainer>
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <FormButton text="Sign In" isLoading={isLoading} />
       </FormContainer>
       <StyledSpan>
-        Don’t have an account?{" "}
-        <StyledLink to={`/${ROUTE.SIGN_UP}`}>Sign Up</StyledLink>
+        Don’t have an account? <StyledLink to={`/${ROUTE.SIGN_UP}`}>Sign Up</StyledLink>
       </StyledSpan>
     </StyledForm>
   );

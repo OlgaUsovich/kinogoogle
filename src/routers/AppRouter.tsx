@@ -34,7 +34,10 @@ export const AppRouter = () => {
         <Route path={ROUTE.SIGN_IN} element={<SignIn />} />
         <Route path={ROUTE.LOG_OUT} element={<LogOut />} />
         <Route path={`${ROUTE.SIGN_IN}/${ROUTE.CHANGE_PASSWORD}`} element={<ChangePassword />} />
-        <Route path={`${ROUTE.SIGN_IN}/${ROUTE.SEND_EMAIL_CHANGE_PASSWORD}`} element={<SendEmail />} />
+        <Route
+          path={`${ROUTE.SIGN_IN}/${ROUTE.SEND_EMAIL_CHANGE_PASSWORD}`}
+          element={<SendEmail />}
+        />
       </Route>
     </Routes>
   );

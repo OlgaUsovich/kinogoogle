@@ -9,7 +9,7 @@ export const useAuth = () => {
     onAuthStateChanged(auth, (user) => {
       user ? setIsAuth(true) : setIsAuth(false);
     });
-  setLoading(false);
+    setLoading(false);
   }, [auth]);
 
   return [loading, isAuth];

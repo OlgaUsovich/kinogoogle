@@ -29,8 +29,7 @@ export const Line = styled.span<{ isOpen: boolean }>`
 
   &:nth-of-type(1) {
     transform-origin: bottom left;
-    transform: ${(props) =>
-      props.isOpen ? "rotate(45deg) translate(1px, -2px)" : 0};
+    transform: ${(props) => (props.isOpen ? "rotate(45deg) translate(1px, -2px)" : 0)};
   }
 
   &:nth-of-type(2) {
@@ -39,8 +38,6 @@ export const Line = styled.span<{ isOpen: boolean }>`
 
   &:nth-of-type(3) {
     transform-origin: top left;
-    transform: ${(props) =>
-      props.isOpen ? "rotate(-45deg) translate(2px, 1px)" : 0};
+    transform: ${(props) => (props.isOpen ? "rotate(-45deg) translate(2px, 1px)" : 0)};
   }
 `;
-

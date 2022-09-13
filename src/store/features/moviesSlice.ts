@@ -60,11 +60,11 @@ export const moviesSlice = createSlice({
   initialState,
   reducers: {
     cleanStore: (state) => {
-      state.results = []
+      state.results = [];
     },
     addSearchWord: (state, { payload }) => {
-      state.searchWord = payload
-    }
+      state.searchWord = payload;
+    },
   },
   extraReducers(builder) {
     builder.addCase(getMovies.pending, (state) => {
@@ -77,10 +77,10 @@ export const moviesSlice = createSlice({
       state.results.push(...newMovies);
     });
     builder.addCase(getMovies.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        if (payload) {
-            state.error = payload;
-        }
+      state.isLoading = false;
+      if (payload) {
+        state.error = payload;
+      }
     });
     builder.addCase(getTrends.pending, (state) => {
       state.isLoading = true;
@@ -92,10 +92,10 @@ export const moviesSlice = createSlice({
       state.results.push(...newMovies);
     });
     builder.addCase(getTrends.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        if (payload) {
-            state.error = payload;
-        }
+      state.isLoading = false;
+      if (payload) {
+        state.error = payload;
+      }
     });
     builder.addCase(getSearchMovies.pending, (state) => {
       state.isLoading = true;
@@ -107,10 +107,10 @@ export const moviesSlice = createSlice({
       state.results.push(...newMovies);
     });
     builder.addCase(getSearchMovies.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        if (payload) {
-            state.error = payload;
-        }
+      state.isLoading = false;
+      if (payload) {
+        state.error = payload;
+      }
     });
   },
 });

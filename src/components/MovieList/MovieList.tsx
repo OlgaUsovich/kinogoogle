@@ -20,9 +20,11 @@ export const MovieList = ({ movies, isLoading, errorMessage }: IProps) => {
   if (errorMessage) {
     return (
       <StyledContainer>
-        <ErrorMessage>An error has occurred - <Error>{errorMessage}</Error></ErrorMessage>
+        <ErrorMessage>
+          An error has occurred - <Error>{errorMessage}</Error>
+        </ErrorMessage>
       </StyledContainer>
-    )
+    );
   }
   return (
     <StyledMovieList>

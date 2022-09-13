@@ -34,8 +34,8 @@ export const customStyles: StylesConfig<IGenresOption> = {
     color: COLOR.LIGHT,
 
     "&:hover": {
-        color: COLOR.WHITE,
-    }
+      color: COLOR.WHITE,
+    },
   }),
 
   indicatorsContainer: (styles) => ({
@@ -55,29 +55,33 @@ export const customStyles: StylesConfig<IGenresOption> = {
   singleValue: (styles) => ({
     ...styles,
     color: COLOR.WHITE,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
   }),
 
   option: (styles, state) => ({
     ...styles,
-    paddingLeft: '20px',
+    paddingLeft: "20px",
     color: COLOR.WHITE,
-    backgroundColor: state.isFocused ? state.isSelected ? "transparent" : "transparent" : "transparent",
+    backgroundColor: state.isFocused
+      ? state.isSelected
+        ? "transparent"
+        : "transparent"
+      : "transparent",
 
     "&:hover": {
-        color: COLOR.PRIMARY,
+      color: COLOR.PRIMARY,
     },
 
     "&:active": {
-        backgroundColor: COLOR.LIGHT,
+      backgroundColor: COLOR.LIGHT,
     },
 
     "&:first-of-type": {
-        borderBottom: `1px solid ${COLOR.DARK}`,
+      borderBottom: `1px solid ${COLOR.DARK}`,
     },
 
     "&:last-of-type": {
-        borderTop: `1px solid ${COLOR.DARK}`,
+      borderTop: `1px solid ${COLOR.DARK}`,
     },
   }),
 
@@ -88,14 +92,13 @@ export const customStyles: StylesConfig<IGenresOption> = {
 
   menuList: (styles) => ({
     ...styles,
-    borderRadius: '10px',
+    borderRadius: "10px",
     backgroundColor: COLOR.GRAPHITE,
   }),
 
   menu: (styles) => ({
     ...styles,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     color: COLOR.LIGHT,
   }),
-
 };

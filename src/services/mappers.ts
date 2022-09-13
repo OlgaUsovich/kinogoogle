@@ -22,9 +22,7 @@ export const transformMovie = (movie: IMovieAPI): IMovie => {
   };
 };
 
-export const transformSearchMovie = (
-  searchMovies: ISearchMovieAPI[]
-): ISearchMovie[] => {
+export const transformSearchMovie = (searchMovies: ISearchMovieAPI[]): ISearchMovie[] => {
   return searchMovies.map((searchMovie) => {
     return {
       title: searchMovie.Title,
@@ -41,4 +39,4 @@ export const transformUserCredential = (userCredential: UserCredential): UserDat
     displayName: userCredential.user.displayName,
     email: userCredential.user.email,
   };
-}
+};

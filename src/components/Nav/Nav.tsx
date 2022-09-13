@@ -11,24 +11,19 @@ interface IProps {
 
 export const Nav = ({ isNavOpen }: IProps) => {
   const { width = 0 } = useWindowSize();
+  const mobile = {
+    open: { x: 0 },
+    closed: { x: "100%" },
+  };
+  const desctop = {
+    open: { x: 0 },
+    closed: { x: 0 },
+  };
 
-  const variants =
-    width < 1280
-      ? {
-          open: { x: 0 },
-          closed: { x: "100%" },
-        }
-      : {
-          open: { x: 0 },
-          closed: { x: 0 },
-        };
+  const variants = width < 1280 ? mobile : desctop;
 
   return (
-    <styles.Nav
-      initial="closed"
-      animate={isNavOpen ? "open" : "closed"}
-      variants={variants}
-    >
+    <styles.Nav initial="closed" animate={isNavOpen ? "open" : "closed"} variants={variants}>
       <styles.Ul>
         <styles.CustomLink to={ROUTE.HOME}>
           <RiHome6Fill />

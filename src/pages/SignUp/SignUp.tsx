@@ -55,11 +55,7 @@ export const SignUp = () => {
     // navigate(ROUTE.HOME, { replace: true });
   };
 
-  const onSubmit: SubmitHandler<SignUpFormValue> = ({
-    name,
-    email,
-    password,
-  }) => {
+  const onSubmit: SubmitHandler<SignUpFormValue> = ({ name, email, password }) => {
     dispatch(createUser({ password, email, name, handleModal }));
     reset();
   };
@@ -99,6 +95,7 @@ export const SignUp = () => {
                 required: "Enter your email",
                 pattern: {
                   value:
+                    // eslint-disable-next-line max-len
                     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                   message: "Please enter a valid email",
                 },
@@ -143,9 +140,7 @@ export const SignUp = () => {
               }}
             />
           </StyledLabel>
-          {errors.password && (
-            <ErrorMessage>{errors.password.message}</ErrorMessage>
-          )}
+          {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
 
           <StyledLabel htmlFor="confirmPassword">
             <LabelText>Confirm password</LabelText>
@@ -154,8 +149,7 @@ export const SignUp = () => {
               control={control}
               rules={{
                 required: "Confirm password",
-                validate: (value) =>
-                  value === password.current || "The passwords do not match",
+                validate: (value) => value === password.current || "The passwords do not match",
               }}
               render={({ field: { value, onChange } }) => {
                 return (
@@ -170,16 +164,13 @@ export const SignUp = () => {
               }}
             />
           </StyledLabel>
-          {errors.confirmPassword && (
-            <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>
-          )}
+          {errors.confirmPassword && <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>}
         </InputsContainer>
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <FormButton text="Sign up" isLoading={isLoading} />
       </FormContainer>
       <StyledSpan>
-        Already have an account?{" "}
-        <StyledLink to={`/${ROUTE.SIGN_IN}`}>Sign In</StyledLink>
+        Already have an account? <StyledLink to={`/${ROUTE.SIGN_IN}`}>Sign In</StyledLink>
       </StyledSpan>
       <Modal isOpen={isOpen} handleModal={handleModal} />
     </StyledForm>

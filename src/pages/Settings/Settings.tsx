@@ -40,8 +40,9 @@ type SettingsFormValue = {
 
 export const Settings = () => {
   const dispatch = useAppDispatch();
-  const { result, isLoading, error, isDarkTheme } =
-    useAppSelector((state) => state.persistedReducer.users);
+  const { result, isLoading, error, isDarkTheme } = useAppSelector(
+    (state) => state.persistedReducer.users,
+  );
   const {
     handleSubmit,
     formState: { errors, dirtyFields },
@@ -60,7 +61,7 @@ export const Settings = () => {
     },
   });
   const navigate = useNavigate();
-  const notify = () => toast.success(`Settings saved`);
+  const notify = () => toast.success("Settings saved");
 
   const newPassword = useRef({});
   newPassword.current = watch("newPassword", "");
@@ -74,7 +75,7 @@ export const Settings = () => {
   }) => {
     dirtyFields.name && dispatch(changeName(name));
     dirtyFields.email && dispatch(changeEmail(email));
-    dirtyFields.newPassword && dispatch(changePassword({currentPassword: password, newPassword}));
+    dirtyFields.newPassword && dispatch(changePassword({ currentPassword: password, newPassword }));
     dispatch(setTheme(theme));
     dispatch(changeTheme());
     notify();
@@ -114,6 +115,7 @@ export const Settings = () => {
               rules={{
                 pattern: {
                   value:
+                    // eslint-disable-next-line max-len
                     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                   message: "Please enter a valid email",
                 },
@@ -130,9 +132,7 @@ export const Settings = () => {
                 );
               }}
             />
-            {errors.email && (
-              <ErrorMessage>{errors.email.message}</ErrorMessage>
-            )}
+            {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
           </Label>
         </InputsContainer>
       </Block>
@@ -163,9 +163,7 @@ export const Settings = () => {
                 );
               }}
             />
-            {errors.password && (
-              <ErrorMessage>{errors.password.message}</ErrorMessage>
-            )}
+            {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
           </Label>
 
           <Label>
@@ -191,9 +189,7 @@ export const Settings = () => {
                 );
               }}
             />
-            {errors.newPassword && (
-              <ErrorMessage>{errors.newPassword.message}</ErrorMessage>
-            )}
+            {errors.newPassword && <ErrorMessage>{errors.newPassword.message}</ErrorMessage>}
           </Label>
 
           <Label>
@@ -202,8 +198,7 @@ export const Settings = () => {
               name="confirmPassword"
               control={control}
               rules={{
-                validate: (value) =>
-                  value === newPassword.current || "The passwords do not match",
+                validate: (value) => value === newPassword.current || "The passwords do not match",
               }}
               render={({ field: { value, onChange } }) => {
                 return (

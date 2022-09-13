@@ -19,7 +19,6 @@ type SendEmailFormValue = {
 export const SendEmail = () => {
   const {
     handleSubmit,
-    reset,
     formState: { errors },
     control,
   } = useForm<SendEmailFormValue>({
@@ -31,7 +30,7 @@ export const SendEmail = () => {
   });
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [errorMessage, setErrorMesage] = useState<string | null>(null);
+  const [errorMessage] = useState<string | null>(null);
 
   const onSubmit: SubmitHandler<SendEmailFormValue> = ({ email }) => {
     setIsLoading(true);
@@ -39,13 +38,11 @@ export const SendEmail = () => {
     const auth = getAuth();
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        // Password reset email sent!
-        // ..
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // // ..
       })
       .finally(() => {
         setIsLoading(false);
@@ -68,6 +65,7 @@ export const SendEmail = () => {
                 required: "Enter your email",
                 pattern: {
                   value:
+                    // eslint-disable-next-line max-len
                     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                   message: "Please enter a valid email",
                 },

@@ -14,4 +14,20 @@ import { RequireAuth } from "./RequireAuth";
 import { Spinner } from "./Spinner";
 import { Switcher } from "./Switcher";
 
-export { MainTemplate, MovieCard, MovieList, Nav, Poster, GenreList, Badge, Input, FormButton, Logo, Spinner, Modal, RequireAuth, PaginateButton, Switcher };
+export {
+  MainTemplate,
+  MovieCard,
+  MovieList,
+  Nav,
+  Poster,
+  GenreList,
+  Badge,
+  Input,
+  FormButton,
+  Logo,
+  Spinner,
+  Modal,
+  RequireAuth,
+  PaginateButton,
+  Switcher,
+};

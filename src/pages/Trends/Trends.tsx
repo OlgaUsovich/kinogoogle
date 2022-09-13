@@ -6,16 +6,18 @@ import { Container } from "./styles";
 
 export const Trends = () => {
   const dispatch = useAppDispatch();
-  const { results, isLoading, error }: MoviesState = useAppSelector((state) => state.persistedReducer.movies);
+  const { results, isLoading, error }: MoviesState = useAppSelector(
+    (state) => state.persistedReducer.movies,
+  );
   const [page, setPage] = useState<string>("1");
 
   useEffect(() => {
     dispatch(getTrends({ page }));
   }, [page, dispatch]);
-  
+
   useEffect(() => {
     dispatch(cleanStore()); // <-- reset when unmounting
-  }, []);
+  }, [dispatch]);
 
   const handlePagination = () => {
     setPage(`${+page + 1}`);
@@ -27,4 +29,4 @@ export const Trends = () => {
       <PaginateButton onClick={handlePagination} />
     </Container>
   );
-}
+};

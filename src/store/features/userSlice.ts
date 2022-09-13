@@ -37,23 +37,12 @@ type UserRegData = {
   handleModal?: () => void;
 };
 
-export const createUser = createAsyncThunk<
-  UserCredential,
-  UserRegData,
-  { rejectValue: string }
->(
+export const createUser = createAsyncThunk<UserCredential, UserRegData, { rejectValue: string }>(
   "user/createUser",
-  async (
-    { email, password, name, handleModal }: UserRegData,
-    { rejectWithValue }
-  ) => {
+  async ({ email, password, name, handleModal }: UserRegData, { rejectWithValue }) => {
     const auth = getAuth();
     try {
-      const response = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const response = await createUserWithEmailAndPassword(auth, email, password);
       if (auth.currentUser) {
         await updateProfile(auth.currentUser, { displayName: name });
       }
@@ -65,74 +54,68 @@ export const createUser = createAsyncThunk<
       const firebaseError = error as FirebaseError;
       return rejectWithValue(firebaseError.code);
     }
-  }
+  },
 );
 
 export const logInUser = createAsyncThunk<
   UserCredential | null,
   UserRegData,
   { rejectValue: string }
->(
-  "user/logInUser",
-  async ({ email, password }: UserRegData, { rejectWithValue }) => {
-    const auth = getAuth();
-    try {
-      const response = await signInWithEmailAndPassword(auth, email, password);
-      return response.user ? response : null;
-    } catch (error) {
-      const firebaseError = error as FirebaseError;
-      return rejectWithValue(firebaseError.code);
-    }
-  }
-);
-
-export const logOutUser = createAsyncThunk<
-  void,
-  undefined,
-  { rejectValue: string }
->("user/logOutUser", async (_, { rejectWithValue }) => {
+>("user/logInUser", async ({ email, password }: UserRegData, { rejectWithValue }) => {
   const auth = getAuth();
   try {
-    await signOut(auth);
+    const response = await signInWithEmailAndPassword(auth, email, password);
+    return response.user ? response : null;
   } catch (error) {
     const firebaseError = error as FirebaseError;
     return rejectWithValue(firebaseError.code);
   }
 });
 
-export const changeEmail = createAsyncThunk<
-  void,
-  string,
-  { rejectValue: string }
->("user/changeEmail", async (newEmail, { rejectWithValue }) => {
-  const auth = getAuth();
-  const user = auth.currentUser;
-  if (user) {
+export const logOutUser = createAsyncThunk<void, undefined, { rejectValue: string }>(
+  "user/logOutUser",
+  async (_, { rejectWithValue }) => {
+    const auth = getAuth();
     try {
-      return await updateEmail(user, newEmail);
+      await signOut(auth);
     } catch (error) {
       const firebaseError = error as FirebaseError;
       return rejectWithValue(firebaseError.code);
     }
-  }
-});
+  },
+);
 
-export const changeName = createAsyncThunk<
-  void,
-  string,
-  { rejectValue: string }
->("user/changeName", async (newName, { rejectWithValue }) => {
-  const auth = getAuth();
-  const user = auth.currentUser;
-  if (user) {
-    try {
-      return await updateProfile(user, { displayName: newName });
-    } catch (error) {
-      const firebaseError = error as FirebaseError;
-      return rejectWithValue(firebaseError.code);
+export const changeEmail = createAsyncThunk<void, string, { rejectValue: string }>(
+  "user/changeEmail",
+  async (newEmail, { rejectWithValue }) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user) {
+      try {
+        return await updateEmail(user, newEmail);
+      } catch (error) {
+        const firebaseError = error as FirebaseError;
+        return rejectWithValue(firebaseError.code);
+      }
     }
-  }
-});
+  },
+);
+
+export const changeName = createAsyncThunk<void, string, { rejectValue: string }>(
+  "user/changeName",
+  async (newName, { rejectWithValue }) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user) {
+      try {
+        return await updateProfile(user, { displayName: newName });
+      } catch (error) {
+        const firebaseError = error as FirebaseError;
+        return rejectWithValue(firebaseError.code);
+      }
+    }
+  },
+);
 
 export const changePassword = createAsyncThunk<
   void,
@@ -146,35 +129,31 @@ export const changePassword = createAsyncThunk<
       const auth = getAuth();
       const user = auth.currentUser;
       if (user) {
-      await updatePassword(response.payload.user, newPassword);
+        await updatePassword(response.payload.user, newPassword);
       }
     } catch (error) {
       const firebaseError = error as FirebaseError;
       return rejectWithValue(firebaseError.code);
     }
-  }
+  },
 );
 
-export const checkCurrentPassword = createAsyncThunk<
-  any,
-  string,
-  { rejectValue: string }
->("user/checkCurrentPassword", async (currentPassword, { rejectWithValue }) => {
-  const auth = getAuth();
-  const user = auth.currentUser;
-  if (user && user.email) {
-    const credential = EmailAuthProvider.credential(
-      user.email,
-      currentPassword
-    );
-    try {
-      return await reauthenticateWithCredential(user, credential);
-    } catch (error) {
-      const firebaseError = error as FirebaseError;
-      return rejectWithValue(firebaseError.code);
+export const checkCurrentPassword = createAsyncThunk<any, string, { rejectValue: string }>(
+  "user/checkCurrentPassword",
+  async (currentPassword, { rejectWithValue }) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user && user.email) {
+      const credential = EmailAuthProvider.credential(user.email, currentPassword);
+      try {
+        return await reauthenticateWithCredential(user, credential);
+      } catch (error) {
+        const firebaseError = error as FirebaseError;
+        return rejectWithValue(firebaseError.code);
+      }
     }
-  }
-});
+  },
+);
 
 export const userSlice = createSlice({
   name: "user",

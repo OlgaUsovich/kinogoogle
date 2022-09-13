@@ -7,5 +7,9 @@ interface IProps {
 }
 
 export const FormButton = ({ text, isLoading }: IProps) => {
-  return <StyledButton type='submit' disabled={isLoading}>{isLoading ? <Spinner /> : text}</StyledButton>;
+  return (
+    <StyledButton type="submit" disabled={isLoading}>
+      {isLoading ? <Spinner /> : text}
+    </StyledButton>
+  );
 };

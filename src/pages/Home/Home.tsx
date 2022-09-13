@@ -7,7 +7,7 @@ import { movieAPI } from "../../services";
 export const Home = () => {
   const dispatch = store.useAppDispatch();
   const { results, isLoading, error, searchWord } = store.useAppSelector(
-    (state) => state.persistedReducer.movies
+    (state) => state.persistedReducer.movies,
   );
   const [page, setPage] = useState<string>("1");
   const [windowHeight, setWindowHeigth] = useState<number>(906);
@@ -23,10 +23,12 @@ export const Home = () => {
     } else {
       dispatch(store.addSearchWord(movieAPI.getRandomParam()));
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchWord, dispatch]);
 
   useEffect(() => {
     dispatch(store.cleanStore()); // <-- reset when unmounting
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handlePagination = () => {

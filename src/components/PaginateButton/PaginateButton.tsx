@@ -1,10 +1,13 @@
-import { Button, Spinner } from "./styles"
+import { Button, Spinner } from "./styles";
 
 interface IProps {
-    onClick: () => void;
+  onClick: () => void;
 }
-
 
 export const PaginateButton = ({ onClick }: IProps) => {
-    return <Button onClick={onClick}>Show more<Spinner></Spinner></Button>
-}
+  return (
+    <Button onClick={onClick}>
+      Show more<Spinner></Spinner>
+    </Button>
+  );
+};

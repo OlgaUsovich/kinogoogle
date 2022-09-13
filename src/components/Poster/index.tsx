@@ -1,3 +1,3 @@
 import { Poster } from "./Poster";
 
-export {Poster}
+export { Poster };

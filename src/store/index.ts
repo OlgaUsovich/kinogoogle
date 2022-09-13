@@ -4,4 +4,16 @@ import { addSearchWord, cleanStore, getMovies, getSearchMovies } from "./feature
 import { persistor, store } from "./store";
 import { useAppDispatch, useAppSelector } from "./hooks";
 
-export { store, getMovies, getMovie, persistor, addFavorite, removeFavorite, useAppDispatch, useAppSelector, getSearchMovies, addSearchWord, cleanStore };
+export {
+  store,
+  getMovies,
+  getMovie,
+  persistor,
+  addFavorite,
+  removeFavorite,
+  useAppDispatch,
+  useAppSelector,
+  getSearchMovies,
+  addSearchWord,
+  cleanStore,
+};
