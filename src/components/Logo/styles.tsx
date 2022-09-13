@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { MEDIA } from "../../ui";
-import { LogoSvg } from "../../assets";
+import { LogoIcon } from "../../assets";
 
-export const StyledLogo = styled(LogoSvg)`
+export const StyledLogo = styled(LogoIcon)`
   grid-area: logo;
   display: block;
   width: 158px;

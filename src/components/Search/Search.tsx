@@ -47,7 +47,7 @@ export const Search = () => {
     },
   });
 
-  const { isLoading, error } = store.useAppSelector(
+  const { isLoading } = store.useAppSelector(
     (state) => state.persistedReducer.movies
   );
 

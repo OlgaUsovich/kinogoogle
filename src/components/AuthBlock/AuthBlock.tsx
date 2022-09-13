@@ -1,7 +1,7 @@
 import { FiUser } from "react-icons/fi";
 import { Avatar, LinkItem, LinksList, StyledDiv, Text, UserButton, UserName } from "./styles";
 import { ROUTE } from "../../routers";
-import { ArrowButton } from "../../assets";
+import { ArrowButtonIcon } from "../../assets";
 import {useToggle} from 'react-use';
 import {useDetectClickOutside} from 'react-detect-click-outside'
 import { getUserInitials } from "../../utils";
@@ -23,7 +23,7 @@ export const AuthBlock = ({ name }: IProps) => {
         <Text>{name ? name : "Sign In"}</Text>
       </UserName>
       <UserButton ref={ref} onClick={setIsOpen} isOpen={isOpen}>
-        <ArrowButton />
+        <ArrowButtonIcon />
       </UserButton>
       <LinksList isOpen={isOpen}>
         <LinkItem to={name ? ROUTE.SETTINGS : ROUTE.SIGN_IN}>{name ? "Edit profile" : "Sign In"}</LinkItem>

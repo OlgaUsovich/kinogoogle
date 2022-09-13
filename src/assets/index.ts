@@ -1,6 +1,6 @@
-import { ReactComponent as LogoSvg } from "./icons/logo.svg";
-import { ReactComponent as IMDb } from "./icons/imdb.svg";
-import { ReactComponent as ArrowButton } from "./icons/arrow-button.svg";
-import AuthBG from "./backgrounds/auth-bg.png";
+import { ReactComponent as LogoIcon } from "./icons/logo.svg";
+import { ReactComponent as ImdbIcon } from "./icons/imdb.svg";
+import { ReactComponent as ArrowButtonIcon } from "./icons/arrow-button.svg";
+import AuthBackground from "./backgrounds/auth-bg.png";
 
-export { LogoSvg, IMDb, ArrowButton, AuthBG };
+export { LogoIcon, ImdbIcon, ArrowButtonIcon, AuthBackground };

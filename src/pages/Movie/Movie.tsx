@@ -6,7 +6,7 @@ import { FiShare2 } from "react-icons/fi";
 import { Badge, GenreList, Poster, Spinner } from "../../components";
 import { defineBadgeColor } from "../../utils";
 import { COLOR } from "../../ui";
-import { IMDb } from "../../assets";
+import { ImdbIcon } from "../../assets";
 import {
   addFavorite,
   getMovie,
@@ -88,7 +88,7 @@ export const Movie = () => {
           <Badge
             text={result.imdbRating}
             color={COLOR.GRAPHITE}
-            svg={<IMDb />}
+            svg={<ImdbIcon />}
             type="detail"
           />
           <Badge text={result.runtime} color={COLOR.GRAPHITE} type="detail" />
