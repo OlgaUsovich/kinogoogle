@@ -1,6 +1,12 @@
 import { addFavorite, removeFavorite } from "./features/favoritesSlice";
 import { getMovie } from "./features/movieSlice";
-import { addSearchWord, cleanStore, getMovies, getSearchMovies } from "./features/moviesSlice";
+import {
+  addSearchParams,
+  addSearchWord,
+  cleanStore,
+  getMovies,
+  getSearchMovies,
+} from "./features/moviesSlice";
 import { persistor, store } from "./store";
 import { useAppDispatch, useAppSelector } from "./hooks";
 
@@ -16,4 +22,5 @@ export {
   getSearchMovies,
   addSearchWord,
   cleanStore,
+  addSearchParams,
 };

@@ -52,8 +52,7 @@ export const Search = () => {
   );
 
   const onSubmit = ({ type, s, y }: FiltersFormValue) => {
-    dispatch(store.cleanStore());
-    dispatch(store.getSearchMovies({ s, type: type && type.value, y }));
+    dispatch(store.addSearchParams({ searchWord: s, type: type && type.value, year: y }));
     reset();
     handleFilters();
   };

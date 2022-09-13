@@ -5,7 +5,7 @@ import { Container } from "./styles";
 
 export const Home = () => {
   const dispatch = store.useAppDispatch();
-  const { results, isLoading, error, searchWord } = store.useAppSelector(
+  const { results, isLoading, error, searchWord, year, type } = store.useAppSelector(
     (state) => state.persistedReducer.movies,
   );
   const [page, setPage] = useState<string>("1");
@@ -13,11 +13,11 @@ export const Home = () => {
 
   useEffect(() => {
     if (searchWord !== "") {
-      dispatch(store.getSearchMovies({ s: searchWord, page }));
+      dispatch(store.getSearchMovies({ s: searchWord, page, y: year, type }));
     } else {
       dispatch(store.getMovies({ page }));
     }
-  }, [searchWord, page, dispatch]);
+  }, [searchWord, page, dispatch, year, type]);
 
   useEffect(() => {
     dispatch(store.cleanStore());

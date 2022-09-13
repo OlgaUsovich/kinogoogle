@@ -8,6 +8,8 @@ export interface MoviesState {
   error: string | null;
   results: ISearchMovie[];
   searchWord?: string;
+  year?: string;
+  type?: string;
 }
 
 const initialState: MoviesState = {
@@ -65,6 +67,11 @@ export const moviesSlice = createSlice({
     addSearchWord: (state, { payload }) => {
       state.searchWord = payload;
     },
+    addSearchParams: (state, { payload }) => {
+      state.searchWord = payload.searchWord;
+      state.year = payload.year;
+      state.type = payload.type;
+    },
   },
   extraReducers(builder) {
     builder.addCase(getMovies.pending, (state) => {
@@ -115,5 +122,5 @@ export const moviesSlice = createSlice({
   },
 });
 
-export const { cleanStore, addSearchWord } = moviesSlice.actions;
+export const { cleanStore, addSearchWord, addSearchParams } = moviesSlice.actions;
 export default moviesSlice.reducer;
