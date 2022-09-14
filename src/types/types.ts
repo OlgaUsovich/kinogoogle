@@ -72,6 +72,7 @@ export interface ISearchMovieListAPI {
   Search: ISearchMovieAPI[];
   totalResults: string;
   Response: string;
+  Error: string;
 }
 
 export interface UserData {

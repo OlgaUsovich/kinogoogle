@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
+import { resourceLimits } from "worker_threads";
 import { movieAPI, MovieRequestParams, transformSearchMovie } from "../../services";
 import { ISearchMovie, ISearchMovieListAPI } from "../../types";
 
@@ -50,7 +51,10 @@ export const getSearchMovies = createAsyncThunk<
   { rejectValue: string }
 >("movies/getSearchMovies", async ({ s, page, y, type }, { rejectWithValue }) => {
   try {
-    return await movieAPI.getSearchMovies(s, { page, y, type });
+    const result = await movieAPI.getSearchMovies(s, { page, y, type });
+    return result.Search
+      ? result
+      : rejectWithValue(result.Error);
   } catch (error) {
     const axiosError = error as AxiosError;
     return rejectWithValue(axiosError.message);
@@ -71,6 +75,11 @@ export const moviesSlice = createSlice({
       state.searchWord = payload.searchWord;
       state.year = payload.year;
       state.type = payload.type;
+    },
+    clearSearchParams: (state) => {
+      state.searchWord = '';
+      state.year = '';
+      state.type = '';
     },
   },
   extraReducers(builder) {

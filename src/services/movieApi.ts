@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useAppSelector } from "store";
 import { IMovieAPI, ISearchMovieListAPI } from "../types";
 
 export type MovieRequestParams = {

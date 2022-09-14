@@ -12,9 +12,9 @@ export const Home = () => {
   const [windowHeight, setWindowHeigth] = useState<number>(906);
 
   useEffect(() => {
-    if (searchWord !== "") {
+    if (!["", undefined].includes(searchWord)) {
       dispatch(store.getSearchMovies({ s: searchWord, page, y: year, type }));
-    } else {
+    } else if (searchWord === "") {
       dispatch(store.getMovies({ page }));
     }
   }, [searchWord, page, dispatch, year, type]);
