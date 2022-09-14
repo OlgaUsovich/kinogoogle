@@ -47,9 +47,7 @@ export const Search = () => {
     },
   });
 
-  const { isLoading } = store.useAppSelector(
-    (state) => state.persistedReducer.movies
-  );
+  const { isLoading } = store.useAppSelector((state) => state.persistedReducer.movies);
 
   const onSubmit = ({ type, s, y }: FiltersFormValue) => {
     dispatch(store.addSearchParams({ searchWord: s, type: type && type.value, year: y }));
@@ -123,8 +121,7 @@ export const Search = () => {
                     rules={{
                       pattern: {
                         value: /^(19|20)\d{2}$/,
-                        message:
-                          "Please enter a year from 1900 to current year",
+                        message: "Please enter a year from 1900 to current year",
                       },
                     }}
                     render={({ field: { value, onChange } }) => {
@@ -143,7 +140,13 @@ export const Search = () => {
                 </styles.Label>
               </styles.InputsContainer>
               <styles.ButtonsBlock>
-                <styles.CancelButton type='reset' onClick={() => reset()}>
+                <styles.CancelButton
+                  type="reset"
+                  onClick={() => {
+                    reset();
+                    dispatch(store.clearSearchParams());
+                  }}
+                >
                   Clear filter
                 </styles.CancelButton>
                 <FormButton text="Show results" isLoading={isLoading} />

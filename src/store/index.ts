@@ -4,6 +4,7 @@ import {
   addSearchParams,
   addSearchWord,
   cleanStore,
+  clearSearchParams,
   getMovies,
   getSearchMovies,
 } from "./features/moviesSlice";
@@ -23,4 +24,5 @@ export {
   addSearchWord,
   cleanStore,
   addSearchParams,
+  clearSearchParams
 };

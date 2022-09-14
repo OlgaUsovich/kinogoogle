@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import { resourceLimits } from "worker_threads";
 import { movieAPI, MovieRequestParams, transformSearchMovie } from "../../services";
 import { ISearchMovie, ISearchMovieListAPI } from "../../types";
 
@@ -52,9 +51,7 @@ export const getSearchMovies = createAsyncThunk<
 >("movies/getSearchMovies", async ({ s, page, y, type }, { rejectWithValue }) => {
   try {
     const result = await movieAPI.getSearchMovies(s, { page, y, type });
-    return result.Search
-      ? result
-      : rejectWithValue(result.Error);
+    return result.Search ? result : rejectWithValue(result.Error);
   } catch (error) {
     const axiosError = error as AxiosError;
     return rejectWithValue(axiosError.message);
@@ -69,6 +66,8 @@ export const moviesSlice = createSlice({
       state.results = [];
     },
     addSearchWord: (state, { payload }) => {
+      state.year = "";
+      state.type = "";
       state.searchWord = payload;
     },
     addSearchParams: (state, { payload }) => {
@@ -77,9 +76,9 @@ export const moviesSlice = createSlice({
       state.type = payload.type;
     },
     clearSearchParams: (state) => {
-      state.searchWord = '';
-      state.year = '';
-      state.type = '';
+      state.searchWord = "";
+      state.year = "";
+      state.type = "";
     },
   },
   extraReducers(builder) {
@@ -131,5 +130,6 @@ export const moviesSlice = createSlice({
   },
 });
 
-export const { cleanStore, addSearchWord, addSearchParams } = moviesSlice.actions;
+export const { cleanStore, addSearchWord, addSearchParams, clearSearchParams } =
+  moviesSlice.actions;
 export default moviesSlice.reducer;
