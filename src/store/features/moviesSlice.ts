@@ -10,6 +10,7 @@ export interface MoviesState {
   searchWord?: string;
   year?: string;
   type?: string;
+  moviesCount?: string;
 }
 
 const initialState: MoviesState = {
@@ -90,6 +91,7 @@ export const moviesSlice = createSlice({
       state.isLoading = false;
       const newMovies = transformSearchMovie(payload["Search"]);
       state.results.push(...newMovies);
+      state.moviesCount = payload["totalResults"];
     });
     builder.addCase(getMovies.rejected, (state, { payload }) => {
       state.isLoading = false;
@@ -105,6 +107,7 @@ export const moviesSlice = createSlice({
       state.isLoading = false;
       const newMovies = transformSearchMovie(payload["Search"]);
       state.results.push(...newMovies);
+      state.moviesCount = payload["totalResults"];
     });
     builder.addCase(getTrends.rejected, (state, { payload }) => {
       state.isLoading = false;
@@ -120,6 +123,7 @@ export const moviesSlice = createSlice({
       state.isLoading = false;
       const newMovies = transformSearchMovie(payload["Search"]);
       state.results.push(...newMovies);
+      state.moviesCount = payload["totalResults"];
     });
     builder.addCase(getSearchMovies.rejected, (state, { payload }) => {
       state.isLoading = false;

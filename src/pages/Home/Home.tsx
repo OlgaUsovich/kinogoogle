@@ -5,7 +5,7 @@ import { Container } from "./styles";
 
 export const Home = () => {
   const dispatch = store.useAppDispatch();
-  const { results, isLoading, error, searchWord, year, type } = store.useAppSelector(
+  const { results, isLoading, error, searchWord, year, type, moviesCount } = store.useAppSelector(
     (state) => state.persistedReducer.movies,
   );
   const [page, setPage] = useState<string>("1");
@@ -35,7 +35,10 @@ export const Home = () => {
   return (
     <Container>
       <MovieList movies={results} isLoading={isLoading} errorMessage={error} />
-      <PaginateButton onClick={handlePagination} />
+      <PaginateButton
+        onClick={handlePagination}
+        disabled={moviesCount ? results.length === +moviesCount : false}
+      />
     </Container>
   );
 };

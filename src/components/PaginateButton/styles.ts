@@ -36,4 +36,14 @@ export const Button = styled.button`
   &:hover >:first-child {
     animation: ${rotation} 1s linear infinite;
   }
+
+  &:disabled {
+    background-color: ${COLOR.SECONDARY};
+    color: ${COLOR.LIGHT};
+    animation: none;
+
+    &:hover >:first-child {
+      animation: none;
+    }
+  }
 `;
