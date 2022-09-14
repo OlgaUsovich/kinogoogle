@@ -273,10 +273,6 @@ export const userSlice = createSlice({
         state.error = getFirebaseMessageError(payload);
       }
     });
-    // builder.addMatcher(isPendingAction, (state) => {
-    //   state.isLoading = true;
-    //   state.error = null;
-    // })
   },
 });
 

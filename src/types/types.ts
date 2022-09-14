@@ -76,7 +76,7 @@ export interface ISearchMovieListAPI {
 }
 
 export interface UserData {
-  displayName: string | null; 
+  displayName: string | null;
   email: string | null;
 }
 
@@ -89,3 +89,5 @@ export interface IGenresOption {
   readonly value: string;
   readonly label: string;
 }
+
+export type CardType = "card" | "detail" | "fav";

@@ -1,4 +1,4 @@
-import { defineBadgeColorYear } from "../../utils";
+import { defineBadgeColorYear, isInFavorites, isTrend } from "../../utils";
 import { createPath, ROUTE } from "../../routers";
 import { ISearchMovie } from "../../types";
 import { GenreList } from "../GenreList";
@@ -7,10 +7,8 @@ import { Badge } from "../Badge";
 import { Card, DeleteButton, Title } from "./styles";
 import { COLOR } from "../../ui";
 import { AiFillFire } from "react-icons/ai";
-import { isInFavorites, isTrend } from "../../utils/helpers";
 import { MdFavorite } from "react-icons/md";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { removeFavorite } from "../../store";
+import { getFavoritesSelector, removeFavorite, useAppDispatch, useAppSelector } from "../../store";
 import { toast } from "react-toastify";
 
 interface IProps {
@@ -19,9 +17,7 @@ interface IProps {
 
 export const MovieCard = ({ movie }: IProps) => {
   const dispatch = useAppDispatch();
-  const { favorites } = useAppSelector(
-    (state) => state.persistedReducer.favorites
-  );
+  const { favorites } = useAppSelector(getFavoritesSelector);
   const notify = () => toast.info(`Movie "${movie.title}" has deleted from favorites`);
 
   return (

@@ -18,7 +18,7 @@ export const PosterBlock = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  min-width: 266px;
+  width: 266px;
 
   ${MEDIA.XS} {
     gap: 24px;

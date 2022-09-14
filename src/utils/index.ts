@@ -1,5 +1,11 @@
 import { getFirebaseMessageError } from "./firebase-error";
-import { defineBadgeColor, defineBadgeColorYear, getUserInitials, isInFavorites } from "./helpers";
+import {
+  defineBadgeColor,
+  defineBadgeColorYear,
+  getUserInitials,
+  isInFavorites,
+  isTrend,
+} from "./helpers";
 
 export {
   getFirebaseMessageError,
@@ -7,4 +13,5 @@ export {
   defineBadgeColorYear,
   getUserInitials,
   isInFavorites,
+  isTrend,
 };

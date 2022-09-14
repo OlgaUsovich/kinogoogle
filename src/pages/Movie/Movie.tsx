@@ -12,17 +12,15 @@ import {
   getMovie,
   useAppSelector,
   useAppDispatch,
+  getMovieDetailSelector,
 } from "../../store";
 import * as styles from "./styles";
 
 export const Movie = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const { result, isLoading, error } = useAppSelector(
-    (state) => state.persistedReducer.movie
-  );
-  const notify = () =>
-    toast.success(`Movie "${result.title}" has added to favorites`);
+  const { result, isLoading, error } = useAppSelector(getMovieDetailSelector);
+  const notify = () => toast.success(`Movie "${result.title}" has added to favorites`);
 
   useEffect(() => {
     if (id) {
@@ -85,12 +83,7 @@ export const Movie = () => {
             color={defineBadgeColor(result.imdbRating)}
             type="detail"
           />
-          <Badge
-            text={result.imdbRating}
-            color={COLOR.GRAPHITE}
-            svg={<ImdbIcon />}
-            type="detail"
-          />
+          <Badge text={result.imdbRating} color={COLOR.GRAPHITE} svg={<ImdbIcon />} type="detail" />
           <Badge text={result.runtime} color={COLOR.GRAPHITE} type="detail" />
         </styles.BadgeBlock>
         <styles.Description>{result.plot}</styles.Description>
@@ -99,9 +92,7 @@ export const Movie = () => {
             return (
               <>
                 <styles.ParamName>{key}</styles.ParamName>
-                <styles.Param>
-                  {value && value !== "N/A" ? value : "---"}
-                </styles.Param>
+                <styles.Param>{value && value !== "N/A" ? value : "---"}</styles.Param>
               </>
             );
           })}

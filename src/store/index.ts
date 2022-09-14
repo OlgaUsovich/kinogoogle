@@ -7,9 +7,28 @@ import {
   clearSearchParams,
   getMovies,
   getSearchMovies,
+  getTrends,
+  MoviesState,
 } from "./features/moviesSlice";
-import { persistor, store } from "./store";
+import { persistor, RootState, store } from "./store";
 import { useAppDispatch, useAppSelector } from "./hooks";
+import {
+  getFavoritesSelector,
+  getMovieDetailSelector,
+  getMoviesSelector,
+  getUserInfoSelector,
+  getUserIsLoadingSelector,
+  getUsersSelector,
+} from "./selectors";
+import {
+  changeEmail,
+  changeName,
+  changePassword,
+  changeTheme,
+  createUser,
+  logInUser,
+  setTheme,
+} from "./features/userSlice";
 
 export {
   store,
@@ -24,5 +43,21 @@ export {
   addSearchWord,
   cleanStore,
   addSearchParams,
-  clearSearchParams
+  clearSearchParams,
+  getMoviesSelector,
+  getUserInfoSelector,
+  getFavoritesSelector,
+  getUserIsLoadingSelector,
+  getMovieDetailSelector,
+  getUsersSelector,
+  changeEmail,
+  changeName,
+  changePassword,
+  setTheme,
+  changeTheme,
+  createUser,
+  getTrends,
+  logInUser
 };
+
+export type { RootState, MoviesState };

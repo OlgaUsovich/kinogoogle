@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { CardType } from "types";
 import { COLOR, SUBLINE13 } from "../../ui";
 
-const handleType = (type: "card" | "detail" | "fav") => {
+const handleType = (type: CardType) => {
   switch (type) {
     case "card":
       return `position: absolute; top: 20px; left: 20px; color: ${COLOR.WHITE}`;
@@ -14,7 +15,7 @@ const handleType = (type: "card" | "detail" | "fav") => {
 
 export const Raiting = styled.span<{
   color: string;
-  type: "card" | "detail" | "fav";
+  type: CardType;
 }>`
   display: inline-block;
   ${({ type }) => handleType(type)};

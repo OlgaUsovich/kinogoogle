@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import { MovieList, PaginateButton } from "../../components";
-import * as store from "../../store";
 import { Container } from "./styles";
+import * as store from "../../store";
 
 export const Home = () => {
   const dispatch = store.useAppDispatch();
   const { results, isLoading, error, searchWord, year, type, moviesCount } = store.useAppSelector(
-    (state) => state.persistedReducer.movies,
+    store.getMoviesSelector,
   );
   const [page, setPage] = useState<string>("1");
-  const [windowHeight, setWindowHeigth] = useState<number>(906);
 
   useEffect(() => {
     if (!["", undefined].includes(searchWord)) {
@@ -25,11 +24,6 @@ export const Home = () => {
 
   const handlePagination = () => {
     setPage(`${+page + 1}`);
-    window.scrollTo({
-      top: windowHeight,
-      behavior: "smooth",
-    });
-    setWindowHeigth((prev) => 2 * prev);
   };
 
   return (

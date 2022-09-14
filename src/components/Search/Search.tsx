@@ -10,6 +10,7 @@ import { Input } from "../Input";
 import { Portal, PortalTarget } from "../Portal";
 import * as store from "../../store";
 import * as styles from "./styles";
+import { getMoviesSelector } from "../../store";
 
 type FiltersFormValue = {
   type: IGenresOption | null;
@@ -47,9 +48,10 @@ export const Search = () => {
     },
   });
 
-  const { isLoading } = store.useAppSelector((state) => state.persistedReducer.movies);
+  const { isLoading } = store.useAppSelector(getMoviesSelector);
 
   const onSubmit = ({ type, s, y }: FiltersFormValue) => {
+    dispatch(store.cleanStore());
     dispatch(store.addSearchParams({ searchWord: s, type: type && type.value, year: y }));
     reset();
     handleFilters();

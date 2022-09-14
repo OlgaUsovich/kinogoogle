@@ -2,32 +2,18 @@ import { useRef } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { FormButton, Input, Switcher } from "../../components";
-import { ROUTE } from "../../routers";
 import {
   changeEmail,
   changeName,
   changePassword,
   changeTheme,
+  getUsersSelector,
   setTheme,
-} from "../../store/features/userSlice";
+} from "store";
+import { FormButton, Input, Switcher } from "../../components";
+import { ROUTE } from "../../routers";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import {
-  Block,
-  ButtonsBlock,
-  CancelButton,
-  ErrorMessage,
-  InputsContainer,
-  Label,
-  LabelText,
-  PasswordInputsContainer,
-  SettingsForm,
-  ThemaInfo,
-  ThemaName,
-  Title,
-  Text,
-  ThemeInputContainer,
-} from "./styles";
+import * as styles from "./styles";
 
 type SettingsFormValue = {
   name: string;
@@ -40,9 +26,7 @@ type SettingsFormValue = {
 
 export const Settings = () => {
   const dispatch = useAppDispatch();
-  const { result, isLoading, error, isDarkTheme } = useAppSelector(
-    (state) => state.persistedReducer.users,
-  );
+  const { result, isLoading, error, isDarkTheme } = useAppSelector(getUsersSelector);
   const {
     handleSubmit,
     formState: { errors, dirtyFields },
@@ -83,12 +67,12 @@ export const Settings = () => {
   };
 
   return (
-    <SettingsForm onSubmit={handleSubmit(onSubmit)}>
-      <Block>
-        <Title>Profile</Title>
-        <InputsContainer>
-          <Label>
-            <LabelText>Name</LabelText>
+    <styles.SettingsForm onSubmit={handleSubmit(onSubmit)}>
+      <styles.Block>
+        <styles.Title>Profile</styles.Title>
+        <styles.InputsContainer>
+          <styles.Label>
+            <styles.LabelText>Name</styles.LabelText>
             <Controller
               name="name"
               control={control}
@@ -104,11 +88,11 @@ export const Settings = () => {
                 );
               }}
             />
-            {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
-          </Label>
+            {errors.name && <styles.ErrorMessage>{errors.name.message}</styles.ErrorMessage>}
+          </styles.Label>
 
-          <Label>
-            <LabelText>Email</LabelText>
+          <styles.Label>
+            <styles.LabelText>Email</styles.LabelText>
             <Controller
               name="email"
               control={control}
@@ -132,16 +116,16 @@ export const Settings = () => {
                 );
               }}
             />
-            {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
-          </Label>
-        </InputsContainer>
-      </Block>
+            {errors.email && <styles.ErrorMessage>{errors.email.message}</styles.ErrorMessage>}
+          </styles.Label>
+        </styles.InputsContainer>
+      </styles.Block>
 
-      <Block>
-        <Title>Password</Title>
-        <PasswordInputsContainer>
-          <Label>
-            <LabelText>Password</LabelText>
+      <styles.Block>
+        <styles.Title>Password</styles.Title>
+        <styles.PasswordInputsContainer>
+          <styles.Label>
+            <styles.LabelText>Password</styles.LabelText>
             <Controller
               name="password"
               control={control}
@@ -163,11 +147,13 @@ export const Settings = () => {
                 );
               }}
             />
-            {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
-          </Label>
+            {errors.password && (
+              <styles.ErrorMessage>{errors.password.message}</styles.ErrorMessage>
+            )}
+          </styles.Label>
 
-          <Label>
-            <LabelText>New Password</LabelText>
+          <styles.Label>
+            <styles.LabelText>New Password</styles.LabelText>
             <Controller
               name="newPassword"
               control={control}
@@ -189,11 +175,13 @@ export const Settings = () => {
                 );
               }}
             />
-            {errors.newPassword && <ErrorMessage>{errors.newPassword.message}</ErrorMessage>}
-          </Label>
+            {errors.newPassword && (
+              <styles.ErrorMessage>{errors.newPassword.message}</styles.ErrorMessage>
+            )}
+          </styles.Label>
 
-          <Label>
-            <LabelText>Confirm Password</LabelText>
+          <styles.Label>
+            <styles.LabelText>Confirm Password</styles.LabelText>
             <Controller
               name="confirmPassword"
               control={control}
@@ -213,19 +201,19 @@ export const Settings = () => {
               }}
             />
             {errors.confirmPassword && (
-              <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>
+              <styles.ErrorMessage>{errors.confirmPassword.message}</styles.ErrorMessage>
             )}
-          </Label>
-        </PasswordInputsContainer>
-      </Block>
+          </styles.Label>
+        </styles.PasswordInputsContainer>
+      </styles.Block>
 
-      <Block>
-        <Title>Color mode</Title>
-        <ThemeInputContainer>
-          <Text>
-            <ThemaName>{isDarkTheme ? "Dark" : "Light"}</ThemaName>
-            <ThemaInfo>Use {isDarkTheme ? "dark" : "light"} thema</ThemaInfo>
-          </Text>
+      <styles.Block>
+        <styles.Title>Color mode</styles.Title>
+        <styles.ThemeInputContainer>
+          <styles.Text>
+            <styles.ThemaName>{isDarkTheme ? "Dark" : "Light"}</styles.ThemaName>
+            <styles.ThemaInfo>Use {isDarkTheme ? "dark" : "light"} thema</styles.ThemaInfo>
+          </styles.Text>
           <Controller
             name="theme"
             control={control}
@@ -233,13 +221,13 @@ export const Settings = () => {
               return <Switcher value={value} onChange={onChange} />;
             }}
           />
-        </ThemeInputContainer>
-      </Block>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
-      <ButtonsBlock>
-        <CancelButton to={"/"}>Cancel</CancelButton>
+        </styles.ThemeInputContainer>
+      </styles.Block>
+      {error && <styles.ErrorMessage>{error}</styles.ErrorMessage>}
+      <styles.ButtonsBlock>
+        <styles.CancelButton to={"/"}>Cancel</styles.CancelButton>
         <FormButton text="Save" isLoading={isLoading} />
-      </ButtonsBlock>
-    </SettingsForm>
+      </styles.ButtonsBlock>
+    </styles.SettingsForm>
   );
 };

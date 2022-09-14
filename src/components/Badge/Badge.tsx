@@ -1,10 +1,11 @@
 import { ReactNode } from "react";
+import { CardType } from "types";
 import { Raiting } from "./styles";
 
 interface IProps {
   text?: string;
   color: string;
-  type: "card" | "detail" | "fav";
+  type: CardType;
   svg?: ReactNode | undefined;
 }
 

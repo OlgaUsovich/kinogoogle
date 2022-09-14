@@ -1,22 +1,9 @@
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { getUsersSelector, logInUser, useAppDispatch, useAppSelector } from "store";
 import { FormButton, Input } from "../../components";
 import { ROUTE } from "../../routers";
-import { logInUser } from "../../store/features/userSlice";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import {
-  ErrorMessage,
-  ForgotPassword,
-  FormContainer,
-  FormTitleContainer,
-  InputsContainer,
-  LabelText,
-  StyledForm,
-  StyledLabel,
-  StyledLink,
-  StyledSpan,
-  Title,
-} from "./styles";
+import * as styles from "./styles";
 
 type SignInFormValue = {
   email: string;
@@ -40,7 +27,7 @@ export const SignIn = () => {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isLoading, error } = useAppSelector((state) => state.persistedReducer.users);
+  const { isLoading, error } = useAppSelector(getUsersSelector);
 
   const onSubmit: SubmitHandler<SignInFormValue> = ({ email, password }) => {
     dispatch(logInUser({ password, email }));
@@ -49,15 +36,17 @@ export const SignIn = () => {
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)}>
-      <FormContainer>
-        <FormTitleContainer>
-          <Title>Sign In</Title>
-          <ForgotPassword to={ROUTE.SEND_EMAIL_CHANGE_PASSWORD}>Forgot Password</ForgotPassword>
-        </FormTitleContainer>
-        <InputsContainer>
-          <StyledLabel>
-            <LabelText>Email</LabelText>
+    <styles.StyledForm onSubmit={handleSubmit(onSubmit)}>
+      <styles.FormContainer>
+        <styles.FormTitleContainer>
+          <styles.Title>Sign In</styles.Title>
+          <styles.ForgotPassword to={ROUTE.SEND_EMAIL_CHANGE_PASSWORD}>
+            Forgot Password
+          </styles.ForgotPassword>
+        </styles.FormTitleContainer>
+        <styles.InputsContainer>
+          <styles.StyledLabel>
+            <styles.LabelText>Email</styles.LabelText>
             <Controller
               name="email"
               control={control}
@@ -82,11 +71,11 @@ export const SignIn = () => {
                 );
               }}
             />
-          </StyledLabel>
-          {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+          </styles.StyledLabel>
+          {errors.email && <styles.ErrorMessage>{errors.email.message}</styles.ErrorMessage>}
 
-          <StyledLabel>
-            <LabelText>Password</LabelText>
+          <styles.StyledLabel>
+            <styles.LabelText>Password</styles.LabelText>
             <Controller
               name="password"
               control={control}
@@ -109,15 +98,16 @@ export const SignIn = () => {
                 );
               }}
             />
-          </StyledLabel>
-          {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
-        </InputsContainer>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
+          </styles.StyledLabel>
+          {errors.password && <styles.ErrorMessage>{errors.password.message}</styles.ErrorMessage>}
+        </styles.InputsContainer>
+        {error && <styles.ErrorMessage>{error}</styles.ErrorMessage>}
         <FormButton text="Sign In" isLoading={isLoading} />
-      </FormContainer>
-      <StyledSpan>
-        Don’t have an account? <StyledLink to={`/${ROUTE.SIGN_UP}`}>Sign Up</StyledLink>
-      </StyledSpan>
-    </StyledForm>
+      </styles.FormContainer>
+      <styles.StyledSpan>
+        Don’t have an account?{" "}
+        <styles.StyledLink to={`/${ROUTE.SIGN_UP}`}>Sign Up</styles.StyledLink>
+      </styles.StyledSpan>
+    </styles.StyledForm>
   );
 };

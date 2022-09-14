@@ -1,11 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { getUserIsLoadingSelector, getUserInfoSelector, useAppSelector } from "store";
 import { ROUTE } from "../../routers";
-import { useAppSelector } from "../../store/hooks";
 import { Spinner } from "../Spinner";
 
 export const RequireAuth = () => {
-  const user = useAppSelector((state) => state.persistedReducer.users.result);
-  const isLoading = useAppSelector((state) => state.persistedReducer.users.isLoading);
+  const user = useAppSelector(getUserInfoSelector);
+  const isLoading = useAppSelector(getUserIsLoadingSelector);
   if (isLoading) {
     return <Spinner />;
   }

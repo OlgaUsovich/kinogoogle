@@ -1,13 +1,5 @@
 import { FiUser } from "react-icons/fi";
-import {
-  Avatar,
-  LinkItem,
-  LinksList,
-  StyledDiv,
-  Text,
-  UserButton,
-  UserName,
-} from "./styles";
+import * as styles from "./styles";
 import { ROUTE } from "../../routers";
 import { ArrowButtonIcon } from "../../assets";
 import { useToggle } from "react-use";
@@ -25,22 +17,22 @@ export const AuthBlock = ({ name }: IProps) => {
   });
 
   return (
-    <StyledDiv>
-      <UserName>
-        <Avatar>{name ? getUserInitials(name) : <FiUser />}</Avatar>
-        <Text>{name ? name : "Sign In"}</Text>
-      </UserName>
-      <UserButton ref={ref} onClick={setIsOpen} isOpen={isOpen}>
+    <styles.StyledDiv>
+      <styles.UserName>
+        <styles.Avatar>{name ? getUserInitials(name) : <FiUser />}</styles.Avatar>
+        <styles.Text>{name ? name : "Sign In"}</styles.Text>
+      </styles.UserName>
+      <styles.UserButton ref={ref} onClick={setIsOpen} isOpen={isOpen}>
         <ArrowButtonIcon />
-      </UserButton>
-      <LinksList isOpen={isOpen}>
-        <LinkItem to={name ? ROUTE.SETTINGS : ROUTE.SIGN_IN}>
+      </styles.UserButton>
+      <styles.LinksList isOpen={isOpen}>
+        <styles.LinkItem to={name ? ROUTE.SETTINGS : ROUTE.SIGN_IN}>
           {name ? "Edit profile" : "Sign In"}
-        </LinkItem>
-        <LinkItem to={name ? ROUTE.LOG_OUT : ROUTE.SIGN_UP}>
+        </styles.LinkItem>
+        <styles.LinkItem to={name ? ROUTE.LOG_OUT : ROUTE.SIGN_UP}>
           {name ? "Log Out" : "Sign Up"}
-        </LinkItem>
-      </LinksList>
-    </StyledDiv>
+        </styles.LinkItem>
+      </styles.LinksList>
+    </styles.StyledDiv>
   );
 };

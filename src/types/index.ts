@@ -1,4 +1,5 @@
 import {
+  CardType,
   IGenresOption,
   IMovie,
   IMovieAPI,
@@ -18,4 +19,5 @@ export type {
   UserData,
   ISearchOptions,
   IGenresOption,
+  CardType
 };

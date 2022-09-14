@@ -1,22 +1,9 @@
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { FormButton } from "../../components/FormButton";
-import { Input } from "../../components/Input";
 import { ROUTE } from "../../routers";
-import {
-  ErrorMessage,
-  FormContainer,
-  InputsContainer,
-  LabelText,
-  StyledForm,
-  StyledLabel,
-  StyledLink,
-  StyledSpan,
-  Title,
-} from "./styles";
+import * as styles from "./styles";
 import { useRef, useState } from "react";
-import { Modal } from "../../components";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { createUser } from "../../store/features/userSlice";
+import { FormButton, Input, Modal } from "../../components";
+import { createUser, getUsersSelector, useAppDispatch, useAppSelector } from "store";
 
 type SignUpFormValue = {
   name: string;
@@ -46,7 +33,7 @@ export const SignUp = () => {
   const password = useRef({});
   password.current = watch("password", "");
   const dispatch = useAppDispatch();
-  const { isLoading, error } = useAppSelector((state) => state.persistedReducer.users);
+  const { isLoading, error } = useAppSelector(getUsersSelector);
 
   const [isOpen, toggleModal] = useState<boolean>(false);
 
@@ -61,12 +48,12 @@ export const SignUp = () => {
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)}>
-      <FormContainer>
-        <Title>Sign Up</Title>
-        <InputsContainer>
-          <StyledLabel>
-            <LabelText>Name</LabelText>
+    <styles.StyledForm onSubmit={handleSubmit(onSubmit)}>
+      <styles.FormContainer>
+        <styles.Title>Sign Up</styles.Title>
+        <styles.InputsContainer>
+          <styles.StyledLabel>
+            <styles.LabelText>Name</styles.LabelText>
             <Controller
               name="name"
               control={control}
@@ -83,11 +70,11 @@ export const SignUp = () => {
                 );
               }}
             />
-          </StyledLabel>
-          {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
+          </styles.StyledLabel>
+          {errors.name && <styles.ErrorMessage>{errors.name.message}</styles.ErrorMessage>}
 
-          <StyledLabel>
-            <LabelText>Email</LabelText>
+          <styles.StyledLabel>
+            <styles.LabelText>Email</styles.LabelText>
             <Controller
               name="email"
               control={control}
@@ -112,11 +99,11 @@ export const SignUp = () => {
                 );
               }}
             />
-          </StyledLabel>
-          {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+          </styles.StyledLabel>
+          {errors.email && <styles.ErrorMessage>{errors.email.message}</styles.ErrorMessage>}
 
-          <StyledLabel htmlFor="password">
-            <LabelText>Password</LabelText>
+          <styles.StyledLabel htmlFor="password">
+            <styles.LabelText>Password</styles.LabelText>
             <Controller
               name="password"
               control={control}
@@ -139,11 +126,11 @@ export const SignUp = () => {
                 );
               }}
             />
-          </StyledLabel>
-          {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
+          </styles.StyledLabel>
+          {errors.password && <styles.ErrorMessage>{errors.password.message}</styles.ErrorMessage>}
 
-          <StyledLabel htmlFor="confirmPassword">
-            <LabelText>Confirm password</LabelText>
+          <styles.StyledLabel htmlFor="confirmPassword">
+            <styles.LabelText>Confirm password</styles.LabelText>
             <Controller
               name="confirmPassword"
               control={control}
@@ -163,16 +150,19 @@ export const SignUp = () => {
                 );
               }}
             />
-          </StyledLabel>
-          {errors.confirmPassword && <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>}
-        </InputsContainer>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
+          </styles.StyledLabel>
+          {errors.confirmPassword && (
+            <styles.ErrorMessage>{errors.confirmPassword.message}</styles.ErrorMessage>
+          )}
+        </styles.InputsContainer>
+        {error && <styles.ErrorMessage>{error}</styles.ErrorMessage>}
         <FormButton text="Sign up" isLoading={isLoading} />
-      </FormContainer>
-      <StyledSpan>
-        Already have an account? <StyledLink to={`/${ROUTE.SIGN_IN}`}>Sign In</StyledLink>
-      </StyledSpan>
+      </styles.FormContainer>
+      <styles.StyledSpan>
+        Already have an account?{" "}
+        <styles.StyledLink to={`/${ROUTE.SIGN_IN}`}>Sign In</styles.StyledLink>
+      </styles.StyledSpan>
       <Modal isOpen={isOpen} handleModal={handleModal} />
-    </StyledForm>
+    </styles.StyledForm>
   );
 };
