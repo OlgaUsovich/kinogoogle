@@ -27,6 +27,8 @@ import {
   changeTheme,
   createUser,
   logInUser,
+  resetPassword,
+  sendResetEmail,
   setTheme,
 } from "./features/userSlice";
 
@@ -57,7 +59,9 @@ export {
   changeTheme,
   createUser,
   getTrends,
-  logInUser
+  logInUser,
+  resetPassword,
+  sendResetEmail
 };
 
 export type { RootState, MoviesState };

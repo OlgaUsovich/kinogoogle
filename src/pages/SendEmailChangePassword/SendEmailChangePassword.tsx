@@ -1,14 +1,8 @@
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
-import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { getUsersSelector, sendResetEmail, useAppDispatch, useAppSelector } from "store";
 import { FormButton, FormInput } from "../../components";
-import {
-  ErrorMessage,
-  FormContainer,
-  InputsContainer,
-  SendEmailForm,
-  Title,
-} from "./styles";
+import { ErrorMessage, FormContainer, InputsContainer, SendEmailForm, Title } from "./styles";
 
 export type SendEmailFormValue = {
   email: string;
@@ -19,6 +13,7 @@ export const SendEmail = () => {
     handleSubmit,
     formState: { errors },
     control,
+    reset,
   } = useForm<SendEmailFormValue>({
     mode: "onSubmit",
     reValidateMode: "onSubmit",
@@ -27,30 +22,20 @@ export const SendEmail = () => {
     },
   });
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [errorMessage] = useState<string | null>(null);
+  const dispatch = useAppDispatch();
+  const { isLoading, error } = useAppSelector(getUsersSelector);
+  const notify = () => toast.success("Reset password message send. Please check your email");
 
   const onSubmit: SubmitHandler<SendEmailFormValue> = ({ email }) => {
-    setIsLoading(true);
-
-    const auth = getAuth();
-    sendPasswordResetEmail(auth, email)
-      .then(() => {})
-      .catch((error) => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // // ..
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    dispatch(sendResetEmail({ email }));
+    reset();
+    !error && notify();
   };
 
   return (
     <SendEmailForm onSubmit={handleSubmit(onSubmit)}>
       <FormContainer>
         <Title>Enter Email</Title>
-
         <InputsContainer>
           <FormInput
             name="email"
@@ -62,8 +47,7 @@ export const SendEmail = () => {
             errorMessage={errors.email?.message}
           />
         </InputsContainer>
-
-        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+        <ErrorMessage>{error}</ErrorMessage>
         <FormButton text="Send Email" isLoading={isLoading} />
       </FormContainer>
     </SendEmailForm>

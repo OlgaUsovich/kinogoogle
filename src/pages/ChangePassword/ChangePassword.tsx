@@ -1,15 +1,8 @@
-import { getAuth, updatePassword } from "firebase/auth";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { getUsersSelector, resetPassword, useAppDispatch, useAppSelector } from "store";
 import { FormButton, FormInput } from "../../components";
-import { getFirebaseMessageError } from "../../utils";
-import {
-  ChangePasswordForm,
-  ErrorMessage,
-  FormContainer,
-  InputsContainer,
-  Title,
-} from "./styles";
+import { ChangePasswordForm, ErrorMessage, FormContainer, InputsContainer, Title } from "./styles";
 
 export type ChangePasswordFormValue = {
   newPassword: string;
@@ -21,6 +14,7 @@ export const ChangePassword = () => {
     reset,
     formState: { errors },
     control,
+    handleSubmit,
     watch,
   } = useForm<ChangePasswordFormValue>({
     mode: "onSubmit",
@@ -31,35 +25,18 @@ export const ChangePassword = () => {
     },
   });
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [errorMessage, setErrorMesage] = useState<string | null>(null);
   const newPassword = useRef({});
   newPassword.current = watch("newPassword", "");
+  const dispatch = useAppDispatch();
+  const { isLoading, error } = useAppSelector(getUsersSelector);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit: SubmitHandler<ChangePasswordFormValue> = ({ newPassword }) => {
-    setIsLoading(true);
-
-    const auth = getAuth();
-    const user = auth.currentUser;
-
-    if (user) {
-      updatePassword(user, newPassword)
-        .then(() => {
-          // Update successful.
-        })
-        .catch((error) => {
-          setErrorMesage(getFirebaseMessageError(error.code));
-        })
-        .finally(() => {
-          setIsLoading(false);
-          reset();
-        });
-    }
+    dispatch(resetPassword({ newPassword }));
+    reset();
   };
 
   return (
-    <ChangePasswordForm>
+    <ChangePasswordForm onSubmit={handleSubmit(onSubmit)}>
       <FormContainer>
         <Title>Change Password</Title>
         <InputsContainer>
@@ -83,7 +60,7 @@ export const ChangePassword = () => {
             errorMessage={errors.confirmPassword?.message}
           />
         </InputsContainer>
-        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+        <ErrorMessage>{error}</ErrorMessage>
         <FormButton text="Change Password" isLoading={isLoading} />
       </FormContainer>
     </ChangePasswordForm>

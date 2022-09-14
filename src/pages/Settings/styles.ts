@@ -38,6 +38,10 @@ export const InputsContainer = styled.div`
   border-radius: 10px;
   background-color: ${COLOR.DARK};
 
+  & > * {
+    width: 100%;
+  }
+
   ${MEDIA.XS} {
     flex-direction: column;
     padding: 24px;

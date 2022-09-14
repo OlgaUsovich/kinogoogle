@@ -95,8 +95,8 @@ export const FormInput = ({
             );
           }}
         />
+        <styles.ErrorMessage>{errorMessage}</styles.ErrorMessage>
       </styles.Label>
-      <styles.ErrorMessage>{errorMessage}</styles.ErrorMessage>
     </>
   );
 };

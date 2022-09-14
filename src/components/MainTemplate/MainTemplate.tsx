@@ -17,7 +17,7 @@ export const MainTemplate = () => {
           <Outlet />
         </OutletContainer>
       </Container>
-      <ToastContainer position="bottom-right" autoClose={2000} theme="dark" />
+      <ToastContainer position="bottom-right" autoClose={1000} theme="dark" />
     </Wrapper>
   );
 };
