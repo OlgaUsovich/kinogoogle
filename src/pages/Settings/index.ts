@@ -1,3 +1,4 @@
-import { Settings } from "./Settings";
+import { Settings, SettingsFormValue } from "./Settings";
 
 export { Settings };
+export type { SettingsFormValue };

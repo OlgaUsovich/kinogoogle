@@ -25,11 +25,6 @@ export const Title = styled.h1`
   }
 `;
 
-export const StyledLabel = styled.label`
-  ${SUBLINE13};
-  color: ${COLOR.WHITE};
-`;
-
 export const InputsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,7 +36,7 @@ export const FormContainer = styled.div`
   gap: 40px;
 `;
 
-export const StyledSpan = styled.span`
+export const Span = styled.span`
   display: block;
   margin-top: 32px;
   text-align: center;
@@ -67,11 +62,6 @@ export const StyledLink = styled(Link)`
 export const ErrorMessage = styled.span`
   ${BODY};
   color: ${COLOR.ERROR};
-`;
-
-export const LabelText = styled.span`
-  display: inline-block;
-  padding-bottom: 8px;
 `;
 
 export const ForgotPassword = styled(Link)`

@@ -1,3 +1,4 @@
-import { Search } from "./Search";
+import { FiltersFormValue, Search } from "./Search";
 
 export { Search };
+export type { FiltersFormValue };

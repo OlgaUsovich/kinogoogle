@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BODY, COLOR, H2, H3, MEDIA, SUBLINE13 } from "../../ui";
+import { BODY, COLOR, H2, H3, MEDIA } from "../../ui";
 
 export const ChangePasswordForm = styled.form`
   width: 574px;
@@ -23,11 +23,6 @@ export const Title = styled.h1`
   }
 `;
 
-export const StyledLabel = styled.label`
-  ${SUBLINE13};
-  color: ${COLOR.WHITE};
-`;
-
 export const InputsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -39,27 +34,8 @@ export const FormContainer = styled.div`
   gap: 40px;
 `;
 
-export const StyledSpan = styled.span`
-  display: block;
-  margin-top: 32px;
-  text-align: center;
-  ${SUBLINE13};
-  color: ${COLOR.SECONDARY};
-
-  ${MEDIA.XS} {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
-  }
-`;
-
 export const ErrorMessage = styled.span`
   display: block;
   ${BODY};
   color: ${COLOR.ERROR};
-`;
-
-export const LabelText = styled.span`
-  display: inline-block;
-  padding-bottom: 8px;
 `;

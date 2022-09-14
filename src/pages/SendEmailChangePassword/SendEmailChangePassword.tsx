@@ -1,18 +1,16 @@
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { useState } from "react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { FormButton, Input } from "../../components";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { FormButton, FormInput } from "../../components";
 import {
   ErrorMessage,
   FormContainer,
   InputsContainer,
-  LabelText,
   SendEmailForm,
-  StyledLabel,
   Title,
 } from "./styles";
 
-type SendEmailFormValue = {
+export type SendEmailFormValue = {
   email: string;
 };
 
@@ -37,8 +35,7 @@ export const SendEmail = () => {
 
     const auth = getAuth();
     sendPasswordResetEmail(auth, email)
-      .then(() => {
-      })
+      .then(() => {})
       .catch((error) => {
         // const errorCode = error.code;
         // const errorMessage = error.message;
@@ -46,8 +43,7 @@ export const SendEmail = () => {
       })
       .finally(() => {
         setIsLoading(false);
-      }
-      );
+      });
   };
 
   return (
@@ -56,34 +52,15 @@ export const SendEmail = () => {
         <Title>Enter Email</Title>
 
         <InputsContainer>
-          <StyledLabel>
-            <LabelText>Email</LabelText>
-            <Controller
-              name="email"
-              control={control}
-              rules={{
-                required: "Enter your email",
-                pattern: {
-                  value:
-                    // eslint-disable-next-line max-len
-                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                  message: "Please enter a valid email",
-                },
-              }}
-              render={({ field: { value, onChange } }) => {
-                return (
-                  <Input
-                    placeholder="Your email"
-                    type="email"
-                    value={value}
-                    onChange={onChange}
-                    error={errors.email?.message}
-                  />
-                );
-              }}
-            />
-          </StyledLabel>
-          {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+          <FormInput
+            name="email"
+            control={control}
+            placeholder="Your email"
+            label="Email"
+            type="email"
+            validationType="email"
+            errorMessage={errors.email?.message}
+          />
         </InputsContainer>
 
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}

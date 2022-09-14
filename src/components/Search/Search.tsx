@@ -11,8 +11,9 @@ import { Portal, PortalTarget } from "../Portal";
 import * as store from "../../store";
 import * as styles from "./styles";
 import { getMoviesSelector } from "../../store";
+import { FormInput } from "components";
 
-type FiltersFormValue = {
+export type FiltersFormValue = {
   type: IGenresOption | null;
   s: string;
   y: string;
@@ -83,63 +84,28 @@ export const Search = () => {
                     name="type"
                     control={control}
                     render={({ field: { value, onChange } }) => {
-                      return (
-                        <CustomSelect
-                          value={value}
-                          onChange={onChange}
-                          // error={errors.genre?.message}
-                        />
-                      );
+                      return <CustomSelect value={value} onChange={onChange} />;
                     }}
                   />
                 </styles.SelectLabel>
-
-                <styles.Label>
-                  <styles.LabelText>Full or short movie name</styles.LabelText>
-                  <Controller
-                    name="s"
-                    control={control}
-                    rules={{ required: "Name is required by API" }}
-                    render={({ field: { value, onChange } }) => {
-                      return (
-                        <Input
-                          placeholder="Your text"
-                          type="text"
-                          value={value}
-                          onChange={onChange}
-                          error={errors.s?.message}
-                        />
-                      );
-                    }}
-                  />
-                  {errors.s && <styles.ErrorMessage>{errors.s.message}</styles.ErrorMessage>}
-                </styles.Label>
-
-                <styles.Label>
-                  <styles.LabelText>Year</styles.LabelText>
-                  <Controller
-                    name="y"
-                    control={control}
-                    rules={{
-                      pattern: {
-                        value: /^(19|20)\d{2}$/,
-                        message: "Please enter a year from 1900 to current year",
-                      },
-                    }}
-                    render={({ field: { value, onChange } }) => {
-                      return (
-                        <Input
-                          placeholder="Enter year"
-                          type="number"
-                          value={value}
-                          onChange={onChange}
-                          error={errors.y?.message}
-                        />
-                      );
-                    }}
-                  />
-                  {errors.y && <styles.ErrorMessage>{errors.y.message}</styles.ErrorMessage>}
-                </styles.Label>
+                <FormInput
+                  name="s"
+                  control={control}
+                  placeholder="Your text"
+                  label="Full or short movie name"
+                  type="text"
+                  validationType="searchName"
+                  errorMessage={errors.s?.message}
+                />
+                <FormInput
+                  name="y"
+                  control={control}
+                  placeholder="Enter year"
+                  label="Year"
+                  type="number"
+                  validationType="year"
+                  errorMessage={errors.s?.message}
+                />
               </styles.InputsContainer>
               <styles.ButtonsBlock>
                 <styles.CancelButton

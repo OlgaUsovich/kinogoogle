@@ -10,12 +10,12 @@ import {
   getUsersSelector,
   setTheme,
 } from "store";
-import { FormButton, Input, Switcher } from "../../components";
+import { FormButton, FormInput, Switcher } from "../../components";
 import { ROUTE } from "../../routers";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import * as styles from "./styles";
 
-type SettingsFormValue = {
+export type SettingsFormValue = {
   name: string;
   email: string;
   password: string;
@@ -71,139 +71,59 @@ export const Settings = () => {
       <styles.Block>
         <styles.Title>Profile</styles.Title>
         <styles.InputsContainer>
-          <styles.Label>
-            <styles.LabelText>Name</styles.LabelText>
-            <Controller
-              name="name"
-              control={control}
-              render={({ field: { value, onChange } }) => {
-                return (
-                  <Input
-                    placeholder="Your name"
-                    type="text"
-                    value={value}
-                    onChange={onChange}
-                    error={errors.name?.message}
-                  />
-                );
-              }}
-            />
-            {errors.name && <styles.ErrorMessage>{errors.name.message}</styles.ErrorMessage>}
-          </styles.Label>
+          <FormInput
+            name="name"
+            control={control}
+            placeholder="Your name"
+            label="Name"
+            type="text"
+            validationType="name"
+            errorMessage={errors.name?.message}
+          />
 
-          <styles.Label>
-            <styles.LabelText>Email</styles.LabelText>
-            <Controller
-              name="email"
-              control={control}
-              rules={{
-                pattern: {
-                  value:
-                    // eslint-disable-next-line max-len
-                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                  message: "Please enter a valid email",
-                },
-              }}
-              render={({ field: { value, onChange } }) => {
-                return (
-                  <Input
-                    placeholder="Your email"
-                    type="email"
-                    value={value}
-                    onChange={onChange}
-                    error={errors.email?.message}
-                  />
-                );
-              }}
-            />
-            {errors.email && <styles.ErrorMessage>{errors.email.message}</styles.ErrorMessage>}
-          </styles.Label>
+          <FormInput
+            name="email"
+            control={control}
+            placeholder="Your email"
+            label="Email"
+            type="email"
+            validationType="email"
+            errorMessage={errors.email?.message}
+          />
         </styles.InputsContainer>
       </styles.Block>
 
       <styles.Block>
         <styles.Title>Password</styles.Title>
         <styles.PasswordInputsContainer>
-          <styles.Label>
-            <styles.LabelText>Password</styles.LabelText>
-            <Controller
-              name="password"
-              control={control}
-              rules={{
-                minLength: {
-                  value: 6,
-                  message: "Password should be at least 6 sybbols",
-                },
-              }}
-              render={({ field: { value, onChange } }) => {
-                return (
-                  <Input
-                    placeholder="Your password"
-                    type="password"
-                    value={value}
-                    onChange={onChange}
-                    error={errors.password?.message}
-                  />
-                );
-              }}
-            />
-            {errors.password && (
-              <styles.ErrorMessage>{errors.password.message}</styles.ErrorMessage>
-            )}
-          </styles.Label>
-
-          <styles.Label>
-            <styles.LabelText>New Password</styles.LabelText>
-            <Controller
-              name="newPassword"
-              control={control}
-              rules={{
-                minLength: {
-                  value: 6,
-                  message: "Password should be at least 6 symbols",
-                },
-              }}
-              render={({ field: { value, onChange } }) => {
-                return (
-                  <Input
-                    placeholder="New password"
-                    type="password"
-                    value={value}
-                    onChange={onChange}
-                    error={errors.newPassword?.message}
-                  />
-                );
-              }}
-            />
-            {errors.newPassword && (
-              <styles.ErrorMessage>{errors.newPassword.message}</styles.ErrorMessage>
-            )}
-          </styles.Label>
-
-          <styles.Label>
-            <styles.LabelText>Confirm Password</styles.LabelText>
-            <Controller
-              name="confirmPassword"
-              control={control}
-              rules={{
-                validate: (value) => value === newPassword.current || "The passwords do not match",
-              }}
-              render={({ field: { value, onChange } }) => {
-                return (
-                  <Input
-                    placeholder="Confirm password"
-                    type="password"
-                    value={value}
-                    onChange={onChange}
-                    error={errors.confirmPassword?.message}
-                  />
-                );
-              }}
-            />
-            {errors.confirmPassword && (
-              <styles.ErrorMessage>{errors.confirmPassword.message}</styles.ErrorMessage>
-            )}
-          </styles.Label>
+          <FormInput
+            name="password"
+            control={control}
+            placeholder="Your password"
+            label="Password"
+            type="password"
+            validationType="password"
+            errorMessage={errors.password?.message}
+          />
+          <FormInput
+            name="newPassword"
+            control={control}
+            placeholder="New password"
+            label="New Password"
+            type="password"
+            validationType="settingsPassword"
+            errorMessage={errors.newPassword?.message}
+          />
+          <FormInput
+            name="confirmPassword"
+            control={control}
+            placeholder="Confirm password"
+            label="Confirm Password"
+            type="password"
+            validationType="settingsPassword"
+            validate={(value) => value === newPassword.current || "The passwords do not match"}
+            errorMessage={errors.confirmPassword?.message}
+          />
         </styles.PasswordInputsContainer>
       </styles.Block>
 

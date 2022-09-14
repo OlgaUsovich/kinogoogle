@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BODY, COLOR, H2, MEDIA, SUBLINE13 } from "../../ui";
+import { COLOR, H2, MEDIA, SUBLINE13 } from "../../ui";
 
 export const SearchWrapper = styled.div`
   grid-area: search;
@@ -99,22 +99,6 @@ export const InputsContainer = styled.div`
   gap: 40px;
 `;
 
-export const Label = styled.label`
-  ${SUBLINE13};
-  color: ${COLOR.WHITE};
-
-  & > * {
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-    &[type="number"] {
-      -moz-appearance: textfield;
-    }
-  }
-`;
-
 export const ButtonsBlock = styled.div`
   display: flex;
   gap: 40px;
@@ -150,10 +134,4 @@ export const CancelButton = styled.button`
     background-color: ${COLOR.SECONDARY};
     cursor: wait;
   }
-`;
-
-export const ErrorMessage = styled.span`
-  display: block;
-  ${BODY};
-  color: ${COLOR.ERROR};
 `;

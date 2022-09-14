@@ -45,17 +45,6 @@ export const InputsContainer = styled.div`
   }
 `;
 
-export const Label = styled.label`
-  width: 100%;
-  ${SUBLINE13};
-  color: ${COLOR.WHITE};
-`;
-
-export const LabelText = styled.span`
-  display: inline-block;
-  padding-bottom: 8px;
-`;
-
 export const ErrorMessage = styled.span`
   display: block;
   ${BODY};

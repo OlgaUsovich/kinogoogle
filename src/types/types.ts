@@ -1,3 +1,10 @@
+import { FiltersFormValue } from "components";
+import {
+  ChangePasswordFormValue,
+  SendEmailFormValue,
+  SignInFormValue,
+  SignUpFormValue,
+} from "pages";
 import { ChangeEventHandler } from "react";
 
 interface IMovieRaitingsAPI {
@@ -91,3 +98,17 @@ export interface IGenresOption {
 }
 
 export type CardType = "card" | "detail" | "fav";
+
+export type InputNames =
+  | keyof ChangePasswordFormValue
+  | keyof SendEmailFormValue
+  | keyof SignInFormValue
+  | keyof SignUpFormValue
+  | keyof FiltersFormValue
+  | "newPassword";
+
+export type ControlType =
+  | ChangePasswordFormValue
+  | SendEmailFormValue
+  | SignInFormValue
+  | SignUpFormValue;

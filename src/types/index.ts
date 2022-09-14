@@ -1,8 +1,10 @@
 import {
   CardType,
+  ControlType,
   IGenresOption,
   IMovie,
   IMovieAPI,
+  InputNames,
   ISearchMovie,
   ISearchMovieAPI,
   ISearchMovieListAPI,
@@ -19,5 +21,7 @@ export type {
   UserData,
   ISearchOptions,
   IGenresOption,
-  CardType
+  CardType,
+  InputNames,
+  ControlType
 };

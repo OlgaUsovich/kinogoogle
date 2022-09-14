@@ -13,6 +13,8 @@ import { Badge } from "./Badge";
 import { RequireAuth } from "./RequireAuth";
 import { Spinner } from "./Spinner";
 import { Switcher } from "./Switcher";
+import { FormInput } from "./FormInput";
+import { FiltersFormValue } from "./Search";
 
 export {
   MainTemplate,
@@ -30,4 +32,7 @@ export {
   RequireAuth,
   PaginateButton,
   Switcher,
+  FormInput,
 };
+
+export type { FiltersFormValue };
