@@ -15,6 +15,11 @@ import { Spinner } from "./Spinner";
 import { Switcher } from "./Switcher";
 import { FormInput } from "./FormInput";
 import { FiltersFormValue } from "./Search";
+import { ChangePasswordForm, ChangePasswordFormValue } from "./ChangePasswordForm";
+import { SendEmailForm, SendEmailFormValue } from "./SendEmailForm";
+import { SettingsForm, SettingsFormValue } from "./SettingsForm";
+import { SignInForm, SignInFormValue } from "./SignInForm";
+import { SignUpForm, SignUpFormValue } from "./SignUpForm";
 
 export {
   MainTemplate,
@@ -33,6 +38,18 @@ export {
   PaginateButton,
   Switcher,
   FormInput,
+  ChangePasswordForm,
+  SendEmailForm,
+  SettingsForm,
+  SignInForm,
+  SignUpForm
 };
 
-export type { FiltersFormValue };
+export type {
+  FiltersFormValue,
+  ChangePasswordFormValue,
+  SendEmailFormValue,
+  SettingsFormValue,
+  SignInFormValue,
+  SignUpFormValue
+};

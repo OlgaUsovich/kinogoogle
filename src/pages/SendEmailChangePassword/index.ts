@@ -1,4 +1,3 @@
-import { SendEmail, SendEmailFormValue } from "./SendEmailChangePassword";
+import { SendEmail } from "./SendEmailChangePassword";
 
 export { SendEmail };
-export type { SendEmailFormValue };

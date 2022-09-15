@@ -1,4 +1,3 @@
-import { SignIn, SignInFormValue } from "./SignIn";
+import { SignIn } from "./SignIn";
 
 export { SignIn };
-export type { SignInFormValue };
