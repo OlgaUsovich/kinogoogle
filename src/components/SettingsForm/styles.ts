@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BODY, COLOR, H2, H3, MEDIA, SUBLINE12, SUBLINE13 } from "../../ui";
 
-export const SettingsForm = styled.form`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 40px;

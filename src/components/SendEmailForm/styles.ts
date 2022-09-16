@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { BODY, COLOR, H2, H3, MEDIA } from "../../ui";
+import { BODY, COLOR, H2, H3, MEDIA, SUBLINE13 } from "../../ui";
 
-export const ChangePasswordForm = styled.form`
+export const Form = styled.form`
   width: 574px;
   padding: 40px;
   margin: 10px;
@@ -28,10 +28,25 @@ export const InputsContainer = styled.div`
   flex-direction: column;
   gap: 24px;
 `;
+
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+`;
+
+export const StyledSpan = styled.span`
+  display: block;
+  margin-top: 32px;
+  text-align: center;
+  ${SUBLINE13};
+  color: ${COLOR.SECONDARY};
+
+  ${MEDIA.XS} {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+  }
 `;
 
 export const ErrorMessage = styled.span`

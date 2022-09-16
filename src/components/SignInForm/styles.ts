@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BODY, COLOR, H2, H3, MEDIA, SUBLINE13 } from "../../ui";
 
-export const StyledForm = styled.form`
+export const Form = styled.form`
   width: 574px;
   min-height: 540px;
   padding: 40px;

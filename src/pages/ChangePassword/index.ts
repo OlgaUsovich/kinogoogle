@@ -1,4 +1,4 @@
-import { ChangePassword, ChangePasswordFormValue } from "./ChangePassword";
+import { ChangePassword } from "./ChangePassword";
 
 export { ChangePassword };
-export type { ChangePasswordFormValue };
+

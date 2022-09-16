@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BODY, COLOR, H2, H3, MEDIA, SUBLINE13 } from "../../ui";
 
-export const SendEmailForm = styled.form`
+export const Form = styled.form`
   width: 574px;
+  min-height: 732px;
   padding: 40px;
   margin: 10px;
   border-radius: 10px;
@@ -35,7 +37,7 @@ export const FormContainer = styled.div`
   gap: 40px;
 `;
 
-export const StyledSpan = styled.span`
+export const Span = styled.span`
   display: block;
   margin-top: 32px;
   text-align: center;
@@ -46,6 +48,15 @@ export const StyledSpan = styled.span`
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: ${COLOR.PRIMARY};
+
+  &:hover {
+    color: ${COLOR.WHITE};
   }
 `;
 

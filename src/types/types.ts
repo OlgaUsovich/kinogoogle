@@ -1,11 +1,11 @@
-import { FiltersFormValue } from "components";
 import {
   ChangePasswordFormValue,
+  FiltersFormValue,
   SendEmailFormValue,
   SettingsFormValue,
   SignInFormValue,
   SignUpFormValue,
-} from "pages";
+} from "components";
 import { ChangeEventHandler } from "react";
 
 interface IMovieRaitingsAPI {
