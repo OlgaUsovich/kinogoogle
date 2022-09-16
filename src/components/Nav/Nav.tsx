@@ -17,13 +17,13 @@ export const Nav = ({ isNavOpen }: IProps) => {
   };
   const desctop = {
     open: { x: 0 },
-    closed: { x: 0 },
+    closed: { x: 0, transition: { duration: 0 } },
   };
 
   const variants = width < 1280 ? mobile : desctop;
 
   return (
-    <styles.Nav initial="closed" animate={isNavOpen ? "open" : "closed"} variants={variants}>
+    <styles.Nav animate={isNavOpen ? "open" : "closed"} variants={variants} initial={false}>
       <styles.Ul>
         <styles.CustomLink to={ROUTE.HOME}>
           <RiHome6Fill />

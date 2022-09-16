@@ -2,6 +2,7 @@ import { FiltersFormValue } from "components";
 import {
   ChangePasswordFormValue,
   SendEmailFormValue,
+  SettingsFormValue,
   SignInFormValue,
   SignUpFormValue,
 } from "pages";
@@ -111,4 +112,6 @@ export type ControlType =
   | ChangePasswordFormValue
   | SendEmailFormValue
   | SignInFormValue
-  | SignUpFormValue;
+  | SignUpFormValue
+  | FiltersFormValue
+  | SettingsFormValue;

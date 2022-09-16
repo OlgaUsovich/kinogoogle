@@ -22,10 +22,10 @@ export const StyledMovieList = styled.div`
   }
 `;
 
-export const StyledContainer = styled.div`
+export const Container = styled.div`
   display: grid;
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 310px);
   place-items: center;
 `;
 
