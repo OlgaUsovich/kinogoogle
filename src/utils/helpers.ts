@@ -26,3 +26,28 @@ export const isTrend = (year: string): boolean => {
 
 export const isInFavorites = (favorites: IMovie[], movie: ISearchMovie) =>
   favorites.find((fav) => fav.imdbID === movie.imdbID);
+
+export const filterFavorites = (
+  favorites: IMovie[],
+  searchWord?: string,
+  type?: string,
+  year?: string,
+): IMovie[] => {
+  const filteredByWord = searchWord
+    ? favorites.filter((favorite) => {
+      return favorite.title.toLowerCase().includes(searchWord.toLowerCase());
+    })
+    : favorites;
+
+  const filteredByType = type
+    ? filteredByWord.filter((favorite) => {
+      return favorite.type === type;
+    })
+    : filteredByWord;
+
+  return year
+    ? filteredByType.filter((favorite) => {
+      return favorite.year === year;
+    })
+    : filteredByType;
+};

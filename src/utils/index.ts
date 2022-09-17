@@ -2,6 +2,7 @@ import { getFirebaseMessageError } from "./firebase-error";
 import {
   defineBadgeColor,
   defineBadgeColorYear,
+  filterFavorites,
   getUserInitials,
   isInFavorites,
   isTrend,
@@ -14,4 +15,5 @@ export {
   getUserInitials,
   isInFavorites,
   isTrend,
+  filterFavorites
 };
