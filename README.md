@@ -149,7 +149,7 @@ You can change authentication data in settings block.
 
 Olga Usovich - [github.com/OlgaUsovich/](https://github.com/OlgaUsovich/) - olya.usovich.17@mail.ru
 
-Project Link: [https://github.com/OlgaUsovich/](https://github.com/OlgaUsovich/)
+Project Link: [https://github.com/OlgaUsovich/kinogoogle/](https://github.com/OlgaUsovich/kinogoogle/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
