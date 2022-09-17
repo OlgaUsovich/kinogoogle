@@ -3,24 +3,28 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { FiShare2 } from "react-icons/fi";
-import { Badge, GenreList, Poster, Spinner } from "../../components";
-import { defineBadgeColor } from "../../utils";
-import { COLOR } from "../../ui";
-import { ImdbIcon } from "../../assets";
+import { Badge, GenreList, Poster, Spinner } from "components";
+import { defineBadgeColor, isInFavorites } from "utils";
+import { COLOR } from "ui";
+import { ImdbIcon } from "assets";
 import {
   addFavorite,
   getMovie,
   useAppSelector,
   useAppDispatch,
   getMovieDetailSelector,
-} from "../../store";
+  getFavoritesSelector,
+  removeFavorite,
+} from "store";
 import * as styles from "./styles";
+import { MdFavorite } from "react-icons/md";
 
 export const Movie = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const { result, isLoading, error } = useAppSelector(getMovieDetailSelector);
   const notify = () => toast.success(`Movie "${result.title}" has added to favorites`);
+  const { favorites } = useAppSelector(getFavoritesSelector);
 
   useEffect(() => {
     if (id) {
@@ -56,22 +60,36 @@ export const Movie = () => {
     Writers: result.writer,
   };
 
+  console.log(isInFavorites(favorites, result));
+
   return (
     <styles.MovieInfo>
       <styles.PosterBlock>
         <Poster img={result.poster} />
+        {isInFavorites(favorites, result) && (
+          <styles.FavoritesButton
+            onClick={(event) => {
+              event.preventDefault();
+              dispatch(removeFavorite(result));
+              notify();
+            }}
+          >
+            <Badge type="fav" color={COLOR.GRAPHITE} svg={<MdFavorite />} />
+          </styles.FavoritesButton>
+        )}
         <styles.ButtonGroup>
-          <styles.StyledButton
+          <styles.Button
             onClick={() => {
               dispatch(addFavorite(result));
               notify();
             }}
+            disabled={Boolean(isInFavorites(favorites, result))}
           >
             <BsFillBookmarkFill />
-          </styles.StyledButton>
-          <styles.StyledButton>
+          </styles.Button>
+          <styles.Button>
             <FiShare2 />
-          </styles.StyledButton>
+          </styles.Button>
         </styles.ButtonGroup>
       </styles.PosterBlock>
       <styles.InfoBlock>

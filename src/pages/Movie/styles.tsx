@@ -15,6 +15,7 @@ export const MovieInfo = styled.div`
 `;
 
 export const PosterBlock = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -71,7 +72,7 @@ export const ButtonGroup = styled.div`
   gap: 1px;
 `;
 
-export const StyledButton = styled.button`
+export const Button = styled.button`
   flex-grow: 1;
   border: 0;
   padding: 16px 0;
@@ -94,6 +95,11 @@ export const StyledButton = styled.button`
 
   &:disabled {
     background-color: ${COLOR.SECONDARY};
+    cursor: auto;
+
+    &:hover {
+    color: ${COLOR.LIGHT};
+  }
   }
 `;
 
@@ -111,4 +117,15 @@ export const ErrorMessage = styled.h1`
 
 export const Error = styled.span`
   color: ${COLOR.PRIMARY};
+`;
+
+export const FavoritesButton = styled.button`
+  position: absolute;
+  right: 0;
+  border: 0;
+  padding: 0;
+
+  &:hover > * {
+    color: ${COLOR.WHITE};
+  }
 `;
