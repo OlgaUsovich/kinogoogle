@@ -1,9 +1,8 @@
 import { Spinner } from "components";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ROUTE } from "../../routers";
-import { logOutUser } from "../../store/features/userSlice";
-import { useAppDispatch } from "../../store/hooks";
+import { ROUTE } from "routers";
+import { logOutUser, useAppDispatch } from "store";
 
 export const LogOut = () => {
   const dispatch = useAppDispatch();

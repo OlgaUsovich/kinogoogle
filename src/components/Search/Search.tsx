@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import { BsFilterRight } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
-import { useDebounce, useInput } from "../../hooks";
-import { IGenresOption } from "../../types";
-import { CustomSelect } from "../CustomSelect";
-import { FormButton } from "../FormButton";
-import { Input } from "../Input";
-import { Portal, PortalTarget } from "../Portal";
-import * as store from "../../store";
+import { useDebounce, useInput } from "hooks";
+import { IGenresOption } from "types";
+import { CustomSelect, FormButton, Input, Portal, PortalTarget } from "components";
+import * as store from "store";
 import * as styles from "./styles";
-import { getMoviesSelector } from "../../store";
 import { FormInput } from "components";
-import { useLocation } from "react-router-dom";
 import { ROUTE } from "routers";
 
 export type FiltersFormValue = {
@@ -53,7 +49,7 @@ export const Search = () => {
     },
   });
 
-  const { isLoading } = store.useAppSelector(getMoviesSelector);
+  const { isLoading } = store.useAppSelector(store.getMoviesSelector);
   const showMark = getValues("type") || getValues("s") || getValues("y");
 
   const onSubmit = ({ type, s, y }: FiltersFormValue) => {

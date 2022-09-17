@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR, H1 } from "../../ui";
+import { COLOR, H1 } from "ui";
 
 export const Wrapper = styled.div`
   flex-grow: 1;

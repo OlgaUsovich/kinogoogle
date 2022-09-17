@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { COLOR, MEDIA, SUBLINE12 } from "../../ui";
+import { COLOR, MEDIA, SUBLINE12 } from "ui";
 
 export const Card = styled(Link)`
   position: relative;

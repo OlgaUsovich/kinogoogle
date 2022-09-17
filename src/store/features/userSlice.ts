@@ -13,9 +13,9 @@ import {
   updateProfile,
   UserCredential,
 } from "firebase/auth";
-import { UserData } from "../../types";
-import { transformUserCredential } from "../../services";
-import { getFirebaseMessageError } from "../../utils";
+import { UserData } from "types";
+import { transformUserCredential } from "services";
+import { getFirebaseMessageError } from "utils";
 
 interface UserState {
   isLoading: boolean;

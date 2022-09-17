@@ -1,5 +1,5 @@
-import { ROUTE } from "../../routers";
-import { Portal, PortalTarget } from "../Portal";
+import { ROUTE } from "routers";
+import { Portal, PortalTarget } from "components";
 import { Body, Container, Header, Title, Text, PurpleText, Button, Content } from "./styles";
 
 interface ModalProps {

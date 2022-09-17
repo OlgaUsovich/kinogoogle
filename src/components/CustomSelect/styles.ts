@@ -1,6 +1,6 @@
 import { StylesConfig } from "react-select";
-import { IGenresOption } from "../../types/types";
-import { COLOR } from "../../ui";
+import { IGenresOption } from "types";
+import { COLOR } from "ui";
 
 export const customStyles: StylesConfig<IGenresOption> = {
   control: (styles, state) => ({

@@ -1,9 +1,9 @@
 import { AiFillFire } from "react-icons/ai";
 import { RiHome6Fill, RiSettings5Fill } from "react-icons/ri";
 import { BsFillBookmarkFill } from "react-icons/bs";
-import { ROUTE } from "../../routers";
+import { ROUTE } from "routers";
 import * as styles from "./styles";
-import { useWindowSize } from "../../hooks";
+import { useWindowSize } from "hooks";
 
 interface IProps {
   isNavOpen: boolean;

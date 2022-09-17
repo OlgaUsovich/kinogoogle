@@ -1,6 +1,5 @@
-import { ISearchMovie } from "../../types";
-import { MovieCard } from "../MovieCard";
-import { Spinner } from "../Spinner";
+import { ISearchMovie } from "types";
+import { MovieCard, Spinner } from "components";
 import { ErrorMessage, Error, Container, StyledMovieList } from "./styles";
 
 interface IProps {

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { COLOR, H1, H2, H3 } from "../../ui";
+import { COLOR, H1, H2, H3 } from "ui";
 
 export const Container = styled.div`
   position: fixed;

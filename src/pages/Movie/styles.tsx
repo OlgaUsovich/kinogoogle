@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BODY, COLOR, H1, MEDIA, SUBLINE13 } from "../../ui";
+import { BODY, COLOR, H1, MEDIA, SUBLINE13 } from "ui";
 
 export const MovieInfo = styled.div`
   display: flex;

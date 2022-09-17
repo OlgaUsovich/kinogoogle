@@ -1,9 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import { ROUTE } from "./routes";
-import { MainTemplate, RequireAuth } from "../components";
-import * as pages from "../pages";
-import { AuthMainTemplate } from "../components/AuthMainTemplate";
-import { LogOut } from "../pages/LogOut";
+import { MainTemplate, RequireAuth } from "components";
+import * as pages from "pages";
+import { AuthMainTemplate } from "components";
+import { ROUTE } from "routers";
 
 export const AppRouter = () => {
   return (
@@ -21,7 +20,7 @@ export const AppRouter = () => {
       <Route path={ROUTE.HOME} element={<AuthMainTemplate />}>
         <Route path={ROUTE.SIGN_UP} element={<pages.SignUp />} />
         <Route path={ROUTE.SIGN_IN} element={<pages.SignIn />} />
-        <Route path={ROUTE.LOG_OUT} element={<LogOut />} />
+        <Route path={ROUTE.LOG_OUT} element={<pages.LogOut />} />
         <Route
           path={`${ROUTE.SIGN_IN}/${ROUTE.CHANGE_PASSWORD}`}
           element={<pages.ChangePassword />}

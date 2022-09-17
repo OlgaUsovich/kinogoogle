@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { getUserIsLoadingSelector, getUserInfoSelector, useAppSelector } from "store";
-import { ROUTE } from "../../routers";
-import { Spinner } from "../Spinner";
+import { ROUTE } from "routers";
+import { Spinner } from "components";
 
 export const RequireAuth = () => {
   const user = useAppSelector(getUserInfoSelector);

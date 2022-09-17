@@ -1,6 +1,7 @@
 import { ChangePassword } from "./ChangePassword";
 import { Favourits } from "./Favorites/Favourits";
 import { Home } from "./Home";
+import { LogOut } from "./LogOut";
 import { Movie } from "./Movie";
 import { NotFound } from "./NotFound";
 import { SendEmail } from "./SendEmailChangePassword";
@@ -20,4 +21,5 @@ export {
   NotFound,
   ChangePassword,
   SendEmail,
+  LogOut
 };

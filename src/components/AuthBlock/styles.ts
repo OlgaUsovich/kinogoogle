@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { COLOR, MEDIA, SUBLINE13 } from "../../ui";
+import { COLOR, MEDIA, SUBLINE13 } from "ui";
 
 export const Container = styled.div`
   justify-self: end;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MEDIA } from "../../ui";
+import { MEDIA } from "ui";
 
 export const StyledImg = styled.img`
   display: block;

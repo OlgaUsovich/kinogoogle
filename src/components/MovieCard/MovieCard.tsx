@@ -1,15 +1,13 @@
-import { defineBadgeColorYear, isInFavorites, isTrend } from "../../utils";
-import { createPath, ROUTE } from "../../routers";
-import { ISearchMovie } from "../../types";
-import { GenreList } from "../GenreList";
-import { Poster } from "../Poster";
-import { Badge } from "../Badge";
-import { Card, DeleteButton, Title } from "./styles";
-import { COLOR } from "../../ui";
 import { AiFillFire } from "react-icons/ai";
 import { MdFavorite } from "react-icons/md";
-import { getFavoritesSelector, removeFavorite, useAppDispatch, useAppSelector } from "../../store";
 import { toast } from "react-toastify";
+import { defineBadgeColorYear, isInFavorites, isTrend } from "utils";
+import { createPath, ROUTE } from "routers";
+import { ISearchMovie } from "types";
+import { GenreList, Poster, Badge } from "components";
+import { Card, DeleteButton, Title } from "./styles";
+import { COLOR } from "ui";
+import { getFavoritesSelector, removeFavorite, useAppDispatch, useAppSelector } from "store";
 import { NoPosterImage } from "assets";
 
 interface IProps {

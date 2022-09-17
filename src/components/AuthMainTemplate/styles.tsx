@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { AuthBackground } from "../../assets";
-import { COLOR, MEDIA, SUBLINE12 } from "../../ui";
+import { AuthBackground } from "assets";
+import { COLOR, MEDIA, SUBLINE12 } from "ui";
 
 export const Wrapper = styled.div`
   display: flex;

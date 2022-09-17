@@ -1,6 +1,5 @@
-import { AppRouter } from "./routers";
-import { changeTheme } from "./store/features/userSlice";
-import { useAppDispatch } from "./store/hooks";
+import { AppRouter } from "routers";
+import { changeTheme, useAppDispatch } from "store";
 
 const App = () => {
   const dispatch = useAppDispatch();

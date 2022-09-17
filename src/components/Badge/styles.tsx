@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { CardType } from "types";
-import { COLOR, SUBLINE13 } from "../../ui";
+import { COLOR, SUBLINE13 } from "ui";
 
 const handleType = (type: CardType) => {
   switch (type) {

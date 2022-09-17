@@ -1,4 +1,4 @@
-import { IGenresOption } from "../../types";
+import { IGenresOption } from "types";
 import Select from "react-select";
 import { customStyles } from "./styles";
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { MovieList, PaginateButton } from "../../components";
+import { MovieList, PaginateButton } from "components";
 import { Container } from "./styles";
-import * as store from "../../store";
+import * as store from "store";
 
 export const Home = () => {
   const dispatch = store.useAppDispatch();

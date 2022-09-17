@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { COLOR, SUBLINE13 } from "../../ui";
+import { COLOR, SUBLINE13 } from "ui";
 
 const rotation = keyframes`
  0% {

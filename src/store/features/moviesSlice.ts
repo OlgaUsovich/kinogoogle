@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import { movieAPI, MovieRequestParams, transformSearchMovie } from "../../services";
-import { ISearchMovie, ISearchMovieListAPI } from "../../types";
+import { movieAPI, MovieRequestParams, transformSearchMovie } from "services";
+import { ISearchMovie, ISearchMovieListAPI } from "types";
 
 export interface MoviesState {
   isLoading: boolean;

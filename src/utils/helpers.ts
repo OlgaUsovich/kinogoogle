@@ -1,5 +1,5 @@
-import { IMovie, ISearchMovie } from "../types";
-import { COLOR } from "../ui";
+import { IMovie, ISearchMovie } from "types";
+import { COLOR } from "ui";
 
 export const defineBadgeColor = (raiting: string): string => {
   const numRaiting = Number(raiting);

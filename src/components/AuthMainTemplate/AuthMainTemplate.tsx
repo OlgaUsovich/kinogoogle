@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { AuthHeader, Container, Rigths, Wrapper } from "./styles";
-import { Logo } from "../../components";
+import { Logo } from "components";
 import { ToastContainer } from "react-toastify";
 
 export const AuthMainTemplate = () => {

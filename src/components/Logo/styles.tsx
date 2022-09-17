@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { MEDIA } from "../../ui";
-import { LogoIcon } from "../../assets";
+import { MEDIA } from "ui";
+import { LogoIcon } from "assets";
 
 export const StyledLogo = styled(LogoIcon)`
   grid-area: logo;

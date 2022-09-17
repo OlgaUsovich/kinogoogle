@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { getUsersSelector, sendResetEmail, useAppDispatch, useAppSelector } from "store";
-import { FormButton, FormInput } from "../../components";
+import { FormButton, FormInput } from "components";
 import { ErrorMessage, FormContainer, InputsContainer, Form, Title } from "./styles";
 
 export type SendEmailFormValue = {

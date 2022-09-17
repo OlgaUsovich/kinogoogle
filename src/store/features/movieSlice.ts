@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import { movieAPI, transformMovie } from "../../services";
-import {IMovie, IMovieAPI} from "../../types";
+import { movieAPI, transformMovie } from "services";
+import {IMovie, IMovieAPI} from "types";
 
 interface MovieState {
   isLoading: boolean;

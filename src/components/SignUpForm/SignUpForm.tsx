@@ -1,8 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { ROUTE } from "../../routers";
+import { ROUTE } from "routers";
 import * as styles from "./styles";
 import { useRef, useState } from "react";
-import { FormButton, FormInput, Modal } from "../../components";
+import { FormButton, FormInput, Modal } from "components";
 import { createUser, getUsersSelector, useAppDispatch, useAppSelector } from "store";
 
 export type SignUpFormValue = {

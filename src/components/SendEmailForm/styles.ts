@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BODY, COLOR, H2, H3, MEDIA, SUBLINE13 } from "../../ui";
+import { BODY, COLOR, H2, H3, MEDIA, SUBLINE13 } from "ui";
 
 export const Form = styled.form`
   width: 574px;

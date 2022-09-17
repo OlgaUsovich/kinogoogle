@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { getUsersSelector, resetPassword, useAppDispatch, useAppSelector } from "store";
-import { FormButton, FormInput } from "../../components";
+import { FormButton, FormInput } from "components";
 import { Form, ErrorMessage, FormContainer, InputsContainer, Title } from "./styles";
 
 export type ChangePasswordFormValue = {

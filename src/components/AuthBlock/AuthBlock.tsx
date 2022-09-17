@@ -1,10 +1,10 @@
 import { FiUser } from "react-icons/fi";
 import * as styles from "./styles";
-import { ROUTE } from "../../routers";
-import { ArrowButtonIcon } from "../../assets";
+import { ROUTE } from "routers";
+import { ArrowButtonIcon } from "assets";
 import { useToggle } from "react-use";
 import { useDetectClickOutside } from "react-detect-click-outside";
-import { getUserInitials } from "../../utils";
+import { getUserInitials } from "utils";
 import { useWindowSize } from "hooks";
 
 interface IProps {

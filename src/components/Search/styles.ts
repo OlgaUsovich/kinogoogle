@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR, H2, MEDIA, SUBLINE13 } from "../../ui";
+import { COLOR, H2, MEDIA, SUBLINE13 } from "ui";
 
 export const SearchWrapper = styled.div`
   grid-area: search;

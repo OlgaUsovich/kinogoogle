@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR } from "../../ui";
+import { COLOR } from "ui";
 
 export const CheckBoxWrapper = styled.div`
   position: relative;

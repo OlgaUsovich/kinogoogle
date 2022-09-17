@@ -1,5 +1,5 @@
 import { ChangeEventHandler, useState } from "react";
-import { ISearchOptions } from "../types";
+import { ISearchOptions } from "types";
 
 export const useInput = (initialValue: string): ISearchOptions => {
   const [value, setValue] = useState<string>(initialValue);

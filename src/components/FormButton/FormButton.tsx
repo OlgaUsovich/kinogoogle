@@ -1,4 +1,4 @@
-import { Spinner } from "../Spinner";
+import { Spinner } from "components";
 import { StyledButton } from "./styles";
 
 interface IProps {

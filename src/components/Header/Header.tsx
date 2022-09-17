@@ -1,11 +1,7 @@
-import { Search } from "../Search";
-import { AuthBlock } from "../AuthBlock";
+import { Search, AuthBlock, Logo, BurgerButton } from "components";
 import { Wrapper } from "./styles";
-import { Logo } from "../../components";
-import { BurgerButton } from "../BurgerButton";
-import { useAppSelector } from "../../store/hooks";
-import { useWindowSize } from "../../hooks";
-import { getUserInfoSelector } from "store";
+import { useAppSelector, getUserInfoSelector } from "store";
+import { useWindowSize } from "hooks";
 
 interface IProps {
   isNavOpen: boolean;

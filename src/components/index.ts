@@ -14,13 +14,19 @@ import { RequireAuth } from "./RequireAuth";
 import { Spinner } from "./Spinner";
 import { Switcher } from "./Switcher";
 import { FormInput } from "./FormInput";
-import { FiltersFormValue } from "./Search";
+import { FiltersFormValue, Search } from "./Search";
 import { ChangePasswordForm, ChangePasswordFormValue } from "./ChangePasswordForm";
 import { SendEmailForm, SendEmailFormValue } from "./SendEmailForm";
 import { SettingsForm, SettingsFormValue } from "./SettingsForm";
 import { SignInForm, SignInFormValue } from "./SignInForm";
 import { SignUpForm, SignUpFormValue } from "./SignUpForm";
 import { EmptyPage } from "./EmptyPage";
+import { AuthBlock } from "./AuthBlock";
+import { BurgerButton } from "./BurgerButton";
+import { Header } from "./Header";
+import { Portal, PortalTarget } from "./Portal";
+import { CustomSelect } from "./CustomSelect";
+import { AuthMainTemplate } from "./AuthMainTemplate";
 
 export {
   MainTemplate,
@@ -44,7 +50,15 @@ export {
   SettingsForm,
   SignInForm,
   SignUpForm,
-  EmptyPage
+  EmptyPage,
+  Search,
+  AuthBlock,
+  BurgerButton,
+  Header,
+  Portal,
+  PortalTarget,
+  CustomSelect,
+  AuthMainTemplate
 };
 
 export type {

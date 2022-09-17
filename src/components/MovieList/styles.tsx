@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR, H1, MEDIA } from "../../ui";
+import { COLOR, H1, MEDIA } from "ui";
 
 export const StyledMovieList = styled.div`
   flex-grow: 1;

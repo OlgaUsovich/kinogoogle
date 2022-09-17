@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR, MEDIA } from "../../ui";
+import { COLOR, MEDIA } from "ui";
 
 export const Wrapper = styled.header`
   position: sticky;

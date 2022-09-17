@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IMovie } from "../../types";
+import { IMovie } from "types";
 
 interface FavoritesState {
   favorites: IMovie[];

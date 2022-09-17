@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR, SUBLINE13 } from "../../ui";
+import { COLOR, SUBLINE13 } from "ui";
 
 export const StyledButton = styled.button`
   width: 100%;

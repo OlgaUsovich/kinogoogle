@@ -27,6 +27,7 @@ import {
   changeTheme,
   createUser,
   logInUser,
+  logOutUser,
   resetPassword,
   sendResetEmail,
   setTheme,
@@ -61,7 +62,8 @@ export {
   getTrends,
   logInUser,
   resetPassword,
-  sendResetEmail
+  sendResetEmail,
+  logOutUser
 };
 
 export type { RootState, MoviesState };

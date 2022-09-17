@@ -2,7 +2,7 @@ import { useSearch } from "hooks";
 import { useEffect } from "react";
 import { getFavoritesSelector, getMoviesSelector, useAppSelector } from "store";
 import { filterFavorites } from "utils";
-import { EmptyPage, MovieList } from "../../components";
+import { EmptyPage, MovieList } from "components";
 import { Container } from "./styles";
 
 export const Favourits = () => {

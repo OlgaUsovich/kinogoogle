@@ -1,8 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { getUsersSelector, logInUser, useAppDispatch, useAppSelector } from "store";
-import { FormButton, FormInput } from "../../components";
-import { ROUTE } from "../../routers";
+import { FormButton, FormInput } from "components";
+import { ROUTE } from "routers";
 import * as styles from "./styles";
 
 export type SignInFormValue = {

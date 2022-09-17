@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { BODY, COLOR, MEDIA, SUBLINE11 } from "../../ui";
+import { BODY, COLOR, MEDIA, SUBLINE11 } from "ui";
 
 export const Nav = styled(motion.nav)`
   width: 158px;

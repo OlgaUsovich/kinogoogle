@@ -1,8 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useToggle } from "react-use";
-import { Header } from "../Header";
-import { Nav } from "../Nav";
+import { Header, Nav } from "components";
 import { Container, OutletContainer, Wrapper } from "./styles";
 
 export const MainTemplate = () => {
