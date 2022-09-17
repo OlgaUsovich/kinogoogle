@@ -49,7 +49,7 @@ export const Search = () => {
     },
   });
 
-  const { isLoading } = store.useAppSelector(getMoviesSelector);
+  const { isLoading, searchWord } = store.useAppSelector(getMoviesSelector);
 
   const onSubmit = ({ type, s, y }: FiltersFormValue) => {
     dispatch(store.cleanStore());
@@ -63,6 +63,7 @@ export const Search = () => {
       <Input placeholder="Search" type="text" {...search} />
       <styles.FilterButton onClick={handleFilters} type="button">
         <BsFilterRight />
+        {searchWord && <styles.FilterMark></styles.FilterMark>}
       </styles.FilterButton>
       {isOpen && (
         <Portal target={PortalTarget.FILTERS}>
@@ -104,7 +105,7 @@ export const Search = () => {
                   label="Year"
                   type="number"
                   validationType="year"
-                  errorMessage={errors.s?.message}
+                  errorMessage={errors.y?.message}
                 />
               </styles.InputsContainer>
               <styles.ButtonsBlock>

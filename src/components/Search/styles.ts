@@ -135,3 +135,12 @@ export const CancelButton = styled.button`
     cursor: wait;
   }
 `;
+
+export const FilterMark = styled.div`
+  position: absolute;
+  bottom: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: ${COLOR.PRIMARY};
+`;
