@@ -20,6 +20,7 @@ import { SendEmailForm, SendEmailFormValue } from "./SendEmailForm";
 import { SettingsForm, SettingsFormValue } from "./SettingsForm";
 import { SignInForm, SignInFormValue } from "./SignInForm";
 import { SignUpForm, SignUpFormValue } from "./SignUpForm";
+import { EmptyPage } from "./EmptyPage";
 
 export {
   MainTemplate,
@@ -42,7 +43,8 @@ export {
   SendEmailForm,
   SettingsForm,
   SignInForm,
-  SignUpForm
+  SignUpForm,
+  EmptyPage
 };
 
 export type {
