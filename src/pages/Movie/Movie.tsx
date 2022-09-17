@@ -6,7 +6,7 @@ import { FiShare2 } from "react-icons/fi";
 import { Badge, GenreList, Poster, Spinner } from "components";
 import { defineBadgeColor, isInFavorites } from "utils";
 import { COLOR } from "ui";
-import { ImdbIcon } from "assets";
+import { ImdbIcon, NoPosterImage } from "assets";
 import {
   addFavorite,
   getMovie,
@@ -60,12 +60,10 @@ export const Movie = () => {
     Writers: result.writer,
   };
 
-  console.log(isInFavorites(favorites, result));
-
   return (
     <styles.MovieInfo>
       <styles.PosterBlock>
-        <Poster img={result.poster} />
+        <Poster img={result.poster !== "N/A" ? result.poster : NoPosterImage} />
         {isInFavorites(favorites, result) && (
           <styles.FavoritesButton
             onClick={(event) => {
