@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { COLOR, MEDIA, SUBLINE13 } from "../../ui";
 
-export const StyledDiv = styled.div`
+export const Container = styled.div`
   justify-self: end;
   grid-area: burger;
   position: relative;
@@ -10,10 +10,6 @@ export const StyledDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 264px;
-
-  ${MEDIA.LG} {
-    display: none;
-  }
 `;
 
 export const Avatar = styled.div`
@@ -52,10 +48,6 @@ export const UserButton = styled.button<{ isOpen: boolean }>`
 export const UserName = styled.div`
   display: flex;
   align-items: center;
-
-  ${MEDIA.MD} {
-    display: none;
-  }
 `;
 
 export const LinksList = styled.div<{ isOpen: boolean }>`
