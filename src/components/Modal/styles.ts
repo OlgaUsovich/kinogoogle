@@ -42,8 +42,10 @@ export const Body = styled.div`
 `;
 
 export const Text = styled.p`
+  padding: 10px;
   ${H2};
   color: ${COLOR.WHITE};
+  text-align: center;
 `;
 
 export const PurpleText = styled.span`
