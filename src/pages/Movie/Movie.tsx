@@ -63,7 +63,10 @@ export const Movie = () => {
   return (
     <styles.MovieInfo>
       <styles.PosterBlock>
-        <Poster img={result.poster !== "N/A" ? result.poster : NoPosterImage} />
+        <Poster
+          img={result.poster !== "N/A" ? result.poster : NoPosterImage}
+          alt={`Poster ${result.title}`}
+        />
         {isInFavorites(favorites, result) && (
           <styles.FavoritesButton
             onClick={(event) => {

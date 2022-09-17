@@ -22,7 +22,10 @@ export const MovieCard = ({ movie }: IProps) => {
   const notify = () => toast.info(`Movie "${movie.title}" has deleted from favorites`);
   return (
     <Card to={`/${createPath(ROUTE.MOVIE, { id: movie.imdbID })}`}>
-      <Poster img={movie.poster !=="N/A" ? movie.poster : NoPosterImage} />
+      <Poster
+        img={movie.poster !== "N/A" ? movie.poster : NoPosterImage}
+        alt={`Poster ${movie.title}`}
+      />
       {isTrend(movie.year) ? (
         <Badge color={COLOR.PRIMARY} text={movie.year} type="card" svg={<AiFillFire />} />
       ) : (
