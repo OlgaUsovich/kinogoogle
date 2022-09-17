@@ -8,9 +8,10 @@ interface IProps {
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onBlur?: () => void;
   error?: string | undefined;
+  disabled?: boolean;
 }
 
-export const Input = ({ placeholder, type, value, onChange, onBlur, error }: IProps) => {
+export const Input = ({ placeholder, type, value, onChange, onBlur, error, disabled }: IProps) => {
   return (
     <StyledInput
       error={error}
@@ -19,6 +20,7 @@ export const Input = ({ placeholder, type, value, onChange, onBlur, error }: IPr
       value={value}
       onChange={onChange}
       onBlur={onBlur}
+      disabled={disabled}
     />
   );
 };

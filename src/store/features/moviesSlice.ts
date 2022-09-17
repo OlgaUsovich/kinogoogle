@@ -36,9 +36,10 @@ export const getTrends = createAsyncThunk<
   ISearchMovieListAPI,
   MovieRequestParams,
   { rejectValue: string }
->("movies/getTrends", async ({ page }, { rejectWithValue }) => {
+>("movies/getTrends", async ({ page, s, type }, { rejectWithValue }) => {
   try {
-    return await movieAPI.getTrends({ page });
+    const result = await movieAPI.getTrends({ page, s, type });
+    return result.Search ? result : rejectWithValue(result.Error);
   } catch (error) {
     const axiosError = error as AxiosError;
     return rejectWithValue(axiosError.message);
@@ -111,6 +112,7 @@ export const moviesSlice = createSlice({
     });
     builder.addCase(getTrends.rejected, (state, { payload }) => {
       state.isLoading = false;
+      state.results = [];
       if (payload) {
         state.error = payload;
       }

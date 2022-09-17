@@ -12,6 +12,8 @@ import * as store from "../../store";
 import * as styles from "./styles";
 import { getMoviesSelector } from "../../store";
 import { FormInput } from "components";
+import { useLocation } from "react-router-dom";
+import { ROUTE } from "routers";
 
 export type FiltersFormValue = {
   type: IGenresOption | null;
@@ -23,6 +25,7 @@ export const Search = () => {
   const search = useInput("");
   const debounceValue = useDebounce(search.value, 500);
   const dispatch = store.useAppDispatch();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     dispatch(store.addSearchWord(debounceValue));
@@ -39,6 +42,7 @@ export const Search = () => {
     reset,
     formState: { errors },
     control,
+    getValues
   } = useForm<FiltersFormValue>({
     mode: "onSubmit",
     reValidateMode: "onSubmit",
@@ -49,12 +53,12 @@ export const Search = () => {
     },
   });
 
-  const { isLoading, searchWord } = store.useAppSelector(getMoviesSelector);
+  const { isLoading } = store.useAppSelector(getMoviesSelector);
+  const showMark = getValues("type") || getValues("s") || getValues("y");
 
   const onSubmit = ({ type, s, y }: FiltersFormValue) => {
     dispatch(store.cleanStore());
     dispatch(store.addSearchParams({ searchWord: s, type: type && type.value, year: y }));
-    reset();
     handleFilters();
   };
 
@@ -63,7 +67,7 @@ export const Search = () => {
       <Input placeholder="Search" type="text" {...search} />
       <styles.FilterButton onClick={handleFilters} type="button">
         <BsFilterRight />
-        {searchWord && <styles.FilterMark></styles.FilterMark>}
+        {showMark && <styles.FilterMark></styles.FilterMark>}
       </styles.FilterButton>
       {isOpen && (
         <Portal target={PortalTarget.FILTERS}>
@@ -101,9 +105,14 @@ export const Search = () => {
                 <FormInput
                   name="y"
                   control={control}
-                  placeholder="Enter year"
+                  placeholder={
+                    pathname === `/${ROUTE.TRENDS}`
+                      ? "In Trends there're only current year movies"
+                      : "Enter year"
+                  }
                   label="Year"
                   type="number"
+                  disabled={pathname === `/${ROUTE.TRENDS}`}
                   validationType="year"
                   errorMessage={errors.y?.message}
                 />

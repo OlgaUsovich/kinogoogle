@@ -14,6 +14,7 @@ interface IProps {
   placeholder: string;
   errorMessage?: string;
   validate?: (value: string, currentPassword: string) => boolean | string;
+  disabled?: boolean;
 }
 
 const validateRules = {
@@ -74,6 +75,7 @@ export const FormInput = ({
   validationType,
   errorMessage,
   validate,
+  disabled
 }: IProps) => {
   return (
     <>
@@ -91,6 +93,7 @@ export const FormInput = ({
                 value={value}
                 onChange={onChange}
                 error={errorMessage}
+                disabled={disabled}
               />
             );
           }}

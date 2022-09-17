@@ -16,8 +16,7 @@ class MovieAPI {
   private readonly API_KEY: MovieRequestParams = {
     apikey: process.env.REACT_APP_MOVIE_API_KEY,
   };
-  private readonly BASE_URL = process.env
-    .REACT_APP_BASE_URL_MOVIES_API as string;
+  private readonly BASE_URL = process.env.REACT_APP_BASE_URL_MOVIES_API as string;
   private readonly API = axios.create({
     baseURL: this.BASE_URL,
     params: this.API_KEY,
@@ -70,9 +69,10 @@ class MovieAPI {
   }
 
   public async getTrends(newParams: MovieRequestParams) {
+    const searchWord = newParams.s || this.getRandomParam();
     const params = {
       ...newParams,
-      s: this.getRandomParam(),
+      s: searchWord,
       y: new Date().getFullYear(),
     };
 
@@ -83,10 +83,7 @@ class MovieAPI {
     return data;
   }
 
-  public async getSearchMovies(
-    searchWord: string | undefined,
-    newParams: MovieRequestParams
-  ) {
+  public async getSearchMovies(searchWord: string | undefined, newParams: MovieRequestParams) {
     const params = { ...newParams, s: searchWord };
 
     const { data } = await this.API.get<ISearchMovieListAPI>("", {

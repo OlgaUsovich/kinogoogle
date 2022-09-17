@@ -12,16 +12,19 @@ import { Container } from "./styles";
 
 export const Trends = () => {
   const dispatch = useAppDispatch();
-  const { results, isLoading, error, moviesCount }: MoviesState = useAppSelector(getMoviesSelector);
+  const { results, isLoading, error, moviesCount, searchWord, type }: MoviesState =
+    useAppSelector(getMoviesSelector);
   const [page, setPage] = useState<string>("1");
 
   useEffect(() => {
-    dispatch(getTrends({ page }));
-  }, [page, dispatch]);
+    if (searchWord !== undefined) {
+      dispatch(getTrends({ page, s: searchWord, type }));
+    }
+  }, [page, dispatch, searchWord, type]);
 
   useEffect(() => {
     dispatch(cleanStore()); // <-- reset when unmounting
-  }, [dispatch]);
+  }, [dispatch, searchWord, type]);
 
   const handlePagination = () => {
     setPage(`${+page + 1}`);

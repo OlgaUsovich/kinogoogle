@@ -17,10 +17,6 @@ export const StyledInput = styled.input<{error: string | undefined}>`
 
     &::placeholder { 
         color: ${COLOR.SECONDARY};
-
-        &:disabled {
-            color: ${COLOR.LIGHT};
-        }
     }
 
     &:focus-visible {
@@ -28,6 +24,10 @@ export const StyledInput = styled.input<{error: string | undefined}>`
     }
 
     &:disabled {
-        background-color: ${COLOR.SECONDARY}
+        background-color: ${COLOR.SECONDARY};
+
+        &::placeholder {
+            color: ${COLOR.DARK};
+        }
     }
 `;
