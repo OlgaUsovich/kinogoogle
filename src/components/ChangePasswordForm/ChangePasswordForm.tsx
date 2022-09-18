@@ -56,7 +56,10 @@ export const ChangePasswordForm = () => {
             label="Confirm Password"
             type="password"
             validationType="settingsPassword"
-            validate={(value) => value === newPassword.current || "The passwords do not match"}
+            validate={{
+              validate: (value: string) =>
+                value === newPassword.current || "The passwords do not match",
+            }}
             errorMessage={errors.confirmPassword?.message}
           />
         </InputsContainer>

@@ -1,6 +1,6 @@
 import { Input } from "components";
 import { HTMLInputTypeAttribute } from "react";
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, Validate } from "react-hook-form";
 import { InputNames } from "types";
 import * as styles from "./styles";
 
@@ -13,7 +13,7 @@ interface IProps {
   validationType: keyof typeof validateRules;
   placeholder: string;
   errorMessage?: string;
-  validate?: (value: string, currentPassword: string) => boolean | string;
+  validate?: Validate<any> | Record<string, Validate<any>> | undefined;
   disabled?: boolean;
 }
 

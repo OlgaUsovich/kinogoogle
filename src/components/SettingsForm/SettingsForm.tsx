@@ -10,9 +10,9 @@ import {
   getUsersSelector,
   setTheme,
 } from "store";
-import { FormButton, FormInput, Switcher } from "../../components";
-import { ROUTE } from "../../routers";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { FormButton, FormInput, Switcher } from "components";
+import { ROUTE } from "routers";
+import { useAppDispatch, useAppSelector } from "store";
 import * as styles from "./styles";
 
 export type SettingsFormValue = {
@@ -121,7 +121,10 @@ export const SettingsForm = () => {
             label="Confirm Password"
             type="password"
             validationType="settingsPassword"
-            validate={(value) => value === newPassword.current || "The passwords do not match"}
+            validate={{
+              validate: (value: string) =>
+                value === newPassword.current || "The passwords do not match",
+            }}
             errorMessage={errors.confirmPassword?.message}
           />
         </styles.PasswordInputsContainer>

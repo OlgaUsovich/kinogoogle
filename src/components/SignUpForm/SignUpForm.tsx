@@ -86,7 +86,10 @@ export const SignUpForm = () => {
             label="Confirm password"
             type="password"
             validationType="password"
-            validate={(value) => value === password.current || "The passwords do not match"}
+            validate={{
+              validate: (value: string) =>
+                value === password.current || "The passwords do not match",
+            }}
             errorMessage={errors.confirmPassword?.message}
           />
         </styles.InputsContainer>
