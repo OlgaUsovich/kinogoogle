@@ -7,6 +7,7 @@ import {
   changeName,
   changePassword,
   changeTheme,
+  checkCurrentPassword,
   getUsersSelector,
   setTheme,
 } from "store";
@@ -50,22 +51,27 @@ export const SettingsForm = () => {
   const newPassword = useRef({});
   newPassword.current = watch("newPassword", "");
 
-  const onSubmit: SubmitHandler<SettingsFormValue> = ({
+  const onSubmit: SubmitHandler<SettingsFormValue> = async ({
     email,
     name,
     password,
     newPassword,
     theme,
   }) => {
-    dirtyFields.name && dispatch(changeName(name));
-    dirtyFields.email && dispatch(changeEmail(email));
-    dirtyFields.newPassword && dispatch(changePassword({ currentPassword: password, newPassword }));
+    dirtyFields.name && (await dispatch(changeName(name)).unwrap());
+    dirtyFields.email && (await dispatch(changeEmail(email)).unwrap());
+    dirtyFields.password && (await dispatch(checkCurrentPassword(password)).unwrap());
+    dirtyFields.newPassword &&
+      (await dispatch(changePassword({ currentPassword: password, newPassword })).unwrap());
     dispatch(setTheme(theme));
     dispatch(changeTheme());
-    notify();
-    navigate(`${ROUTE.HOME}`);
+    if (!error) {
+      notify();
+      navigate(`${ROUTE.HOME}`);
+    }
   };
-
+  if (!isLoading) {
+  }
   return (
     <styles.Form onSubmit={handleSubmit(onSubmit)}>
       <styles.Block>
