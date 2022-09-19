@@ -126,7 +126,7 @@ export const changePassword = createAsyncThunk<
   "user/changePassword",
   async ({ currentPassword, newPassword }, { rejectWithValue, dispatch }) => {
     try {
-      const response = await dispatch(checkCurrentPassword(currentPassword));
+      const response = await dispatch(checkCurrentPassword(currentPassword)).unwrap();
       const auth = getAuth();
       const user = auth.currentUser;
       if (user) {
