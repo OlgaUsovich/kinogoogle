@@ -15,6 +15,7 @@ import {
   getMovieDetailSelector,
   getFavoritesSelector,
   removeFavorite,
+  getUserInfoSelector,
 } from "store";
 import * as styles from "./styles";
 import { MdFavorite } from "react-icons/md";
@@ -25,6 +26,8 @@ export const Movie = () => {
   const { result, isLoading, error } = useAppSelector(getMovieDetailSelector);
   const notify = () => toast.success(`Movie "${result.title}" has added to favorites`);
   const { favorites } = useAppSelector(getFavoritesSelector);
+  const user = useAppSelector(getUserInfoSelector);
+  const canAddToFavorites = user ? false : true;
 
   useEffect(() => {
     if (id) {
@@ -84,7 +87,7 @@ export const Movie = () => {
               dispatch(addFavorite(result));
               notify();
             }}
-            disabled={Boolean(isInFavorites(favorites, result))}
+            disabled={canAddToFavorites || Boolean(isInFavorites(favorites, result))}
           >
             <BsFillBookmarkFill />
           </styles.Button>
