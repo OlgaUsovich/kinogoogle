@@ -4,7 +4,7 @@ import { COLOR, MEDIA, SUBLINE12 } from "ui";
 
 export const Card = styled(Link)`
   position: relative;
-  width: 266px;
+  width: 100%;
   text-decoration: none;
 
   &:hover > img {
@@ -16,12 +16,10 @@ export const Card = styled(Link)`
   }
 
   ${MEDIA.SM} {
-    width: 208px;
     height: 379px;
   }
 
   ${MEDIA.XS} {
-    width: 272px;
     height: 437px;
     gap: 0;
   }
