@@ -6,6 +6,10 @@ export const Card = styled(Link)`
   position: relative;
   text-decoration: none;
 
+  &:hover > img {
+    filter: grayscale(80%);
+  }
+
   &:hover > h3 {
     color: ${COLOR.PRIMARY};
   }
