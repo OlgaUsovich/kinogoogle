@@ -75,6 +75,7 @@ export const Movie = () => {
             onClick={(event) => {
               event.preventDefault();
               dispatch(removeFavorite(result));
+              const notify = () => toast.info(`Movie "${result.title}" has deleted from favorites`);
               notify();
             }}
           >

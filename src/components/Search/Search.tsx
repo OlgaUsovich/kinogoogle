@@ -62,18 +62,18 @@ export const Search = () => {
     <styles.SearchWrapper>
       <Input
         placeholder={
-          pathname === `/${ROUTE.SETTINGS}`
+          pathname === `/${ROUTE.SETTINGS}` || pathname.includes("movie")
             ? "Search is available only on pages with movie cards"
             : "Search"
         }
-        disabled={pathname === `/${ROUTE.SETTINGS}`}
+        disabled={pathname === `/${ROUTE.SETTINGS}` || pathname.includes("movie")}
         type="text"
         {...search}
       />
       <styles.FilterButton
         onClick={handleFilters}
         type="button"
-        disabled={pathname === `/${ROUTE.SETTINGS}`}
+        disabled={pathname === `/${ROUTE.SETTINGS}` || pathname.includes("movie")}
       >
         <BsFilterRight />
         {showMark && <styles.FilterMark></styles.FilterMark>}

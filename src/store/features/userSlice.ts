@@ -158,29 +158,22 @@ export const checkCurrentPassword = createAsyncThunk<any, string, { rejectValue:
 
 export const resetPassword = createAsyncThunk<
   void,
-  {newPassword: string},
+  { newPassword: string },
   { rejectValue: string }
->(
-  "user/resetPassword",
-  async ({ newPassword }, { rejectWithValue, dispatch }) => {
-    try {
-      const auth = getAuth();
-      const user = auth.currentUser;
-      if (user) {
-        await updatePassword(user, newPassword);
-      }
-    } catch (error) {
-      const firebaseError = error as FirebaseError;
-      return rejectWithValue(firebaseError.code);
+>("user/resetPassword", async ({ newPassword }, { rejectWithValue, dispatch }) => {
+  try {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user) {
+      await updatePassword(user, newPassword);
     }
-  },
-);
+  } catch (error) {
+    const firebaseError = error as FirebaseError;
+    return rejectWithValue(firebaseError.code);
+  }
+});
 
-export const sendResetEmail = createAsyncThunk<
-  void,
-  {email: string},
-  { rejectValue: string }
->(
+export const sendResetEmail = createAsyncThunk<void, { email: string }, { rejectValue: string }>(
   "user/sendResetEmail",
   async ({ email }, { rejectWithValue, dispatch }) => {
     try {
