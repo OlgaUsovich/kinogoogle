@@ -1,5 +1,5 @@
 import { ISearchMovie } from "types";
-import { MovieCard, Spinner } from "components";
+import { MovieCard } from "components";
 import { ErrorMessage, Error, Container, StyledMovieList } from "./styles";
 
 interface IProps {
@@ -9,13 +9,6 @@ interface IProps {
 }
 
 export const MovieList = ({ movies, isLoading, errorMessage }: IProps) => {
-  if (isLoading) {
-    return (
-      <Container>
-        <Spinner />
-      </Container>
-    );
-  }
   if (errorMessage) {
     return (
       <Container>
