@@ -7,7 +7,9 @@ export const defineBadgeColor = (raiting: string): string => {
 };
 
 export const defineBadgeColorYear = (year: string): string => {
-  const numYear = Number(year.split("-")[0]);
+  const years = year.split("–");
+  const numYear = years.length > 2 ? Number(year.split("–")[-1]) : Number(year.split("–")[0]);
+
   return numYear < 2000 ? COLOR.ORANGE : numYear < 2010 ? COLOR.YELLOW : COLOR.GREEN;
 };
 
@@ -20,7 +22,8 @@ export const getUserInitials = (name: string): string => {
 };
 
 export const isTrend = (year: string): boolean => {
-  const numYear = Number(year.split("-")[0]);
+  const years = year.split("–");
+  const numYear = years.length > 2 ? Number(year.split("–")[-1]) : Number(year.split("–")[0]);
   return numYear === new Date().getFullYear() ? true : false;
 };
 
