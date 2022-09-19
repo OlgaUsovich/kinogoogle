@@ -2,13 +2,13 @@ import { Button, Spinner } from "./styles";
 
 interface IProps {
   onClick: () => void;
-  disabled: boolean;
+  isLoading: boolean;
 }
 
-export const PaginateButton = ({ onClick, disabled }: IProps) => {
+export const PaginateButton = ({ onClick, isLoading }: IProps) => {
   return (
-    <Button onClick={onClick} disabled={disabled}>
-      Show more<Spinner></Spinner>
+    <Button onClick={onClick}>
+      Show more<Spinner isLoading={isLoading}></Spinner>
     </Button>
   );
 };

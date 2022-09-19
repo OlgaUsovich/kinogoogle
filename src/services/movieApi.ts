@@ -69,7 +69,10 @@ class MovieAPI {
   }
 
   public async getTrends(newParams: MovieRequestParams) {
-    const searchWord = newParams.s || this.getRandomParam();
+    if (!this.requestWord) {
+      this.requestWord = this.getRandomParam();
+    }
+    const searchWord = newParams.s || this.requestWord;
     const params = {
       ...newParams,
       s: searchWord,

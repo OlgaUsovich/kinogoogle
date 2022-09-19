@@ -29,10 +29,9 @@ export const Home = () => {
   return (
     <Container>
       <MovieList movies={results} isLoading={isLoading} errorMessage={error} />
-      <PaginateButton
-        onClick={handlePagination}
-        disabled={moviesCount ? results.length === +moviesCount : false}
-      />
+      {moviesCount && results.length < +moviesCount && (
+        <PaginateButton onClick={handlePagination} isLoading={isLoading} />
+      )}
     </Container>
   );
 };

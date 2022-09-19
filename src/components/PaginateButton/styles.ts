@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { COLOR, SUBLINE13 } from "ui";
 
 const rotation = keyframes`
@@ -11,7 +11,7 @@ const rotation = keyframes`
 }
 `;
 
-export const Spinner = styled.span`
+export const Spinner = styled.span<{isLoading: boolean}>`
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -21,6 +21,7 @@ export const Spinner = styled.span`
   margin-left: 10px;
   display: inline-block;
   box-sizing: border-box;
+  animation: ${(props) => props.isLoading ? css`${rotation} 1s linear infinite` : 0}
 `;
 
 export const Button = styled.button`
@@ -32,10 +33,6 @@ export const Button = styled.button`
   ${SUBLINE13};
   color: ${COLOR.WHITE};
   background-color: ${COLOR.GRAPHITE};
-
-  &:hover >:first-child {
-    animation: ${rotation} 1s linear infinite;
-  }
 
   &:disabled {
     background-color: ${COLOR.SECONDARY};
