@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { FiShare2 } from "react-icons/fi";
 import { Badge, GenreList, Poster, Spinner } from "components";
-import { defineBadgeColor, isInFavorites } from "utils";
+import { copyUrl, defineBadgeColor, isInFavorites } from "utils";
 import { COLOR } from "ui";
 import { ImdbIcon, NoPosterImage } from "assets";
 import {
@@ -91,7 +91,13 @@ export const Movie = () => {
           >
             <BsFillBookmarkFill />
           </styles.Button>
-          <styles.Button>
+          <styles.Button
+            onClick={() => {
+              copyUrl();
+              const notify = () => toast.success("Link copeid to the clipboard");
+              notify();
+            }}
+          >
             <FiShare2 />
           </styles.Button>
         </styles.ButtonGroup>
