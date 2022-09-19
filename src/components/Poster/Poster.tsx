@@ -1,4 +1,4 @@
-import { StyledImg } from "./styles";
+import { PosterImg } from "./styles";
 
 interface IProps {
   img: string;
@@ -6,5 +6,5 @@ interface IProps {
 }
 
 export const Poster = ({ img, alt }: IProps) => {
-  return <StyledImg src={img} alt={alt} />;
+  return <PosterImg src={img} alt={alt} />;
 };
