@@ -38,7 +38,7 @@ export const Search = () => {
     reset,
     formState: { errors },
     control,
-    getValues
+    getValues,
   } = useForm<FiltersFormValue>({
     mode: "onSubmit",
     reValidateMode: "onSubmit",
@@ -60,8 +60,21 @@ export const Search = () => {
 
   return (
     <styles.SearchWrapper>
-      <Input placeholder="Search" type="text" {...search} />
-      <styles.FilterButton onClick={handleFilters} type="button">
+      <Input
+        placeholder={
+          pathname === `/${ROUTE.SETTINGS}`
+            ? "Search is available only on pages with movie cards"
+            : "Search"
+        }
+        disabled={pathname === `/${ROUTE.SETTINGS}`}
+        type="text"
+        {...search}
+      />
+      <styles.FilterButton
+        onClick={handleFilters}
+        type="button"
+        disabled={pathname === `/${ROUTE.SETTINGS}`}
+      >
         <BsFilterRight />
         {showMark && <styles.FilterMark></styles.FilterMark>}
       </styles.FilterButton>
