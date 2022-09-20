@@ -28,6 +28,7 @@ export const Movie = () => {
   const { favorites } = useAppSelector(getFavoritesSelector);
   const user = useAppSelector(getUserInfoSelector);
   const canAddToFavorites = user ? false : true;
+  const canDeleteFromFavorites = user ? true : false;
 
   useEffect(() => {
     if (id) {
@@ -70,7 +71,7 @@ export const Movie = () => {
           img={result.poster !== "N/A" ? result.poster : NoPosterImage}
           alt={`Poster ${result.title}`}
         />
-        {isInFavorites(favorites, result) && (
+        {canDeleteFromFavorites && isInFavorites(favorites, result) && (
           <styles.FavoritesButton
             onClick={(event) => {
               event.preventDefault();
