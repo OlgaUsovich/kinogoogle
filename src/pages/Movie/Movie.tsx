@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { FiShare2 } from "react-icons/fi";
-import { Badge, GenreList, Poster, Spinner } from "components";
+import { Badge, GenreList, Poster, Spinner, Carousel } from "components";
 import { copyUrl, defineBadgeColor, isInFavorites } from "utils";
 import { COLOR } from "ui";
 import { ImdbIcon, NoPosterImage } from "assets";
@@ -16,6 +18,8 @@ import {
   getFavoritesSelector,
   removeFavorite,
   getUserInfoSelector,
+  getMoviesSelector,
+  getMovies,
 } from "store";
 import * as styles from "./styles";
 import { MdFavorite } from "react-icons/md";
@@ -35,6 +39,12 @@ export const Movie = () => {
       dispatch(getMovie(id));
     }
   }, [dispatch, id]);
+
+  const { results: recomends } = useAppSelector(getMoviesSelector);
+
+  useEffect(() => {
+    dispatch(getMovies({ page: "1" }));
+  }, [dispatch]);
 
   if (isLoading) {
     return (
@@ -65,69 +75,78 @@ export const Movie = () => {
   };
 
   return (
-    <styles.MovieInfo>
-      <styles.PosterBlock>
-        <Poster
-          img={result.poster !== "N/A" ? result.poster : NoPosterImage}
-          alt={`Poster ${result.title}`}
-        />
-        {canDeleteFromFavorites && isInFavorites(favorites, result) && (
-          <styles.FavoritesButton
-            onClick={(event) => {
-              event.preventDefault();
-              dispatch(removeFavorite(result));
-              const notify = () => toast.info(`Movie "${result.title}" has deleted from favorites`);
-              notify();
-            }}
-          >
-            <Badge type="fav" color={COLOR.GRAPHITE} svg={<MdFavorite />} />
-          </styles.FavoritesButton>
-        )}
-        <styles.ButtonGroup>
-          <styles.Button
-            onClick={() => {
-              dispatch(addFavorite(result));
-              notify();
-            }}
-            disabled={canAddToFavorites || Boolean(isInFavorites(favorites, result))}
-          >
-            <BsFillBookmarkFill />
-          </styles.Button>
-          <styles.Button
-            onClick={() => {
-              copyUrl();
-              const notify = () => toast.success("Link copeid to the clipboard");
-              notify();
-            }}
-          >
-            <FiShare2 />
-          </styles.Button>
-        </styles.ButtonGroup>
-      </styles.PosterBlock>
-      <styles.InfoBlock>
-        <GenreList genreList={result.genre} />
-        <styles.MovieTitle>{result.title}</styles.MovieTitle>
-        <styles.BadgeBlock>
-          <Badge
-            text={result.imdbRating}
-            color={defineBadgeColor(result.imdbRating)}
-            type="detail"
+    <>
+      <styles.MovieInfo>
+        <styles.PosterBlock>
+          <Poster
+            img={result.poster !== "N/A" ? result.poster : NoPosterImage}
+            alt={`Poster ${result.title}`}
           />
-          <Badge text={result.imdbRating} color={COLOR.GRAPHITE} svg={<ImdbIcon />} type="detail" />
-          <Badge text={result.runtime} color={COLOR.GRAPHITE} type="detail" />
-        </styles.BadgeBlock>
-        <styles.Description>{result.plot}</styles.Description>
-        <styles.DataTable>
-          {Object.entries(dataSet).map(([key, value]) => {
-            return (
-              <>
-                <styles.ParamName>{key}</styles.ParamName>
-                <styles.Param>{value && value !== "N/A" ? value : "---"}</styles.Param>
-              </>
-            );
-          })}
-        </styles.DataTable>
-      </styles.InfoBlock>
-    </styles.MovieInfo>
+          {canDeleteFromFavorites && isInFavorites(favorites, result) && (
+            <styles.FavoritesButton
+              onClick={(event) => {
+                event.preventDefault();
+                dispatch(removeFavorite(result));
+                const notify = () =>
+                  toast.info(`Movie "${result.title}" has deleted from favorites`);
+                notify();
+              }}
+            >
+              <Badge type="fav" color={COLOR.GRAPHITE} svg={<MdFavorite />} />
+            </styles.FavoritesButton>
+          )}
+          <styles.ButtonGroup>
+            <styles.Button
+              onClick={() => {
+                dispatch(addFavorite(result));
+                notify();
+              }}
+              disabled={canAddToFavorites || Boolean(isInFavorites(favorites, result))}
+            >
+              <BsFillBookmarkFill />
+            </styles.Button>
+            <styles.Button
+              onClick={() => {
+                copyUrl();
+                const notify = () => toast.success("Link copeid to the clipboard");
+                notify();
+              }}
+            >
+              <FiShare2 />
+            </styles.Button>
+          </styles.ButtonGroup>
+        </styles.PosterBlock>
+        <styles.InfoBlock>
+          <GenreList genreList={result.genre} />
+          <styles.MovieTitle>{result.title}</styles.MovieTitle>
+          <styles.BadgeBlock>
+            <Badge
+              text={result.imdbRating}
+              color={defineBadgeColor(result.imdbRating)}
+              type="detail"
+            />
+            <Badge
+              text={result.imdbRating}
+              color={COLOR.GRAPHITE}
+              svg={<ImdbIcon />}
+              type="detail"
+            />
+            <Badge text={result.runtime} color={COLOR.GRAPHITE} type="detail" />
+          </styles.BadgeBlock>
+          <styles.Description>{result.plot}</styles.Description>
+          <styles.DataTable>
+            {Object.entries(dataSet).map(([key, value]) => {
+              return (
+                <>
+                  <styles.ParamName>{key}</styles.ParamName>
+                  <styles.Param>{value && value !== "N/A" ? value : "---"}</styles.Param>
+                </>
+              );
+            })}
+          </styles.DataTable>
+        </styles.InfoBlock>
+      </styles.MovieInfo>
+      <Carousel items={recomends} title="Recommendations" />
+    </>
   );
 };

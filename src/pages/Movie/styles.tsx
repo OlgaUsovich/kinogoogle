@@ -98,8 +98,8 @@ export const Button = styled.button`
     cursor: auto;
 
     &:hover {
-    color: ${COLOR.LIGHT};
-  }
+      color: ${COLOR.LIGHT};
+    }
   }
 `;
 

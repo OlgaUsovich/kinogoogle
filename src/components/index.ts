@@ -27,6 +27,7 @@ import { Header } from "./Header";
 import { Portal, PortalTarget } from "./Portal";
 import { CustomSelect } from "./CustomSelect";
 import { AuthMainTemplate } from "./AuthMainTemplate";
+import { Carousel } from "./Carousel";
 
 export {
   MainTemplate,
@@ -58,7 +59,8 @@ export {
   Portal,
   PortalTarget,
   CustomSelect,
-  AuthMainTemplate
+  AuthMainTemplate,
+  Carousel
 };
 
 export type {
