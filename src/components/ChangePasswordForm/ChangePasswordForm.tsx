@@ -3,6 +3,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { getUsersSelector, resetPassword, useAppDispatch, useAppSelector } from "store";
 import { FormButton, FormInput } from "components";
 import { Form, ErrorMessage, FormContainer, InputsContainer, Title } from "./styles";
+import { useNavigate } from "react-router-dom";
+import { ROUTE } from "routers";
+import { toast } from "react-toastify";
 
 export type ChangePasswordFormValue = {
   newPassword: string;
@@ -29,10 +32,16 @@ export const ChangePasswordForm = () => {
   newPassword.current = watch("newPassword", "");
   const dispatch = useAppDispatch();
   const { isLoading, error } = useAppSelector(getUsersSelector);
+  const navigate = useNavigate();
+  const notify = () => toast.success("Password successfully changed");
 
   const onSubmit: SubmitHandler<ChangePasswordFormValue> = ({ newPassword }) => {
     dispatch(resetPassword({ newPassword }));
-    reset();
+    if (!error) {
+      reset();
+      navigate(`/${ROUTE.HOME}`);
+      notify();
+    }
   };
 
   return (
