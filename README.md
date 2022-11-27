@@ -138,7 +138,7 @@ You can change authentication data in settings block.
 ## Roadmap
 
 - [x] Add page for empty cards list
-- [ ] Add Recomendations on movie page
+- [x] Add Recomendations on movie page
 - [ ] Improve light theme colors
 - [ ] Add pagination on favorites page
 
