@@ -139,8 +139,8 @@ You can change authentication data in settings block.
 
 - [x] Add page for empty cards list
 - [x] Add Recomendations on movie page
+- [x] Add pagination on favorites page
 - [ ] Improve light theme colors
-- [ ] Add pagination on favorites page
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
