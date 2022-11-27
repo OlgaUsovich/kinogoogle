@@ -137,10 +137,12 @@ export const Movie = () => {
           <styles.DataTable>
             {Object.entries(dataSet).map(([key, value]) => {
               return (
-                <>
+                <styles.DataTableItem key={key + value}>
                   <styles.ParamName>{key}</styles.ParamName>
-                  <styles.Param>{value && value !== "N/A" ? value : "---"}</styles.Param>
-                </>
+                  <styles.Param>
+                    {value && value !== "N/A" ? value : "---"}
+                  </styles.Param>
+                </styles.DataTableItem>
               );
             })}
           </styles.DataTable>
