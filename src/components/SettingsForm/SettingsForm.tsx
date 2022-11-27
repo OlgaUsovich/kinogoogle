@@ -56,15 +56,12 @@ export const SettingsForm = () => {
     name,
     password,
     newPassword,
-    theme,
   }) => {
     dirtyFields.name && (await dispatch(changeName(name)).unwrap());
     dirtyFields.email && (await dispatch(changeEmail(email)).unwrap());
     dirtyFields.password && (await dispatch(checkCurrentPassword(password)).unwrap());
     dirtyFields.newPassword &&
       (await dispatch(changePassword({ currentPassword: password, newPassword })).unwrap());
-    dispatch(setTheme(theme));
-    dispatch(changeTheme());
     if (!error) {
       notify();
       navigate(`${ROUTE.HOME}`);
@@ -85,7 +82,7 @@ export const SettingsForm = () => {
               validationType="name"
               errorMessage={errors.name?.message}
             />
-  
+
             <FormInput
               name="email"
               control={control}
@@ -97,7 +94,7 @@ export const SettingsForm = () => {
             />
           </styles.InputsContainer>
         </styles.Block>
-  
+
         <styles.Block>
           <styles.Title>Password</styles.Title>
           <styles.PasswordInputsContainer>
@@ -134,7 +131,7 @@ export const SettingsForm = () => {
             />
           </styles.PasswordInputsContainer>
         </styles.Block>
-  
+
         <styles.Block>
           <styles.Title>Color mode</styles.Title>
           <styles.ThemeInputContainer>
@@ -146,7 +143,16 @@ export const SettingsForm = () => {
               name="theme"
               control={control}
               render={({ field: { value, onChange } }) => {
-                return <Switcher value={value} onChange={onChange} />;
+                return (
+                  <Switcher
+                    value={value}
+                    onChange={onChange}
+                    onClick={() => {
+                      dispatch(setTheme(!value));
+                      dispatch(changeTheme());
+                    }}
+                  />
+                );
               }}
             />
           </styles.ThemeInputContainer>
