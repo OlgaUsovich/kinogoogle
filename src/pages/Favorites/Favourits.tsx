@@ -1,8 +1,8 @@
 import { useSearch } from "hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getFavoritesSelector, getMoviesSelector, useAppSelector } from "store";
 import { filterFavorites } from "utils";
-import { EmptyPage, MovieList } from "components";
+import { EmptyPage, MovieList, PaginateButton } from "components";
 import { Container } from "./styles";
 
 export const Favourits = () => {
@@ -10,6 +10,11 @@ export const Favourits = () => {
   const { searchWord, type, year } = useAppSelector(getMoviesSelector);
 
   const { favoritesToRender, searchFavorites } = useSearch();
+  const [page, setPage] = useState<string>("1");
+
+  const handlePagination = () => {
+    setPage(`${+page + 1}`);
+  };
 
   useEffect(() => {
     searchFavorites(searchWord, type, year);
@@ -17,10 +22,19 @@ export const Favourits = () => {
 
   const filteredFAvorites = filterFavorites(favorites, searchWord, type, year);
 
+  const calcPages = () => {
+    return Math.ceil(favoritesToRender.length / 10);
+  };
+
+  const paginatedFavourites = favoritesToRender.slice(0, +page * 10);
+
   if (filteredFAvorites.length) {
     return (
       <Container>
-        <MovieList movies={favoritesToRender} />
+        <MovieList movies={paginatedFavourites} />
+        {paginatedFavourites && calcPages() > 1 && calcPages() !== +page && (
+          <PaginateButton onClick={handlePagination} isLoading={false} />
+        )}
       </Container>
     );
   }
