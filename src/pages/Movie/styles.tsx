@@ -53,6 +53,7 @@ export const Description = styled.p`
 
 export const DataTable = styled.div`
   display: grid;
+  grid-template-columns: 136px auto;
   row-gap: 20px;
 `;
 
@@ -127,9 +128,4 @@ export const FavoritesButton = styled.button`
   &:hover > * {
     color: ${COLOR.WHITE};
   }
-`;
-
-export const DataTableItem = styled.li`
-  display: grid;
-  grid-template-columns: 136px auto;
 `;
