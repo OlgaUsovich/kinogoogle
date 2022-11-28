@@ -20,7 +20,7 @@ export const Nav = ({ isNavOpen }: IProps) => {
     closed: { x: 0, transition: { duration: 0 } },
   };
 
-  const variants = width < 1280 ? mobile : desctop;
+  const variants = width <= 1280 ? mobile : desctop;
 
   return (
     <styles.Nav animate={isNavOpen ? "open" : "closed"} variants={variants} initial={false}>

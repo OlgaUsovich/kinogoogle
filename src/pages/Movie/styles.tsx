@@ -20,6 +20,7 @@ export const PosterBlock = styled.div`
   flex-direction: column;
   gap: 32px;
   width: 266px;
+  flex-shrink: 0;
 
   ${MEDIA.XS} {
     gap: 24px;
@@ -127,5 +128,13 @@ export const FavoritesButton = styled.button`
 
   &:hover > * {
     color: ${COLOR.WHITE};
+  }
+`;
+
+export const InfoContainer = styled.div`
+ width: calc(100% - 42px - 266px);
+
+ ${MEDIA.XS} {
+  width: 100%;
   }
 `;

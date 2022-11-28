@@ -116,37 +116,39 @@ export const Movie = () => {
             </styles.Button>
           </styles.ButtonGroup>
         </styles.PosterBlock>
-        <styles.InfoBlock>
-          <GenreList genreList={result.genre} />
-          <styles.MovieTitle>{result.title}</styles.MovieTitle>
-          <styles.BadgeBlock>
-            <Badge
-              text={result.imdbRating}
-              color={defineBadgeColor(result.imdbRating)}
-              type="detail"
-            />
-            <Badge
-              text={result.imdbRating}
-              color={COLOR.GRAPHITE}
-              svg={<ImdbIcon />}
-              type="detail"
-            />
-            <Badge text={result.runtime} color={COLOR.GRAPHITE} type="detail" />
-          </styles.BadgeBlock>
-          <styles.Description>{result.plot}</styles.Description>
-          <styles.DataTable>
-            {Object.entries(dataSet).map(([key, value]) => {
-              return (
-                <React.Fragment key={key + value}>
-                  <styles.ParamName>{key}</styles.ParamName>
-                  <styles.Param>{value && value !== "N/A" ? value : "---"}</styles.Param>
-                </React.Fragment>
-              );
-            })}
-          </styles.DataTable>
-        </styles.InfoBlock>
+        <styles.InfoContainer>
+          <styles.InfoBlock>
+            <GenreList genreList={result.genre} />
+            <styles.MovieTitle>{result.title}</styles.MovieTitle>
+            <styles.BadgeBlock>
+              <Badge
+                text={result.imdbRating}
+                color={defineBadgeColor(result.imdbRating)}
+                type="detail"
+              />
+              <Badge
+                text={result.imdbRating}
+                color={COLOR.GRAPHITE}
+                svg={<ImdbIcon />}
+                type="detail"
+              />
+              <Badge text={result.runtime} color={COLOR.GRAPHITE} type="detail" />
+            </styles.BadgeBlock>
+            <styles.Description>{result.plot}</styles.Description>
+            <styles.DataTable>
+              {Object.entries(dataSet).map(([key, value]) => {
+                return (
+                  <React.Fragment key={key + value}>
+                    <styles.ParamName>{key}</styles.ParamName>
+                    <styles.Param>{value && value !== "N/A" ? value : "---"}</styles.Param>
+                  </React.Fragment>
+                );
+              })}
+            </styles.DataTable>
+          </styles.InfoBlock>
+          <Carousel items={recomends} title="Recommendations" />
+        </styles.InfoContainer>
       </styles.MovieInfo>
-      <Carousel items={recomends} title="Recommendations" />
     </>
   );
 };

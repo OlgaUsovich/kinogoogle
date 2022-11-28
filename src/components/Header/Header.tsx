@@ -17,7 +17,7 @@ export const Header = ({ isNavOpen, setIsNavOpen }: IProps) => {
       <Logo />
       <Search />
       <AuthBlock name={user?.displayName} />
-      {width < 1280 && (
+      {width <= 1280 && (
         <BurgerButton isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
       )}
     </Wrapper>

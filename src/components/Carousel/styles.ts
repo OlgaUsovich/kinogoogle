@@ -3,22 +3,22 @@ import styled from "styled-components";
 import { COLOR, H2, MEDIA } from "ui";
 
 export const CustomSlider = styled(Slider)`
-  .slick-list {
+  /* .slick-list {
     margin: 0 -20px;
-  }
+  } */
 
-  .slick-slide div {
+  /* .slick-slide div {
     margin: 0 20px;
-  }
+  } */
 
   ${MEDIA.MD} {
-    .slick-list {
+    /* .slick-list {
       margin: 0 -32px;
-    }
+    } */
 
-    .slick-slide div {
+    /* .slick-slide div {
       margin: 0 32px;
-    }
+    } */
   }
 `;
 

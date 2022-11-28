@@ -28,7 +28,7 @@ export const Carousel = ({ items, title }: IProps) => {
     initialSlide: 0,
     responsive: [
       {
-        breakpoint: 1280,
+        breakpoint: 1800,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 4,
@@ -36,7 +36,7 @@ export const Carousel = ({ items, title }: IProps) => {
         },
       },
       {
-        breakpoint: 1024,
+        breakpoint: 1400,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
@@ -44,18 +44,27 @@ export const Carousel = ({ items, title }: IProps) => {
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2,
+          infinite: true,
         },
       },
+      // {
+      //   breakpoint: 768,
+      //   settings: {
+      //     slidesToShow: 1,
+      //     slidesToScroll: 1,
+      //     infinite: true,
+      //   },
+      // },
       {
-        breakpoint: 568,
+        breakpoint: 810,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          infinite: true,
         },
       },
     ],
