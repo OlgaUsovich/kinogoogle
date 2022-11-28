@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "slick-carousel/slick/slick.css";
@@ -137,10 +137,10 @@ export const Movie = () => {
           <styles.DataTable>
             {Object.entries(dataSet).map(([key, value]) => {
               return (
-                <>
+                <React.Fragment key={key + value}>
                   <styles.ParamName>{key}</styles.ParamName>
                   <styles.Param>{value && value !== "N/A" ? value : "---"}</styles.Param>
-                </>
+                </React.Fragment>
               );
             })}
           </styles.DataTable>
